@@ -3,6 +3,11 @@ import Slider from "react-slick";
 import { Card, CardContent, Typography, Box } from "@mui/material";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Feature_Img1 from "../assets/img_4.png";
+import Feature_Img2 from "../assets/img_1.png";
+import Feature_Img3 from "../assets/img_2.png";
+import Feature_Img4 from "../assets/img_3.png";
+
 
 export default function FeaturedServices() {
     /*
@@ -14,19 +19,19 @@ export default function FeaturedServices() {
             title: "Service 1",
             price: "CHF 19.99",
             description: "High-quality service tailored for your needs.",
-            image: "https://via.placeholder.com/150", // Replace with actual image path
+            image: Feature_Img1
         },
         {
             title: "Service 2",
             price: "CHF 29.99",
             description: "Affordable and efficient service solutions.",
-            image: "", // No image to test placeholder
+            image: Feature_Img2
         },
         {
             title: "Service 3",
             price: "CHF 39.99",
             description: "Experience premium quality services.",
-            image: "https://via.placeholder.com/150", // Replace with actual image path
+            image: Feature_Img3
         },
         {
             title: "Service 4",
@@ -38,7 +43,13 @@ export default function FeaturedServices() {
             title: "Service 5",
             price: "CHF 59.99",
             description: "Reliable and trusted services for everyone.",
-            image: "https://via.placeholder.com/150",
+            image: Feature_Img4
+        },
+        {
+            title: "Service 6",
+            price: "CHF 59.99",
+            description: "Reliable and trusted services for everyone.",
+            image: ""
         },
     ];
 

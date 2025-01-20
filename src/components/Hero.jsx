@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Button, Typography } from "@mui/material";
-import HeroImage from "../assets/img.png"; // Import the image directly
+import HeroImage from "../assets/img.png";
 
 export default function Hero() {
     const service = {
@@ -35,7 +35,7 @@ export default function Hero() {
                     component="h1"
                     sx={{
                         fontWeight: "bold",
-                        color: "white",
+                        color: "black",
                         mb: 2,
                         fontSize: { xs: "2rem", md: "3rem" }, // Adjust font size for mobile
                     }}
@@ -45,13 +45,24 @@ export default function Hero() {
                 <Typography
                     variant="subtitle1"
                     sx={{
-                        color: "white",
+                        color: "black",
                         mb: 3,
                         maxWidth: "80%",
                         margin: { xs: "0 auto", md: "0" }, // Center text block on mobile
                     }}
                 >
                     {service.description}
+                </Typography>
+                <Typography
+                    variant="subtitle1"
+                    sx={{
+                        color: "black",
+                        mb: 3,
+                        maxWidth: "80%",
+                        margin: { xs: "0 auto", md: "0" }, // Center text block on mobile
+                    }}
+                >
+                    {service.price}
                 </Typography>
                 <Button
                     variant="contained"
@@ -65,7 +76,7 @@ export default function Hero() {
                         },
                     }}
                 >
-                    {service.price}
+                    Termin vereinbaren
                 </Button>
             </Box>
 
