@@ -9,7 +9,7 @@ import Feature_Img2 from "../assets/img_1.png";
 import Feature_Img3 from "../assets/img_2.png";
 import Feature_Img4 from "../assets/img_3.png";
 
-export default function FeaturedServices() {
+export default function FeaturedServices({ cartItems, setCartItems }) {
     const navigate = useNavigate();
 
     const services = [
@@ -88,6 +88,18 @@ export default function FeaturedServices() {
         ],
     };
 
+    // Add item to cart
+    const addToCart = (service) => {
+        setCartItems((prevItems) => {
+            // Check if the item is already in the cart
+            const itemExists = prevItems.some((item) => item.id === service.id);
+            if (itemExists) {
+                return prevItems; // Do not add duplicates
+            }
+            return [...prevItems, service];
+        });
+    };
+
     return (
         <div>
             <Typography
@@ -141,7 +153,7 @@ export default function FeaturedServices() {
                                     sx={{ mt: 2 }}
                                     onClick={(e) => {
                                         e.stopPropagation(); // Prevent navigating when button is clicked
-                                        alert(`${service.title} added to cart!`);
+                                        addToCart(service); // Add the item to the cart
                                     }}
                                 >
                                     Add to Cart

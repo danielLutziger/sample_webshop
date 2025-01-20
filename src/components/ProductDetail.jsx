@@ -14,6 +14,7 @@ const services = [
         price: "CHF 19.99",
         description: "High-quality service tailored for your needs.",
         duration: "45 minutes",
+        image: Feature_Img1,
         images: [Feature_Img1, Feature_Img2], // Multiple images for preview
     },
     {
@@ -22,6 +23,7 @@ const services = [
         price: "CHF 29.99",
         description: "Affordable and efficient service solutions.",
         duration: "60 minutes",
+        image: Feature_Img2,
         images: [Feature_Img2],
     },
     {
@@ -30,6 +32,7 @@ const services = [
         price: "CHF 39.99",
         description: "Experience premium quality services.",
         duration: "75 minutes",
+        image: Feature_Img3,
         images: [Feature_Img3],
     },
     {
@@ -38,11 +41,12 @@ const services = [
         price: "CHF 49.99",
         description: "Exceptional service guaranteed every time.",
         duration: "90 minutes",
+        image: Feature_Img4,
         images: [Feature_Img4, Feature_Img1],
     },
 ];
 
-export default function ProductDetail() {
+export default function ProductDetail({ cartItems, setCartItems }) {
     const { id } = useParams(); // Get the product ID from the URL
     const navigate = useNavigate();
 
@@ -55,6 +59,17 @@ export default function ProductDetail() {
     if (!product) {
         return <Typography>Product not found!</Typography>;
     }
+
+    const addToCart = (service) => {
+        setCartItems((prevItems) => {
+            // Check if the item is already in the cart
+            const itemExists = prevItems.some((item) => item.id === service.id);
+            if (itemExists) {
+                return prevItems; // Do not add duplicates
+            }
+            return [...prevItems, service];
+        });
+    };
 
     return (
         <Box
@@ -131,11 +146,11 @@ export default function ProductDetail() {
                     <Button
                         variant="contained"
                         color="primary"
-                        onClick={() => alert("Added to cart!")}
+                        onClick={() => addToCart(product)}
                     >
                         Add to Cart
                     </Button>
-                    <Button variant="outlined" onClick={() => navigate("/")}>
+                    <Button variant="outlined" onClick={() => navigate(-1)}>
                         Back to Services
                     </Button>
                 </Box>
