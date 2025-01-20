@@ -17,7 +17,7 @@ export default function App() {
         <>
             <CssBaseline />
             <Router>
-                <Header />
+                <Header cartItems={cartItems} />
                 <Routes>
                     <Route path="/" element={<Homepage cartItems={cartItems} setCartItems={setCartItems} />} />
                     <Route path="/services" element={<ServicesPage />} />
