@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, Snackbar, Alert } from "@mui/material";
 import Feature_Img1 from "../assets/img_4.png";
 import Feature_Img2 from "../assets/img_1.png";
 import Feature_Img3 from "../assets/img_2.png";
@@ -56,19 +56,29 @@ export default function ProductDetail({ cartItems, setCartItems }) {
     // Track the currently selected image for preview
     const [selectedImage, setSelectedImage] = useState(product?.images[0]);
 
+    // Snackbar state
+    const [snackbar, setSnackbar] = useState({ open: false, message: "", severity: "success" });
+
     if (!product) {
         return <Typography>Product not found!</Typography>;
     }
 
+    // Add item to cart
     const addToCart = (service) => {
         setCartItems((prevItems) => {
-            // Check if the item is already in the cart
             const itemExists = prevItems.some((item) => item.id === service.id);
             if (itemExists) {
+                setSnackbar({ open: true, message: `"${service.title}" already added.`, severity: "info" });
                 return prevItems; // Do not add duplicates
             }
+            setSnackbar({ open: true, message: `"${service.title}" was added to the cart.`, severity: "success" });
             return [...prevItems, service];
         });
+    };
+
+    // Close the snackbar
+    const handleCloseSnackbar = () => {
+        setSnackbar({ open: false, message: "", severity: "success" });
     };
 
     return (
@@ -155,6 +165,18 @@ export default function ProductDetail({ cartItems, setCartItems }) {
                     </Button>
                 </Box>
             </Box>
+
+            {/* Snackbar Notification */}
+            <Snackbar
+                open={snackbar.open}
+                autoHideDuration={3000} // Close automatically after 3 seconds
+                onClose={handleCloseSnackbar}
+                anchorOrigin={{ vertical: "top", horizontal: "center" }}
+            >
+                <Alert onClose={handleCloseSnackbar} severity={snackbar.severity} sx={{ width: "100%" }}>
+                    {snackbar.message}
+                </Alert>
+            </Snackbar>
         </Box>
     );
 }

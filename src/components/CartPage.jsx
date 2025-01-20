@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography, Button, TextField } from "@mui/material";
+import {Box, Typography, Button, TextField, Snackbar, Alert} from "@mui/material";
 
 export default function CartPage({ cartItems, setCartItems }) {
     // State for showing the form
@@ -10,7 +10,7 @@ export default function CartPage({ cartItems, setCartItems }) {
         email: "",
         phone: "",
     });
-
+    const [snackbar, setSnackbar] = useState({ open: false, message: "", severity: "error" });
     // Handle form input changes
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -19,8 +19,10 @@ export default function CartPage({ cartItems, setCartItems }) {
 
     // Handle item deletion
     const handleDelete = (id) => {
+        const item = cartItems.find((item) => item.id === id);
         const updatedCart = cartItems.filter((item) => item.id !== id);
         setCartItems(updatedCart);
+        setSnackbar({ open: true, message: `"${item.title}" was removed.`, severity: "error" });
     };
 
     // Automatically close the form if the cart becomes empty
@@ -50,6 +52,11 @@ export default function CartPage({ cartItems, setCartItems }) {
         } else {
             alert("Please fill out all required fields.");
         }
+    };
+
+    // Close the snackbar
+    const handleCloseSnackbar = () => {
+        setSnackbar({ open: false, message: "", severity: "success" });
     };
 
     return (
@@ -119,6 +126,17 @@ export default function CartPage({ cartItems, setCartItems }) {
                     </Button>
                 </Box>
             )}
+
+            <Snackbar
+                open={snackbar.open}
+                autoHideDuration={3000} // Close automatically after 3 seconds
+                onClose={handleCloseSnackbar}
+                anchorOrigin={{ vertical: "top", horizontal: "center" }}
+            >
+                <Alert onClose={handleCloseSnackbar} severity={snackbar.severity} sx={{ width: "100%" }}>
+                    {snackbar.message}
+                </Alert>
+            </Snackbar>
 
             {/* Booking Form */}
             {showForm && cartItems.length > 0 && (

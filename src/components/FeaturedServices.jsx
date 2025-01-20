@@ -104,7 +104,7 @@ export default function FeaturedServices({ cartItems, setCartItems }) {
 
     // Close the snackbar
     const handleCloseSnackbar = () => {
-        setSnackbar({ open: false, message: "" });
+        setSnackbar({ open: false, message: "", severity: "success" });
     };
 
     return (
