@@ -12,7 +12,10 @@ import ServicesPage from "./components/Services.jsx";
 import CartPage from "./components/CartPage.jsx";
 
 export default function App() {
-    const [cartItems, setCartItems] = useState([]);
+    const [cartItems, setCartItems] = useState(() => {
+        const savedCart = localStorage.getItem("cartItems");
+        return savedCart ? JSON.parse(savedCart) : [];
+    });
     return (
         <>
             <CssBaseline />

@@ -22,6 +22,7 @@ export default function CartPage({ cartItems, setCartItems }) {
         const item = cartItems.find((item) => item.id === id);
         const updatedCart = cartItems.filter((item) => item.id !== id);
         setCartItems(updatedCart);
+        localStorage.setItem("cartItems", JSON.stringify(updatedCart));
         setSnackbar({ open: true, message: `"${item.title}" was removed.`, severity: "error" });
     };
 
@@ -48,6 +49,7 @@ export default function CartPage({ cartItems, setCartItems }) {
             alert(`Thank you, ${formDetails.firstname}! Your appointment has been booked.`);
             setFormDetails({ firstname: "", lastname: "", email: "", phone: "" });
             setCartItems([]); // Clear the cart after submission
+            localStorage.removeItem("cartItems");
             setShowForm(false);
         } else {
             alert("Please fill out all required fields.");
@@ -56,7 +58,7 @@ export default function CartPage({ cartItems, setCartItems }) {
 
     // Close the snackbar
     const handleCloseSnackbar = () => {
-        setSnackbar({ open: false, message: "", severity: "success" });
+        setSnackbar({ open: false, message: "", severity: "error" });
     };
 
     return (

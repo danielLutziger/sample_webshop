@@ -98,6 +98,7 @@ export default function FeaturedServices({ cartItems, setCartItems }) {
                 return prevItems; // Do not add duplicates
             }
             setSnackbar({ open: true, message: `"${service.title}" was added to the cart.`, severity: "success" });
+            localStorage.setItem("cartItems", JSON.stringify([...prevItems, service]));
             return [...prevItems, service];
         });
     };
