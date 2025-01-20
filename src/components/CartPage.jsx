@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import {Box, Typography, Button, TextField, Snackbar, Alert} from "@mui/material";
-
+import CalendarBooking from "./CalendarBooking.jsx";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 export default function CartPage({ cartItems, setCartItems }) {
     // State for showing the form
     const [showForm, setShowForm] = useState(false);
@@ -119,6 +121,9 @@ export default function CartPage({ cartItems, setCartItems }) {
             {/* Booking Button */}
             {cartItems.length > 0 && (
                 <Box sx={{ textAlign: "center", mt: 4 }}>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <CalendarBooking />
+                    </LocalizationProvider>,
                     <Button
                         variant="contained"
                         color="primary"
