@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
-import { Card, CardContent, Typography, Box, Button } from "@mui/material";
+import { Card, CardContent, Typography, Box, Button, Snackbar, Alert } from "@mui/material";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Feature_Img1 from "../assets/img_4.png";
@@ -11,6 +11,7 @@ import Feature_Img4 from "../assets/img_3.png";
 
 export default function FeaturedServices({ cartItems, setCartItems }) {
     const navigate = useNavigate();
+    const [snackbar, setSnackbar] = useState({ open: false, message: "", severity: "success" });
 
     const services = [
         {
@@ -54,7 +55,7 @@ export default function FeaturedServices({ cartItems, setCartItems }) {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 3,
+        slidesToShow: 4,
         slidesToScroll: 1,
         responsive: [
             {
@@ -91,17 +92,30 @@ export default function FeaturedServices({ cartItems, setCartItems }) {
     // Add item to cart
     const addToCart = (service) => {
         setCartItems((prevItems) => {
-            // Check if the item is already in the cart
             const itemExists = prevItems.some((item) => item.id === service.id);
             if (itemExists) {
+                setSnackbar({ open: true, message: `"${service.title}" already added.`, severity: "info" });
                 return prevItems; // Do not add duplicates
             }
+            setSnackbar({ open: true, message: `"${service.title}" was added to the cart.`, severity: "success" });
             return [...prevItems, service];
         });
     };
 
+    // Close the snackbar
+    const handleCloseSnackbar = () => {
+        setSnackbar({ open: false, message: "" });
+    };
+
     return (
-        <div>
+        <div
+            style={{
+                overflow: "hidden",
+                margin: "0 auto",
+                padding: "0 10px",
+                maxWidth: "100%",
+            }}
+        >
             <Typography
                 variant="h4"
                 component="h2"
@@ -115,12 +129,12 @@ export default function FeaturedServices({ cartItems, setCartItems }) {
                         <Card
                             sx={{
                                 textAlign: "center",
-                                padding: 2,
+                                padding: 0,
                                 maxWidth: 300,
                                 margin: "0 auto",
                                 cursor: "pointer",
                             }}
-                            onClick={() => navigate(`/product/${service.id}`)} // Navigate to detail page
+                            onClick={() => navigate(`/product/${service.id}`)}
                         >
                             <Box
                                 sx={{
@@ -163,6 +177,18 @@ export default function FeaturedServices({ cartItems, setCartItems }) {
                     </Box>
                 ))}
             </Slider>
+
+            {/* Snackbar Notification */}
+            <Snackbar
+                open={snackbar.open}
+                autoHideDuration={3000} // Close automatically after 3 seconds
+                onClose={handleCloseSnackbar}
+                anchorOrigin={{ vertical: "top", horizontal: "center" }}
+            >
+                <Alert onClose={handleCloseSnackbar} severity={snackbar.severity} sx={{ width: "100%" }}>
+                    {snackbar.message}
+                </Alert>
+            </Snackbar>
         </div>
     );
 }
