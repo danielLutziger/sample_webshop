@@ -8,26 +8,20 @@ export default function Header() {
         <AppBar position="static" color="primary" elevation={0}>
             <Toolbar sx={{ justifyContent: "space-between" }}>
                 <Typography variant="h6" component="div">
-                    Mein Shop
+                    Nailstudio
                 </Typography>
                 <Box>
                     <Typography variant="body1" component="span" sx={{ mx: 2 }}>
                         Home
                     </Typography>
                     <Typography variant="body1" component="span" sx={{ mx: 2 }}>
-                        Services
+                        Services und Preise
                     </Typography>
                     <Typography variant="body1" component="span" sx={{ mx: 2 }}>
-                        Contact
+                        Kontakt
                     </Typography>
                 </Box>
                 <Box>
-                    <IconButton color="inherit">
-                        <ShoppingCartIcon />
-                    </IconButton>
-                    <IconButton color="inherit">
-                        <AccountCircleIcon />
-                    </IconButton>
                 </Box>
             </Toolbar>
         </AppBar>

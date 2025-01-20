@@ -5,6 +5,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 export default function FeaturedServices() {
+    /*
+    * TODO: adjust this from json file which could be loaded from an excel.
+    * TODO: here we could add specials!
+    * */
     const services = [
         {
             title: "Service 1",
@@ -83,7 +87,7 @@ export default function FeaturedServices() {
                 component="h2"
                 sx={{ textAlign: "center", mb: 4 }}
             >
-                Featured Services
+                Special Deals und Bestsellers
             </Typography>
             <Slider {...settings}>
                 {services.map((service, idx) => (
