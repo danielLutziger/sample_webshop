@@ -1,23 +1,24 @@
 import React from "react";
-import { CssBaseline, Container } from "@mui/material";
+import { CssBaseline} from "@mui/material";
 import Header from "./components/Header";
-import Hero from "./components/Hero";
-import FeaturedServices from "./components/FeaturedServices";
 import Footer from "./components/Footer";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ProductDetail from "./components/ProductDetail";
+import Homepage from "./components/Homepage.jsx";
 
 export default function App() {
     return (
         <>
             <CssBaseline />
             <Header />
-            <main>
-                <Hero />
-                <Container maxWidth="lg">
-                    <FeaturedServices />
-                </Container>
-            </main>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<Homepage />} />
+                    <Route path="/product/:id" element={<ProductDetail />} />
+                </Routes>
+            </Router>
             <Footer />
         </>
     );

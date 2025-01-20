@@ -1,6 +1,7 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
-import { Card, CardContent, Typography, Box } from "@mui/material";
+import { Card, CardContent, Typography, Box, Button } from "@mui/material";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Feature_Img1 from "../assets/img_4.png";
@@ -8,48 +9,44 @@ import Feature_Img2 from "../assets/img_1.png";
 import Feature_Img3 from "../assets/img_2.png";
 import Feature_Img4 from "../assets/img_3.png";
 
-
 export default function FeaturedServices() {
-    /*
-    * TODO: adjust this from json file which could be loaded from an excel.
-    * TODO: here we could add specials!
-    * */
+    const navigate = useNavigate();
+
     const services = [
         {
+            id: "1",
             title: "Service 1",
             price: "CHF 19.99",
             description: "High-quality service tailored for your needs.",
-            image: Feature_Img1
+            image: Feature_Img1,
         },
         {
+            id: "2",
             title: "Service 2",
             price: "CHF 29.99",
             description: "Affordable and efficient service solutions.",
-            image: Feature_Img2
+            image: Feature_Img2,
         },
         {
+            id: "3",
             title: "Service 3",
             price: "CHF 39.99",
             description: "Experience premium quality services.",
-            image: Feature_Img3
+            image: Feature_Img3,
         },
         {
+            id: "4",
             title: "Service 4",
             price: "CHF 49.99",
             description: "Exceptional service guaranteed every time.",
-            image: "",
+            image: Feature_Img4,
         },
         {
+            id: "5",
             title: "Service 5",
             price: "CHF 59.99",
-            description: "Reliable and trusted services for everyone.",
-            image: Feature_Img4
-        },
-        {
-            title: "Service 6",
-            price: "CHF 59.99",
-            description: "Reliable and trusted services for everyone.",
-            image: ""
+            description: "Exceptional service guaranteed every time.",
+            image: "",
         },
     ];
 
@@ -98,7 +95,7 @@ export default function FeaturedServices() {
                 component="h2"
                 sx={{ textAlign: "center", mb: 4 }}
             >
-                Special Deals und Bestsellers
+                Special Deals and Bestsellers
             </Typography>
             <Slider {...settings}>
                 {services.map((service, idx) => (
@@ -109,7 +106,9 @@ export default function FeaturedServices() {
                                 padding: 2,
                                 maxWidth: 300,
                                 margin: "0 auto",
+                                cursor: "pointer",
                             }}
+                            onClick={() => navigate(`/product/${service.id}`)} // Navigate to detail page
                         >
                             <Box
                                 sx={{
@@ -136,6 +135,17 @@ export default function FeaturedServices() {
                                 <Typography variant="body1" color="primary">
                                     {service.price}
                                 </Typography>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    sx={{ mt: 2 }}
+                                    onClick={(e) => {
+                                        e.stopPropagation(); // Prevent navigating when button is clicked
+                                        alert(`${service.title} added to cart!`);
+                                    }}
+                                >
+                                    Add to Cart
+                                </Button>
                             </CardContent>
                         </Card>
                     </Box>
