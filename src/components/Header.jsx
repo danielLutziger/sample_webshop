@@ -1,8 +1,5 @@
 import React from "react";
-import { AppBar, Toolbar, Typography, IconButton, Box } from "@mui/material";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-
+import { AppBar, Toolbar, Typography, Box } from "@mui/material";
 export default function Header() {
     return (
         <AppBar position="static" color="primary" elevation={0}>
