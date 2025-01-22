@@ -1,25 +1,10 @@
 import React, { useState, useEffect } from "react";
-import {Box, Typography, Button, TextField, Snackbar, Alert} from "@mui/material";
-import CalendarBooking from "./CalendarBooking.jsx";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import {Box, Typography, Button, Snackbar, Alert} from "@mui/material";
+import BookAppointment from "./BookAppointment.jsx";
 export default function CartPage({ cartItems, setCartItems }) {
     // State for showing the form
     const [duration, setDuration] = useState(60);
-    const [termin, setTermin] = useState({date : "", time: ""});
-    const [showForm, setShowForm] = useState(false);
-    const [formDetails, setFormDetails] = useState({
-        firstname: "",
-        lastname: "",
-        email: "",
-        phone: "",
-    });
     const [snackbar, setSnackbar] = useState({ open: false, message: "", severity: "error" });
-    // Handle form input changes
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormDetails({ ...formDetails, [name]: value });
-    };
 
     // Handle item deletion
     const handleDelete = (id) => {
@@ -30,44 +15,17 @@ export default function CartPage({ cartItems, setCartItems }) {
         setSnackbar({ open: true, message: `"${item.title}" was removed.`, severity: "error" });
     };
 
-    // Automatically close the form if the cart becomes empty
+    // Close the snackbar
+    const handleCloseSnackbar = () => {
+        setSnackbar({ open: false, message: "", severity: "error" });
+    };
+
     useEffect(() => {
-        if (cartItems.length === 0) {
-            setShowForm(false);
-        }
         const dur = cartItems.reduce((acc, item) => {
             return acc + item.duration;
         }, 0);
         setDuration(dur);
     }, [cartItems]);
-
-    // Validate form inputs
-    const isFormValid = () => {
-        return (
-            formDetails.firstname.trim() &&
-            formDetails.lastname.trim() &&
-            formDetails.email.trim() &&
-            formDetails.phone.trim()
-        );
-    };
-
-    // Handle form submission
-    const handleFormSubmit = () => {
-        if (isFormValid()) {
-            alert(`Thank you, ${formDetails.firstname}! Your appointment has been booked.`);
-            setFormDetails({ firstname: "", lastname: "", email: "", phone: "" });
-            setCartItems([]); // Clear the cart after submission
-            localStorage.removeItem("cartItems");
-            setShowForm(false);
-        } else {
-            alert("Please fill out all required fields.");
-        }
-    };
-
-    // Close the snackbar
-    const handleCloseSnackbar = () => {
-        setSnackbar({ open: false, message: "", severity: "error" });
-    };
 
     return (
         <Box sx={{ padding: "20px", maxWidth: "800px", margin: "auto" }}>
@@ -127,21 +85,13 @@ export default function CartPage({ cartItems, setCartItems }) {
                 )}
             </Box>
 
+            {/* Booking Resume */}
+
+
             {/* Booking Button */}
             {cartItems.length > 0 && (
                 <Box sx={{ textAlign: "center", mt: 4 }}>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <CalendarBooking appointmentDuration={duration} setTermin={setTermin} />
-                    </LocalizationProvider>
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={() => setShowForm(true)}
-                        disabled={!termin.time}
-                        sx={{width: "100%"}}
-                    >
-                        Termin Vereinbaren
-                    </Button>
+                    <BookAppointment cartItems={cartItems} setCartItems={setCartItems} duration={duration} />
                 </Box>
             )}
 
@@ -155,75 +105,6 @@ export default function CartPage({ cartItems, setCartItems }) {
                     {snackbar.message}
                 </Alert>
             </Snackbar>
-
-            {/* Booking Form */}
-            {showForm && cartItems.length > 0 && (
-                <Box
-                    sx={{
-                        mt: 4,
-                        p: 3,
-                        border: "1px solid #ddd",
-                        borderRadius: "8px",
-                        backgroundColor: "white",
-                    }}
-                >
-                    <Typography variant="h5" sx={{ mb: 3 }}>
-                        Persönliche Daten
-                    </Typography>
-                    <Box
-                        sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: 2,
-                        }}
-                    >
-                        <TextField
-                            label="Vorname"
-                            name="firstname"
-                            color="secondary"
-                            value={formDetails.firstname}
-                            onChange={handleInputChange}
-                            required
-                            fullWidth
-                        />
-                        <TextField
-                            label="Nachname"
-                            name="lastname"
-                            color="secondary"
-                            value={formDetails.lastname}
-                            onChange={handleInputChange}
-                            required
-                            fullWidth
-                        />
-                        <TextField
-                            label="E-Mail"
-                            name="email"
-                            color="secondary"
-                            value={formDetails.email}
-                            onChange={handleInputChange}
-                            required
-                            fullWidth
-                        />
-                        <TextField
-                            label="Telefonnummer"
-                            name="phone"
-                            color="secondary"
-                            value={formDetails.phone}
-                            onChange={handleInputChange}
-                            required
-                            fullWidth
-                        />
-                        <Button
-                            variant="contained"
-                            color="secondary"
-                            onClick={handleFormSubmit}
-                            disabled={!isFormValid()} // Disable button if form is invalid
-                        >
-                            Termin Abschicken
-                        </Button>
-                    </Box>
-                </Box>
-            )}
         </Box>
     );
 }

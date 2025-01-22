@@ -13,7 +13,7 @@ export default function Footer() {
             }}
         >
             <Typography variant="body2">
-                © 2025 Mein Shop. All rights reserved.
+                © 2025 Nancy Nails. Alle Rechte vorbehalten.
             </Typography>
         </Box>
     );
