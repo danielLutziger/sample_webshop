@@ -5,6 +5,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import CalendarBooking from "./CalendarBooking.jsx";
 import dayjs from "dayjs";
+import {MuiTelInput} from "mui-tel-input";
 
 export default function BookAppointment({ cartItems, setCartItems, duration }) {
     const [open, setOpen] = React.useState(false);
@@ -155,15 +156,20 @@ export default function BookAppointment({ cartItems, setCartItems, duration }) {
                             fullWidth
                             sx={{ mb: 2 }}
                         />
-                        <TextField
+                        <MuiTelInput
+                            id="phone"
                             label="Telefonnummer"
+                            placeholder="Telefonnummer *"
                             name="phone"
                             color="secondary"
                             value={formDetails.phone}
-                            onChange={handleInputChange}
+                            onChange={(value) => {
+                                setFormDetails({ ...formDetails, phone: value });
+                            }}
                             required
                             fullWidth
                             sx={{ mb: 3 }}
+                            defaultCountry="CH"
                         />
                         <Button
                             variant="contained"
