@@ -4,57 +4,13 @@ import Slider from "react-slick";
 import { Card, CardContent, Typography, Box, Button, Snackbar, Alert } from "@mui/material";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Feature_Img1 from "../assets/img_4.png";
-import Feature_Img2 from "../assets/img_1.png";
-import Feature_Img3 from "../assets/img_2.png";
-import Feature_Img4 from "../assets/img_3.png";
+import Specials_and_Bestsellers from "../service_assets/specials_and_bestsellers.json"
 
 export default function FeaturedServices({ cartItems, setCartItems }) {
     const navigate = useNavigate();
     const [snackbar, setSnackbar] = useState({ open: false, message: "", severity: "success" });
 
-    const services = [
-        {
-            id: "1",
-            title: "Service 1",
-            price: "CHF 19.99",
-            description: "High-quality service tailored for your needs.",
-            image: Feature_Img1,
-            duration: 45
-        },
-        {
-            id: "2",
-            title: "Service 2",
-            price: "CHF 29.99",
-            description: "Affordable and efficient service solutions.",
-            image: Feature_Img2,
-            duration: 120
-        },
-        {
-            id: "3",
-            title: "Service 3",
-            price: "CHF 39.99",
-            description: "Experience premium quality services.",
-            image: Feature_Img3,
-            duration: 45
-        },
-        {
-            id: "4",
-            title: "Service 4",
-            price: "CHF 49.99",
-            description: "Exceptional service guaranteed every time.",
-            image: Feature_Img4,
-            duration: 30
-        },
-        {
-            id: "5",
-            title: "Service 5",
-            price: "CHF 59.99",
-            description: "Exceptional service guaranteed every time.",
-            image: "",
-            duration: 60
-        },
-    ];
+    const services = Specials_and_Bestsellers;
 
     const settings = {
         dots: true,
@@ -113,6 +69,7 @@ export default function FeaturedServices({ cartItems, setCartItems }) {
         setSnackbar({ open: false, message: "", severity: "success" });
     };
 
+    console.log(services)
     return (
         <div
             style={{
@@ -143,11 +100,13 @@ export default function FeaturedServices({ cartItems, setCartItems }) {
                             onClick={() => navigate(`/product/${service.id}`)}
                         >
                             <Box
+                                component="img"
+                                src={new URL(service.image, import.meta.url).href}
+                                alt="Hero Image"
                                 className={"colorClass"}
                                 sx={{
                                     width: "100%",
                                     height: "150px",
-                                    background: service.image && `url(${service.image}) center/cover`,
                                     borderRadius: "8px",
                                     mb: 2,
                                 }}

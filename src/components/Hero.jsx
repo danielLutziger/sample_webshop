@@ -1,14 +1,9 @@
 import React from "react";
 import { Box, Button, Typography } from "@mui/material";
-import HeroImage from "../assets/img.png";
+import HeroMock from "../service_assets/hero.json";
 
 export default function Hero() {
-    const service = {
-        title: "Custom Nails",
-        price: "CHF 69.-",
-        description: "High-quality nail service, washing hands, and shaking them",
-        image: HeroImage,
-    };
+    const service = HeroMock;
 
     return (
         <Box
@@ -83,7 +78,7 @@ export default function Hero() {
             {/* Right/Bottom Side: Image */}
             <Box
                 component="img"
-                src={service.image}
+                src={new URL(service.image, import.meta.url).href}
                 alt="Hero Image"
                 sx={{
                     flex: 1,
