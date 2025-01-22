@@ -11,7 +11,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 dayjs.extend(isSameOrAfter);
 dayjs.extend(isSameOrBefore);
 
-export default function CalendarBooking({ appointmentDuration }) {
+export default function CalendarBooking({ appointmentDuration, setTermin }) {
     const blockedSlots = [
         { date: "21.01.2025", startTime: "10:00", endTime: "10:45" },
         { date: "21.01.2025", startTime: "14:15", endTime: "14:45" },
@@ -58,6 +58,7 @@ export default function CalendarBooking({ appointmentDuration }) {
     const handleSlotSelection = (slot) => {
         if (isSlotBlocked(slot)) return;
         setSelectedSlot(slot);
+        setTermin({date: selectedDate.format("DD.MM.YYYY"), time: slot});
     };
 
     const endtime = selectedSlot

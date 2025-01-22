@@ -7,6 +7,7 @@ export default function CartPage({ cartItems, setCartItems }) {
     console.log(cartItems)
     // State for showing the form
     const [duration, setDuration] = useState(60);
+    const [termin, setTermin] = useState({date : "", time: ""});
     const [showForm, setShowForm] = useState(false);
     const [formDetails, setFormDetails] = useState({
         firstname: "",
@@ -70,6 +71,8 @@ export default function CartPage({ cartItems, setCartItems }) {
         setSnackbar({ open: false, message: "", severity: "error" });
     };
 
+    console.log(termin)
+
     return (
         <Box sx={{ padding: "20px", maxWidth: "800px", margin: "auto" }}>
             <Typography variant="h4" sx={{ textAlign: "center", mb: 4 }}>
@@ -132,12 +135,13 @@ export default function CartPage({ cartItems, setCartItems }) {
             {cartItems.length > 0 && (
                 <Box sx={{ textAlign: "center", mt: 4 }}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <CalendarBooking appointmentDuration={duration} />
+                        <CalendarBooking appointmentDuration={duration} setTermin={setTermin} />
                     </LocalizationProvider>,
                     <Button
                         variant="contained"
                         color="primary"
                         onClick={() => setShowForm(true)}
+                        disabled={!termin.time}
                     >
                         Termin Vereinbaren
                     </Button>
