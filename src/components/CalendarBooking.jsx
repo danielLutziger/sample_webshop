@@ -49,15 +49,6 @@ export default function CalendarBooking() {
         );
     };
 
-    // Highlight slots based on appointment duration
-    const isSlotHighlighted = (slot) => {
-        if (!selectedSlot) return false;
-        const slotTime = dayjs(`2025-01-21T${slot}`);
-        const startTime = dayjs(`2025-01-21T${selectedSlot}`);
-        const endTime = startTime.add(appointmentDuration, "minute");
-        return slotTime.isSameOrAfter(startTime) && slotTime.isBefore(endTime);
-    };
-
     // Disable Sundays
     const shouldDisableDate = (date) => {
         return date.day() === 0; // 0 = Sunday
@@ -103,9 +94,7 @@ export default function CalendarBooking() {
                                     variant="outlined"
                                     onClick={() => handleSlotSelection(slot)}
                                     sx={{
-                                        backgroundColor: isSlotHighlighted(slot)
-                                            ? "#4caf50"
-                                            : selectedSlot === slot
+                                        backgroundColor: selectedSlot === slot
                                                 ? "#81c784"
                                                 : "white",
                                         color: isSlotBlocked(slot) ? "#aaa" : "black",
