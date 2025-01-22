@@ -76,10 +76,12 @@ export default function CalendarBooking({ setTermin, selectedSlot, setSelectedSl
                 />
 
                 {selectedDate && (
-                    <Box sx={{ mt: 4 }}>
-                        <Typography variant="h6" sx={{ mb: 2 }}>
-                            Verfügbare Termine
-                        </Typography>
+                    <Box sx={{ mt: 2 }}>
+                        {showAllSlots &&
+                            <Typography variant="h8" sx={{ mb: 2 }}>
+                                Verfügbare Termine
+                            </Typography>
+                        }
                         <Grid container>
                             {(showAllSlots ? slots : [selectedSlot]).map((slot) => (
                                 <Grid item xs={8} key={slot} sx={!showAllSlots && {width: "100%"}}>
