@@ -86,7 +86,19 @@ export default function CartPage({ cartItems, setCartItems }) {
             </Box>
 
             {/* Booking Resume */}
-
+            {cartItems.length > 0 && (
+                <Box sx={{ mt: 4, border: "1px solid #ddd", borderRadius: "8px", padding: "15px" }}>
+                    <Typography variant="h5" sx={{ mb: 2 }}>
+                        Buchungszusammenfassung
+                    </Typography>
+                    <Typography variant="body1">
+                        Gesamtpreis: <strong>CHF {cartItems.reduce((acc, item) => acc + item.price, 0)}.-</strong>
+                    </Typography>
+                    <Typography variant="body1">
+                        Gesamtdauer: <strong>{duration} Minuten</strong>
+                    </Typography>
+                </Box>
+            )}
 
             {/* Booking Button */}
             {cartItems.length > 0 && (
