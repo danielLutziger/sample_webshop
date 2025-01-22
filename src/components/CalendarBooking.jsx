@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Box, Typography, Button, Grid } from "@mui/material";
+import Grid from "@mui/material/Grid2";
+import { Box, Typography, Button } from "@mui/material";
 import dayjs from "dayjs";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
@@ -8,7 +9,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 dayjs.extend(isSameOrAfter);
 dayjs.extend(isSameOrBefore);
 
-export default function CalendarBooking() {
+export default function CalendarBooking({appointmentDuration}) {
     // Mock blocked slots from an external source
     const blockedSlots = [
         { date: "2025-01-21", startTime: "10:00", endTime: "10:45" },
@@ -21,7 +22,6 @@ export default function CalendarBooking() {
 
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedSlot, setSelectedSlot] = useState(null);
-    const [appointmentDuration, setAppointmentDuration] = useState(60); // Appointment duration in minutes
 
     // Generate 15-minute interval slots
     const generateTimeSlots = (start = "09:00", end = "18:00") => {
@@ -62,6 +62,8 @@ export default function CalendarBooking() {
         if (isSlotBlocked(slot)) return;
         setSelectedSlot(slot);
     };
+
+    const endtime = dayjs(`2025-01-21T${selectedSlot}`)?.add(appointmentDuration, "minute").format("HH:mm");
 
     return (
         <Box sx={{ padding: "20px", maxWidth: "600px", margin: "auto" }}>
@@ -118,7 +120,8 @@ export default function CalendarBooking() {
                     </Typography>
                     <Typography>{`${selectedDate.format(
                         "YYYY-MM-DD"
-                    )} at ${selectedSlot}`}</Typography>
+                    )} um ${selectedSlot}`} - {endtime}</Typography>
+                    <Typography>Dauer circa  {appointmentDuration} mins</Typography>
                 </Box>
             )}
         </Box>

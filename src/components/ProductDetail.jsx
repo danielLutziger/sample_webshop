@@ -13,7 +13,7 @@ const services = [
         title: "Service 1",
         price: "CHF 19.99",
         description: "High-quality service tailored for your needs.",
-        duration: "45 minutes",
+        duration: 45,
         image: Feature_Img1,
         images: [Feature_Img1, Feature_Img2], // Multiple images for preview
     },
@@ -22,7 +22,7 @@ const services = [
         title: "Service 2",
         price: "CHF 29.99",
         description: "Affordable and efficient service solutions.",
-        duration: "60 minutes",
+        duration: 60,
         image: Feature_Img2,
         images: [Feature_Img2],
     },
@@ -31,7 +31,7 @@ const services = [
         title: "Service 3",
         price: "CHF 39.99",
         description: "Experience premium quality services.",
-        duration: "75 minutes",
+        duration: 75,
         image: Feature_Img3,
         images: [Feature_Img3],
     },
@@ -40,7 +40,7 @@ const services = [
         title: "Service 4",
         price: "CHF 49.99",
         description: "Exceptional service guaranteed every time.",
-        duration: "90 minutes",
+        duration: 90,
         image: Feature_Img4,
         images: [Feature_Img4, Feature_Img1],
     },
@@ -146,7 +146,7 @@ export default function ProductDetail({ cartItems, setCartItems }) {
                     <strong>Price:</strong> {product.price}
                 </Typography>
                 <Typography variant="body1" sx={{ mb: 1 }}>
-                    <strong>Duration:</strong> {product.duration}
+                    <strong>Duration:</strong> {product.duration} minutes
                 </Typography>
                 <Typography variant="body1" sx={{ mb: 3 }}>
                     <strong>Description:</strong> {product.description}

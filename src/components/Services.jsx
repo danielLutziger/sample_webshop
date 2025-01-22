@@ -13,6 +13,7 @@ const services = [
         price: "CHF 19.99",
         description: "High-quality service tailored for your needs.",
         image: Feature_Img1,
+        duration: 60
     },
     {
         id: "2",
@@ -20,6 +21,7 @@ const services = [
         price: "CHF 29.99",
         description: "Affordable and efficient service solutions.",
         image: Feature_Img2,
+        duration: 30
     },
     {
         id: "3",
@@ -27,6 +29,7 @@ const services = [
         price: "CHF 39.99",
         description: "Experience premium quality services.",
         image: Feature_Img3,
+        duration: 45
     },
     {
         id: "4",
@@ -34,6 +37,7 @@ const services = [
         price: "CHF 49.99",
         description: "Exceptional service guaranteed every time.",
         image: Feature_Img4,
+        duration: 60
     },
 ];
 

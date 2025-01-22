@@ -4,7 +4,9 @@ import CalendarBooking from "./CalendarBooking.jsx";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 export default function CartPage({ cartItems, setCartItems }) {
+    console.log(cartItems)
     // State for showing the form
+    const [duration, setDuration] = useState(60);
     const [showForm, setShowForm] = useState(false);
     const [formDetails, setFormDetails] = useState({
         firstname: "",
@@ -33,6 +35,11 @@ export default function CartPage({ cartItems, setCartItems }) {
         if (cartItems.length === 0) {
             setShowForm(false);
         }
+        const dur = cartItems.reduce((acc, item) => {
+            return acc + item.duration;
+        }, 0);
+        console.log(dur);
+        setDuration(dur);
     }, [cartItems]);
 
     // Validate form inputs
@@ -102,6 +109,9 @@ export default function CartPage({ cartItems, setCartItems }) {
                                 <Typography variant="body1" color="primary">
                                     {item.price}
                                 </Typography>
+                                <Typography variant="body1" color="primary">
+                                    Dauer: {item.duration}
+                                </Typography>
                             </Box>
                             {/* Delete Button */}
                             <Button
@@ -122,7 +132,7 @@ export default function CartPage({ cartItems, setCartItems }) {
             {cartItems.length > 0 && (
                 <Box sx={{ textAlign: "center", mt: 4 }}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <CalendarBooking />
+                        <CalendarBooking appointmentDuration={duration} />
                     </LocalizationProvider>,
                     <Button
                         variant="contained"
