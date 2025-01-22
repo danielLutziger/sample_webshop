@@ -4,7 +4,6 @@ import CalendarBooking from "./CalendarBooking.jsx";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 export default function CartPage({ cartItems, setCartItems }) {
-    console.log(cartItems)
     // State for showing the form
     const [duration, setDuration] = useState(60);
     const [termin, setTermin] = useState({date : "", time: ""});
@@ -39,7 +38,6 @@ export default function CartPage({ cartItems, setCartItems }) {
         const dur = cartItems.reduce((acc, item) => {
             return acc + item.duration;
         }, 0);
-        console.log(dur);
         setDuration(dur);
     }, [cartItems]);
 
@@ -70,8 +68,6 @@ export default function CartPage({ cartItems, setCartItems }) {
     const handleCloseSnackbar = () => {
         setSnackbar({ open: false, message: "", severity: "error" });
     };
-
-    console.log(termin)
 
     return (
         <Box sx={{ padding: "20px", maxWidth: "800px", margin: "auto" }}>
@@ -136,12 +132,13 @@ export default function CartPage({ cartItems, setCartItems }) {
                 <Box sx={{ textAlign: "center", mt: 4 }}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <CalendarBooking appointmentDuration={duration} setTermin={setTermin} />
-                    </LocalizationProvider>,
+                    </LocalizationProvider>
                     <Button
                         variant="contained"
                         color="primary"
                         onClick={() => setShowForm(true)}
                         disabled={!termin.time}
+                        sx={{width: "100%"}}
                     >
                         Termin Vereinbaren
                     </Button>
