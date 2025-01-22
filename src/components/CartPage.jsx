@@ -33,7 +33,7 @@ export default function CartPage({ cartItems, setCartItems }) {
     console.log(bookingObject)
 
     return (
-        <Box sx={{ padding: "20px", maxWidth: "800px", margin: "auto" }}>
+        <Box sx={{ padding: "20px", maxWidth: "1200px", margin: "auto" }}>
             {!booked && (
                 <>
                     <Typography variant="h4" sx={{ textAlign: "center", mb: 4 }}>
