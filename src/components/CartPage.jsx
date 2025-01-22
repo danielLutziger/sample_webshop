@@ -58,7 +58,7 @@ export default function CartPage({ cartItems, setCartItems }) {
                                     {/* Item Image */}
                                     <Box
                                         component="img"
-                                        src={new URL(item.image, import.meta.url).href}
+                                        src={item.image}
                                         alt={item.title}
                                         sx={{
                                             width: "80px",

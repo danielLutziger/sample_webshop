@@ -101,7 +101,7 @@ export default function FeaturedServices({ cartItems, setCartItems }) {
                         >
                             <Box
                                 component="img"
-                                src={new URL(service.image, import.meta.url).href}
+                                src={service.image}
                                 alt="Hero Image"
                                 className={"colorClass"}
                                 sx={{

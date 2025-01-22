@@ -33,7 +33,7 @@ export default function ServicesPage() {
                     >
                         <Box
                             component="img"
-                            src={new URL(service.image, import.meta.url).href}
+                            src={service.image}
                             alt="Serivce Bild"
                             className={"colorClass"}
                             sx={{

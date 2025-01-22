@@ -3,8 +3,8 @@
   "title": "Nail Service Package",
   "price": 299,
   "description": "Experience premium quality services.",
-  "image": "../assets/img.png",
-  "images": ["../assets/img.png"],
+  "image": "/assets/img.png",
+  "images": ["/assets/img.png"],
   "duration": 120,
   "reduction": 0
 }

@@ -5,7 +5,7 @@ import ServiceMock from "../service_assets/services.json"
 // Mock data for services
 const services = ServiceMock;
 
-export default function ProductDetail({ cartItems, setCartItems }) {
+export default function ProductDetail({ setCartItems }) {
     const { id } = useParams(); // Get the product ID from the URL
     const navigate = useNavigate();
 
@@ -57,7 +57,7 @@ export default function ProductDetail({ cartItems, setCartItems }) {
                 {/* Selected Image */}
                 <Box
                     component="img"
-                    src={new URL(selectedImage, import.meta.url).href}
+                    src={selectedImage}
                     alt={product.title}
                     sx={{
                         width: "100%",
@@ -72,7 +72,7 @@ export default function ProductDetail({ cartItems, setCartItems }) {
                         <Box
                             key={idx}
                             component="img"
-                            src={new URL(img, import.meta.url).href}
+                            src={img}
                             alt={`Preview ${idx + 1}`}
                             onClick={() => setSelectedImage(img)} // Change main image on click
                             sx={{
