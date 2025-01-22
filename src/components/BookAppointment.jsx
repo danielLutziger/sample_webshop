@@ -17,6 +17,8 @@ export default function BookAppointment({ cartItems, setCartItems, duration }) {
         lastname: "",
         email: "",
         phone: "",
+        phoneError: false,
+        emailError: false
     });
 
     const [termin, setTermin] = useState({ date: "", time: "" });
@@ -31,7 +33,9 @@ export default function BookAppointment({ cartItems, setCartItems, duration }) {
             formDetails.firstname.trim() &&
             formDetails.lastname.trim() &&
             formDetails.email.trim() &&
-            formDetails.phone.trim()
+            formDetails.phone.trim() &&
+            !formDetails.phoneError &&
+            !formDetails.emailError
         );
     };
 
@@ -153,18 +157,23 @@ export default function BookAppointment({ cartItems, setCartItems, duration }) {
                             value={formDetails.email}
                             onChange={(e) => {
                                 const { name, value } = e.target;
-                                setFormDetails({ ...formDetails, [name]: value });
+                                // Validate the email format
+                                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                                const isValidEmail = emailRegex.test(value);
+
+                                // Update the form details, including the error flag
+                                setFormDetails({
+                                    ...formDetails,
+                                    [name]: value,
+                                    emailError: !isValidEmail && value !== "", // Set error only if not valid and not empty
+                                });
                             }}
                             required
                             fullWidth
                             sx={{ mb: 2 }}
-                            error={
-                                formDetails.email &&
-                                !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formDetails.email) // Simple email validation
-                            }
+                            error={formDetails.emailError} // Use emailError for validation
                             helperText={
-                                formDetails.email &&
-                                !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formDetails.email)
+                                formDetails.emailError
                                     ? "Bitte geben Sie eine gültige E-Mail-Adresse ein."
                                     : ""
                             }
