@@ -105,10 +105,10 @@ export default function CartPage({ cartItems, setCartItems }) {
                             {/* Item Details */}
                             <Box sx={{ flex: 1 }}>
                                 <Typography variant="h6">{item.title}</Typography>
-                                <Typography variant="body1" color="primary">
+                                <Typography variant="body1" color="secondary">
                                     {item.price}
                                 </Typography>
-                                <Typography variant="body1" color="primary">
+                                <Typography variant="body1" color="secondary">
                                     Dauer: {item.duration}
                                 </Typography>
                             </Box>
@@ -118,7 +118,7 @@ export default function CartPage({ cartItems, setCartItems }) {
                                 color="secondary"
                                 onClick={() => handleDelete(item.id)}
                             >
-                                Löschen
+                                Entfernen
                             </Button>
                         </Box>
                     ))
@@ -135,7 +135,7 @@ export default function CartPage({ cartItems, setCartItems }) {
                     </LocalizationProvider>
                     <Button
                         variant="contained"
-                        color="primary"
+                        color="secondary"
                         onClick={() => setShowForm(true)}
                         disabled={!termin.time}
                         sx={{width: "100%"}}
@@ -180,6 +180,7 @@ export default function CartPage({ cartItems, setCartItems }) {
                         <TextField
                             label="Vorname"
                             name="firstname"
+                            color="secondary"
                             value={formDetails.firstname}
                             onChange={handleInputChange}
                             required
@@ -188,6 +189,7 @@ export default function CartPage({ cartItems, setCartItems }) {
                         <TextField
                             label="Nachname"
                             name="lastname"
+                            color="secondary"
                             value={formDetails.lastname}
                             onChange={handleInputChange}
                             required
@@ -196,6 +198,7 @@ export default function CartPage({ cartItems, setCartItems }) {
                         <TextField
                             label="E-Mail"
                             name="email"
+                            color="secondary"
                             value={formDetails.email}
                             onChange={handleInputChange}
                             required
@@ -204,6 +207,7 @@ export default function CartPage({ cartItems, setCartItems }) {
                         <TextField
                             label="Telefonnummer"
                             name="phone"
+                            color="secondary"
                             value={formDetails.phone}
                             onChange={handleInputChange}
                             required
@@ -211,7 +215,7 @@ export default function CartPage({ cartItems, setCartItems }) {
                         />
                         <Button
                             variant="contained"
-                            color="primary"
+                            color="secondary"
                             onClick={handleFormSubmit}
                             disabled={!isFormValid()} // Disable button if form is invalid
                         >

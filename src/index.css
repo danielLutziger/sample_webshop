@@ -1,7 +1,9 @@
 .colorClass {
-    background-color: #ceaaff;
+    background-color: #d294f4; /* #ffadee #d294f4 #ceaaff */
 }
 
+/*  */
+
 .gradientClass {
-    background-color: linear-gradient(to right, #a7f3d0, #fde68a, #fbcfe8);
+    background: linear-gradient(to right, #ceaaff, #fbcfe8);
 }

@@ -97,10 +97,11 @@ export default function CalendarBooking({ appointmentDuration, setTermin }) {
                                 <Grid item xs={8} key={slot}>
                                     <Button
                                         variant="outlined"
+                                        color="secondary"
                                         onClick={() => handleSlotSelection(slot)}
                                         sx={{
                                             backgroundColor:
-                                                selectedSlot === slot ? "#81c784" : "white",
+                                                selectedSlot === slot ? "#ceaaff" : "white",
                                             color: isSlotBlocked(slot) ? "#aaa" : "black",
                                             pointerEvents: isSlotBlocked(slot) ? "none" : "auto",
                                         }}

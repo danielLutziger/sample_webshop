@@ -12,7 +12,7 @@ export default function Hero() {
 
     return (
         <Box
-            className={"colorClass"}
+            className={"gradientClass"}
             sx={{
                 display: "flex",
                 flexDirection: { xs: "column", md: "row" },

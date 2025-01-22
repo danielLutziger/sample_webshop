@@ -156,12 +156,12 @@ export default function ProductDetail({ cartItems, setCartItems }) {
                 <Box sx={{ display: "flex", gap: 2 }}>
                     <Button
                         variant="contained"
-                        color="primary"
+                        color="secondary"
                         onClick={() => addToCart(product)}
                     >
                         Add to Cart
                     </Button>
-                    <Button variant="outlined" onClick={() => navigate(-1)}>
+                    <Button variant="outlined"  color="secondary" onClick={() => navigate(-1)}>
                         Back to Services
                     </Button>
                 </Box>

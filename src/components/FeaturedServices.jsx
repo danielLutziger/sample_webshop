@@ -163,12 +163,12 @@ export default function FeaturedServices({ cartItems, setCartItems }) {
                                 >
                                     {service.description}
                                 </Typography>
-                                <Typography variant="body1" color="primary">
+                                <Typography variant="body1" color="secondary">
                                     {service.price}
                                 </Typography>
                                 <Button
                                     variant="contained"
-                                    color="primary"
+                                    color="secondary"
                                     sx={{ mt: 2 }}
                                     onClick={(e) => {
                                         e.stopPropagation(); // Prevent navigating when button is clicked

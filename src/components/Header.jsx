@@ -9,9 +9,9 @@ export default function Header({ cartItems }) {
     return (
         <AppBar
             position="static"
-            color="primary"
             elevation={0}
             sx={{
+                backgroundColor: "#d294f4",
                 padding: { xs: "5px 10px", md: "10px 20px" }, // Reduce padding for mobile
             }}
         >
@@ -35,7 +35,7 @@ export default function Header({ cartItems }) {
                         textAlign: { xs: "center", md: "left" },
                     }}
                 >
-                    Nailstudio
+                    Nancy Nails
                 </Typography>
 
                 {/* Navigation Links */}
