@@ -123,7 +123,7 @@ export default function FeaturedServices({ cartItems, setCartItems }) {
                                     {service.description}
                                 </Typography>
                                 <Typography variant="body1" color="secondary">
-                                    {service.price}
+                                    CHF {service.price}.-
                                 </Typography>
                                 <Button
                                     variant="contained"

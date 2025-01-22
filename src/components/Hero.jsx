@@ -57,7 +57,7 @@ export default function Hero() {
                         margin: { xs: "0 auto", md: "0" },
                     }}
                 >
-                    {service.price}
+                    CHF {service.price}.-
                 </Typography>
                 <Button
                     variant="contained"

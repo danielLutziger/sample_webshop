@@ -54,8 +54,8 @@ export default function ServicesPage() {
                             >
                                 {service.description}
                             </Typography>
-                            <Typography variant="body1" color="primary">
-                                {service.price}
+                            <Typography variant="body1" color="secondary">
+                                CHF {service.price}.-
                             </Typography>
                         </CardContent>
                     </Card>
