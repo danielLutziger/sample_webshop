@@ -1,0 +1,152 @@
+[
+  {
+    "id": "1",
+    "title": "Service 1",
+    "price": 20,
+    "description": "High-quality service tailored for your needs.",
+    "image": "../assets/img_1.png",
+    "images": ["../assets/img_1.png"],
+    "duration": 60,
+    "reduction": 0
+  },
+  {
+    "id": "2",
+    "title": "Service 2",
+    "price": 30,
+    "description": "Affordable and efficient service solutions.",
+    "image": "../assets/img_2.png",
+    "images": ["../assets/img_3.png", "../assets/img_1.png", "../assets/img_4.png"],
+    "duration": 30,
+    "reduction": 50
+  },
+  {
+    "id": "3",
+    "title": "Service 3",
+    "price": 60,
+    "description": "Experience premium quality services.",
+    "image": "../assets/img_3.png",
+    "images": ["../assets/img_3.png", "../assets/img_1.png", "../assets/img_4.png"],
+    "duration": 45,
+    "reduction": 0
+  },
+  {
+    "id": "4",
+    "title": "Service 4",
+    "price": 85,
+    "description": "Exceptional service guaranteed every time.",
+    "image": "../assets/img_4.png",
+    "images": ["../assets/img_4.png"],
+    "duration": 60,
+    "reduction": 0
+  },
+  {
+    "id": "5",
+    "title": "Service 5",
+    "price": 20,
+    "description": "Exceptional service guaranteed every time.",
+    "image": "",
+    "images": [],
+    "duration": 60,
+    "reduction": 0
+  },
+  {
+    "id": "6",
+    "title": "Service 6",
+    "price": 120,
+    "description": "Exceptional service guaranteed every time.",
+    "image": "../assets/img_5.png",
+    "images": ["../assets/img_5.png"],
+    "duration": 120,
+    "reduction": 0
+  },
+  {
+    "id": "7",
+    "title": "Service 7",
+    "price": 300,
+    "description": "Exceptional service guaranteed every time.",
+    "image": "../assets/img_6.png",
+    "images": ["../assets/img_6.png", "../assets/img_7.png", "../assets/img_8.png"],
+    "duration": 120,
+    "reduction": 0
+  },
+  {
+    "id": "8",
+    "title": "Service 8",
+    "price": 35,
+    "description": "Exceptional service guaranteed every time.",
+    "image": "../assets/img_9.png",
+    "images": ["../assets/img_9.png"],
+    "duration": 120,
+    "reduction":  0
+  },
+  {
+    "id": "9",
+    "title": "Service 9",
+    "price": 40,
+    "description": "Exceptional service guaranteed every time.",
+    "image": "../assets/img_10.png",
+    "images": ["../assets/img_10.png"],
+    "duration": 120,
+    "reduction":  20
+  },
+  {
+    "id": "10",
+    "title": "Service 10",
+    "price": 65,
+    "description": "Exceptional service guaranteed every time.",
+    "image": "../assets/img_11.png",
+    "images": ["../assets/img_11.png"],
+    "duration": 120,
+    "reduction":  20
+  },
+  {
+    "id": "11",
+    "title": "Service 11",
+    "price": 95,
+    "description": "Exceptional service guaranteed every time.",
+    "image": "../assets/img_12.png",
+    "images": ["../assets/img_12.png"],
+    "duration": 120,
+    "reduction":  20
+  },
+  {
+    "id": "12",
+    "title": "Service 12",
+    "price": 180,
+    "description": "Exceptional service guaranteed every time.",
+    "image": "../assets/img_13.png",
+    "images": ["../assets/img_13.png"],
+    "duration": 120,
+    "reduction":  0
+  },
+  {
+    "id": "13",
+    "title": "Service 13",
+    "price": 130,
+    "description": "Exceptional service guaranteed every time.",
+    "image": "../assets/img_14.png",
+    "images": ["../assets/img_14.png"],
+    "duration": 120,
+    "reduction":  20
+  },
+  {
+    "id": "14",
+    "title": "Service 14",
+    "price": 69,
+    "description": "Exceptional service guaranteed every time.",
+    "image": "../assets/img_15.png",
+    "images": ["../assets/img_15.png"],
+    "duration": 120,
+    "reduction":  20
+  },
+  {
+    "id": "15",
+    "title": "Service 15",
+    "price": 96,
+    "description": "Exceptional service guaranteed every time.",
+    "image": "../assets/img_16.png",
+    "images": ["../assets/img_16.png"],
+    "duration": 120,
+    "reduction":  20
+  }
+]
