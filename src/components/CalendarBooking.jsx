@@ -2,15 +2,11 @@ import React, { useState } from "react";
 import Grid from "@mui/material/Grid2";
 import { Box, Typography, Button } from "@mui/material";
 import dayjs from "dayjs";
-import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
-import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
-dayjs.extend(isSameOrAfter);
-dayjs.extend(isSameOrBefore);
-
+dayjs.locale("de");
 export default function CalendarBooking({ appointmentDuration, setTermin }) {
     const blockedSlots = [
         { date: "21.01.2025", startTime: "10:00", endTime: "10:45" },
@@ -68,14 +64,14 @@ export default function CalendarBooking({ appointmentDuration, setTermin }) {
         : null;
 
     return (
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">
             <Box sx={{ paddingTop: "20px", paddingBottom: "20px", margin: "auto" }}>
                 <Typography variant="h4" sx={{ textAlign: "center", mb: 4 }}>
-                    Book Your Appointment
+                    Buche deinen Termin
                 </Typography>
 
                 <DatePicker
-                    label="Select Date"
+                    label="Datum auswählen"
                     value={selectedDate}
                     onChange={(newValue) => {
                         setSelectedDate(newValue);
@@ -90,7 +86,7 @@ export default function CalendarBooking({ appointmentDuration, setTermin }) {
                 {selectedDate && (
                     <Box sx={{ mt: 4 }}>
                         <Typography variant="h6" sx={{ mb: 2 }}>
-                            Available Slots
+                            Verfügbare Termine
                         </Typography>
                         <Grid container>
                             {slots.map((slot) => (
@@ -118,12 +114,12 @@ export default function CalendarBooking({ appointmentDuration, setTermin }) {
                 {selectedSlot && (
                     <Box sx={{ mt: 4 }}>
                         <Typography variant="h6" sx={{ mb: 2 }}>
-                            Selected Slot
+                            Ausgewählter Termin
                         </Typography>
                         <Typography>{`${selectedDate.format(
                             "DD.MM.YYYY"
                         )} um ${selectedSlot}`} - {endtime}</Typography>
-                        <Typography>Dauer circa {appointmentDuration} mins</Typography>
+                        <Typography>Dauer circa {appointmentDuration} Minuten</Typography>
                     </Box>
                 )}
             </Box>

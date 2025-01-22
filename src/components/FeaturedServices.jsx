@@ -125,6 +125,9 @@ export default function FeaturedServices({ cartItems, setCartItems }) {
                                 <Typography variant="body1" color="secondary">
                                     CHF {service.price}.-
                                 </Typography>
+                                <Typography variant="body2" color="secondary">
+                                    Dauer: ~{service.duration} Minuten
+                                </Typography>
                                 <Button
                                     variant="contained"
                                     color="secondary"
@@ -134,7 +137,7 @@ export default function FeaturedServices({ cartItems, setCartItems }) {
                                         addToCart(service); // Add the item to the cart
                                     }}
                                 >
-                                    Add to Cart
+                                    Service buchen
                                 </Button>
                             </CardContent>
                         </Card>

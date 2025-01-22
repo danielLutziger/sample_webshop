@@ -72,7 +72,7 @@ export default function CartPage({ cartItems, setCartItems }) {
     return (
         <Box sx={{ padding: "20px", maxWidth: "800px", margin: "auto" }}>
             <Typography variant="h4" sx={{ textAlign: "center", mb: 4 }}>
-                Dein Warenkorb
+                Services im Warenkorb
             </Typography>
 
             {/* Cart Items */}
@@ -93,7 +93,7 @@ export default function CartPage({ cartItems, setCartItems }) {
                             {/* Item Image */}
                             <Box
                                 component="img"
-                                src={item.image}
+                                src={new URL(item.image, import.meta.url).href}
                                 alt={item.title}
                                 sx={{
                                     width: "80px",
@@ -106,10 +106,10 @@ export default function CartPage({ cartItems, setCartItems }) {
                             <Box sx={{ flex: 1 }}>
                                 <Typography variant="h6">{item.title}</Typography>
                                 <Typography variant="body1" color="secondary">
-                                    {item.price}
+                                    Preis: CHF {item.price}.-
                                 </Typography>
                                 <Typography variant="body1" color="secondary">
-                                    Dauer: {item.duration}
+                                    Dauer: circa {item.duration} Minuten
                                 </Typography>
                             </Box>
                             {/* Delete Button */}

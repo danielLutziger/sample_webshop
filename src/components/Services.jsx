@@ -34,7 +34,7 @@ export default function ServicesPage() {
                         <Box
                             component="img"
                             src={new URL(service.image, import.meta.url).href}
-                            alt="Hero Image"
+                            alt="Serivce Bild"
                             className={"colorClass"}
                             sx={{
                                 width: "100%",
@@ -56,6 +56,9 @@ export default function ServicesPage() {
                             </Typography>
                             <Typography variant="body1" color="secondary">
                                 CHF {service.price}.-
+                            </Typography>
+                            <Typography variant="body2" color="secondary">
+                                Dauer: ~{service.duration} Minuten
                             </Typography>
                         </CardContent>
                     </Card>

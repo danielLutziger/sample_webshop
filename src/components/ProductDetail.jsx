@@ -102,26 +102,24 @@ export default function ProductDetail({ cartItems, setCartItems }) {
                     {product.title}
                 </Typography>
                 <Typography variant="body1" sx={{ mb: 1 }}>
-                    <strong>Price:</strong> {product.price}
+                    <strong>Preis:</strong> CHF {product.price}.-
                 </Typography>
                 <Typography variant="body1" sx={{ mb: 1 }}>
-                    <strong>Duration:</strong> {product.duration} minutes
+                    <strong>Dauer:</strong> Circa {product.duration} Minuten
                 </Typography>
                 <Typography variant="body1" sx={{ mb: 3 }}>
-                    <strong>Description:</strong> {product.description}
+                    <strong>Beschreibung:</strong> {product.description}
                 </Typography>
 
                 {/* Action Buttons */}
-                <Box sx={{ display: "flex", gap: 2 }}>
+                <Box sx={{ display: "flex"}}>
                     <Button
+                        sx={{width: "100%"}}
                         variant="contained"
                         color="secondary"
                         onClick={() => addToCart(product)}
                     >
-                        Add to Cart
-                    </Button>
-                    <Button variant="outlined"  color="secondary" onClick={() => navigate(-1)}>
-                        Back to Services
+                        Service buchen
                     </Button>
                 </Box>
             </Box>
