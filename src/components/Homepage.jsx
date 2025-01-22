@@ -6,7 +6,7 @@ import React from "react";
 export default function Homepage({cartItems, setCartItems}){
     return (
         <main>
-            <Hero />
+            <Hero setCartItems={setCartItems} />
             <Container maxWidth="lg">
                 <FeaturedServices cartItems={cartItems} setCartItems={setCartItems} />
             </Container>

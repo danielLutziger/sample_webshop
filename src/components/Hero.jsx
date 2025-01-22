@@ -1,9 +1,22 @@
-import React from "react";
-import { Box, Button, Typography } from "@mui/material";
+import React, {useState} from "react";
+import {Alert, Box, Button, Snackbar, Typography} from "@mui/material";
 import HeroMock from "../service_assets/hero.json";
+import {useNavigate} from "react-router-dom";
 
-export default function Hero() {
+export default function Hero({setCartItems}) {
     const service = HeroMock;
+    const navigate = useNavigate();
+
+    const addToCart = (serv) => {
+        setCartItems((prevItems) => {
+            const itemExists = prevItems.some((item) => item.id === serv.id);
+            if (itemExists) {
+                return prevItems; // Do not add duplicates
+            }
+            localStorage.setItem("cartItems", JSON.stringify([...prevItems, serv]));
+            return [...prevItems, serv];
+        });
+    };
 
     return (
         <Box
@@ -69,6 +82,10 @@ export default function Hero() {
                         ":hover": {
                             backgroundColor: "#732d91",
                         },
+                    }}
+                    onClick={() => {
+                        addToCart(service)
+                        navigate('/cart')
                     }}
                 >
                     Termin vereinbaren
