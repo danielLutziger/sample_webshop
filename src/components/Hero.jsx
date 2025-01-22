@@ -83,10 +83,12 @@ export default function Hero() {
                 sx={{
                     flex: 1,
                     maxWidth: { xs: "100%", md: "40%" },
+                    maxHeight: { xs: "300px", md: "auto" }, // Restrict height on smaller screens
                     height: "auto",
                     borderRadius: "8px",
                     boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
                     alignSelf: "center",
+                    objectFit: "cover", // Ensure image scales proportionally
                 }}
             />
         </Box>
