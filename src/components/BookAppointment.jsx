@@ -107,7 +107,7 @@ export default function BookAppointment({ cartItems, setCartItems, duration }) {
 
                         {selectedSlot && (
                             <Box sx={{mb: 2, border: "1px solid #ddd", borderRadius: "8px", padding: "10px" }}>
-                                <Typography variant="h7" sx={{ mb: 1 }}>
+                                <Typography variant="h6" sx={{ mb: 1 }}>
                                     Zusammenfassung
                                 </Typography>
                                 <Typography variant="body1">
