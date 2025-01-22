@@ -1,50 +1,9 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Box, Typography, Button, Snackbar, Alert } from "@mui/material";
-import Feature_Img1 from "../assets/img_4.png";
-import Feature_Img2 from "../assets/img_1.png";
-import Feature_Img3 from "../assets/img_2.png";
-import Feature_Img4 from "../assets/img_3.png";
-
+import ServiceMock from "../service_assets/services.json"
 // Mock data for services
-const services = [
-    {
-        id: "1",
-        title: "Service 1",
-        price: "CHF 19.99",
-        description: "High-quality service tailored for your needs.",
-        duration: 45,
-        image: Feature_Img1,
-        images: [Feature_Img1, Feature_Img2], // Multiple images for preview
-    },
-    {
-        id: "2",
-        title: "Service 2",
-        price: "CHF 29.99",
-        description: "Affordable and efficient service solutions.",
-        duration: 60,
-        image: Feature_Img2,
-        images: [Feature_Img2],
-    },
-    {
-        id: "3",
-        title: "Service 3",
-        price: "CHF 39.99",
-        description: "Experience premium quality services.",
-        duration: 75,
-        image: Feature_Img3,
-        images: [Feature_Img3],
-    },
-    {
-        id: "4",
-        title: "Service 4",
-        price: "CHF 49.99",
-        description: "Exceptional service guaranteed every time.",
-        duration: 90,
-        image: Feature_Img4,
-        images: [Feature_Img4, Feature_Img1],
-    },
-];
+const services = ServiceMock;
 
 export default function ProductDetail({ cartItems, setCartItems }) {
     const { id } = useParams(); // Get the product ID from the URL
@@ -98,7 +57,7 @@ export default function ProductDetail({ cartItems, setCartItems }) {
                 {/* Selected Image */}
                 <Box
                     component="img"
-                    src={selectedImage}
+                    src={new URL(selectedImage, import.meta.url).href}
                     alt={product.title}
                     sx={{
                         width: "100%",
@@ -113,7 +72,7 @@ export default function ProductDetail({ cartItems, setCartItems }) {
                         <Box
                             key={idx}
                             component="img"
-                            src={img}
+                            src={new URL(img, import.meta.url).href}
                             alt={`Preview ${idx + 1}`}
                             onClick={() => setSelectedImage(img)} // Change main image on click
                             sx={{
