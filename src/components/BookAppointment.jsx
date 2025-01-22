@@ -151,10 +151,23 @@ export default function BookAppointment({ cartItems, setCartItems, duration }) {
                             name="email"
                             color="secondary"
                             value={formDetails.email}
-                            onChange={handleInputChange}
+                            onChange={(e) => {
+                                const { name, value } = e.target;
+                                setFormDetails({ ...formDetails, [name]: value });
+                            }}
                             required
                             fullWidth
                             sx={{ mb: 2 }}
+                            error={
+                                formDetails.email &&
+                                !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formDetails.email) // Simple email validation
+                            }
+                            helperText={
+                                formDetails.email &&
+                                !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formDetails.email)
+                                    ? "Bitte geben Sie eine gültige E-Mail-Adresse ein."
+                                    : ""
+                            }
                         />
                         <MuiTelInput
                             id="phone"
@@ -164,12 +177,33 @@ export default function BookAppointment({ cartItems, setCartItems, duration }) {
                             color="secondary"
                             value={formDetails.phone}
                             onChange={(value) => {
-                                setFormDetails({ ...formDetails, phone: value });
+                                // Define regex for Swiss, German, and Austrian phone numbers
+                                const swissPhoneRegex = /^(\+41) ([1-9]{1}[0-9]{1}) [0-9]{3} [0-9]{2} [0-9]{2}$/; // e.g., +41 79 123 45 67
+                                const germanPhoneRegex = /^(\+49) ([1-9]{4}) [0-9]{5,}$/; // e.g., +49 1234 12345
+                                const austrianPhoneRegex = /^(\+43) ([1-9]{4}) [0-9]{5,}$/; // e.g., +43 1234 12345
+
+                                // Check if the input matches any of the formats
+                                const isValid =
+                                    swissPhoneRegex.test(value) ||
+                                    germanPhoneRegex.test(value) ||
+                                    austrianPhoneRegex.test(value);
+
+                                setFormDetails({
+                                    ...formDetails,
+                                    phone: value,
+                                    phoneError: !isValid, // Add an error flag for validation
+                                });
                             }}
                             required
                             fullWidth
                             sx={{ mb: 3 }}
                             defaultCountry="CH"
+                            error={formDetails.phoneError}
+                            helperText={
+                                formDetails.phoneError
+                                    ? "Bitte geben Sie eine gültige Telefonnummer aus der Schweiz, Deutschland oder Österreich ein."
+                                    : ""
+                            }
                         />
                         <Button
                             variant="contained"
