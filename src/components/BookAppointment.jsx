@@ -1,10 +1,12 @@
-import {Box, Button, Modal, TextField, Typography} from "@mui/material";
-import React, {useEffect, useState} from "react";
-import {LocalizationProvider} from "@mui/x-date-pickers";
-import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
+import { Box, Button, Modal, TextField, IconButton, Typography } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import React, { useState } from "react";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import CalendarBooking from "./CalendarBooking.jsx";
-export default function BookAppointment({cartItems, setCartItems, duration}) {
+import dayjs from "dayjs";
 
+export default function BookAppointment({ cartItems, setCartItems, duration }) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -13,18 +15,16 @@ export default function BookAppointment({cartItems, setCartItems, duration}) {
         firstname: "",
         lastname: "",
         email: "",
-        phone: ""
+        phone: "",
     });
 
-    const [termin, setTermin] = useState({date : "", time: ""});
+    const [termin, setTermin] = useState({ date: "", time: "" });
 
-    // Handle form input changes
     const handleInputChange = (e) => {
-        const {name, value} = e.target;
-        setFormDetails({...formDetails, [name]: value});
+        const { name, value } = e.target;
+        setFormDetails({ ...formDetails, [name]: value });
     };
 
-    // Validate form inputs
     const isFormValid = () => {
         return (
             formDetails.firstname.trim() &&
@@ -34,29 +34,30 @@ export default function BookAppointment({cartItems, setCartItems, duration}) {
         );
     };
 
-    // Handle form submission
     const handleFormSubmit = () => {
         if (isFormValid()) {
-            //TODO: send form somewhere
-            const send_object = {...cartItems, ...formDetails, ...termin};
+            const send_object = { ...cartItems, ...formDetails, ...termin };
             console.log(send_object);
             alert(`Thank you, ${formDetails.firstname}! Your appointment has been booked.`);
-            setFormDetails({firstname: "", lastname: "", email: "", phone: ""});
-            setCartItems([]); // Clear the cart after submission
+            setFormDetails({ firstname: "", lastname: "", email: "", phone: "" });
+            setCartItems([]);
             localStorage.removeItem("cartItems");
+            handleClose();
         } else {
             alert("Please fill out all required fields.");
         }
     };
 
+    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedSlot, setSelectedSlot] = useState(null);
+    const endTime = selectedSlot ? dayjs(`${selectedDate.format("DD.MM.YYYY")}T${selectedSlot}`, "DD.MM.YYYYTHH:mm")
+            .add(duration, "minute")
+            .format("HH:mm")
+        : null;
+
     return (
         <>
-            <Button
-                variant="contained"
-                color="secondary"
-                onClick={handleOpen}
-                sx={{width: "100%"}}
-            >
+            <Button variant="contained" color="secondary" onClick={handleOpen} sx={{ width: "100%" }}>
                 Termin Vereinbaren
             </Button>
             <Modal
@@ -67,26 +68,63 @@ export default function BookAppointment({cartItems, setCartItems, duration}) {
             >
                 <Box
                     sx={{
-                        mt: 4,
-                        p: 3,
-                        border: "1px solid #ddd",
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        width: "90%", // Adjust width as needed
+                        maxWidth: "600px",
+                        maxHeight: "90%", // Ensure it doesn't overflow vertically
+                        bgcolor: "white",
+                        boxShadow: 24,
                         borderRadius: "8px",
-                        backgroundColor: "white",
+                        overflow: "auto", // Make content scrollable
                     }}
                 >
-                    <Typography variant="h5" sx={{mb: 3}}>
-                        Persönliche Daten
-                    </Typography>
                     <Box
                         sx={{
                             display: "flex",
-                            flexDirection: "column",
-                            gap: 2,
+                            justifyContent: "space-between",
+                            alignItems: "center",
+                            p: 2,
+                            borderBottom: "1px solid #ddd",
                         }}
                     >
+                        <Typography variant="h4">
+                            Buchung
+                        </Typography>
+                        <IconButton onClick={handleClose} size="small">
+                            <CloseIcon />
+                        </IconButton>
+                    </Box>
+                    <Box sx={{ p: 3 }}>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <CalendarBooking appointmentDuration={duration} setTermin={setTermin} />
+                            <CalendarBooking  setTermin={setTermin}
+                                             selectedSlot={selectedSlot} setSelectedSlot={setSelectedSlot}
+                                             selectedDate={selectedDate} setSelectedDate={setSelectedDate}
+                            />
                         </LocalizationProvider>
+
+                        {selectedSlot && (
+                            <Box sx={{mb: 2, border: "1px solid #ddd", borderRadius: "8px", padding: "10px" }}>
+                                <Typography variant="h7" sx={{ mb: 1 }}>
+                                    Zusammenfassung
+                                </Typography>
+                                <Typography variant="body1">
+                                    Gesamtpreis: <strong>CHF {cartItems.reduce((acc, item) => acc + item.price, 0)}.-</strong>
+                                </Typography>
+                                <Typography variant="body1">
+                                    Gesamtdauer: <strong>{duration} Minuten</strong>
+                                </Typography>
+                                <Typography variant="body1">
+                                    Termin: <strong>{selectedDate.format("DD.MM.YYYY")}, {selectedSlot}-{endTime} </strong>
+                                </Typography>
+                                <Typography variant="body1">
+                                    Services: <strong>{cartItems.map(item => item.title).join(", ")}</strong>
+                                </Typography>
+                            </Box>
+                        )}
+
                         <TextField
                             label="Vorname"
                             name="firstname"
@@ -95,6 +133,7 @@ export default function BookAppointment({cartItems, setCartItems, duration}) {
                             onChange={handleInputChange}
                             required
                             fullWidth
+                            sx={{ mb: 2 }}
                         />
                         <TextField
                             label="Nachname"
@@ -104,6 +143,7 @@ export default function BookAppointment({cartItems, setCartItems, duration}) {
                             onChange={handleInputChange}
                             required
                             fullWidth
+                            sx={{ mb: 2 }}
                         />
                         <TextField
                             label="E-Mail"
@@ -113,6 +153,7 @@ export default function BookAppointment({cartItems, setCartItems, duration}) {
                             onChange={handleInputChange}
                             required
                             fullWidth
+                            sx={{ mb: 2 }}
                         />
                         <TextField
                             label="Telefonnummer"
@@ -122,12 +163,14 @@ export default function BookAppointment({cartItems, setCartItems, duration}) {
                             onChange={handleInputChange}
                             required
                             fullWidth
+                            sx={{ mb: 3 }}
                         />
                         <Button
                             variant="contained"
                             color="secondary"
                             onClick={handleFormSubmit}
-                            disabled={!isFormValid()} // Disable button if form is invalid
+                            disabled={!isFormValid()}
+                            fullWidth
                         >
                             Termin Abschicken
                         </Button>
@@ -135,6 +178,5 @@ export default function BookAppointment({cartItems, setCartItems, duration}) {
                 </Box>
             </Modal>
         </>
-
     );
-};
+}

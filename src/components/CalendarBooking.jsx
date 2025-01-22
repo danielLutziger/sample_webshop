@@ -5,20 +5,13 @@ import dayjs from "dayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import Blocked_slots from "../service_assets/blockierte_slots.json";
 
 dayjs.locale("de");
-export default function CalendarBooking({ appointmentDuration, setTermin }) {
-    const blockedSlots = [
-        { date: "21.01.2025", startTime: "10:00", endTime: "10:45" },
-        { date: "21.01.2025", startTime: "14:15", endTime: "14:45" },
-        { date: "22.01.2025", startTime: "09:00", endTime: "14:45" },
-        { date: "23.01.2025", startTime: "09:00", endTime: "16:00" },
-        { date: "24.01.2025", startTime: "09:00", endTime: "14:45" },
-        { date: "25.01.2025", startTime: "09:00", endTime: "18:00" },
-    ];
+export default function CalendarBooking({ setTermin, selectedSlot, setSelectedSlot, selectedDate, setSelectedDate }) {
+    const blockedSlots = Blocked_slots;
 
-    const [selectedDate, setSelectedDate] = useState(null);
-    const [selectedSlot, setSelectedSlot] = useState(null);
+    const [showAllSlots, setShowAllSlots] = useState(true);
 
     const generateTimeSlots = (start = "09:00", end = "18:00") => {
         const slots = [];
@@ -53,29 +46,28 @@ export default function CalendarBooking({ appointmentDuration, setTermin }) {
 
     const handleSlotSelection = (slot) => {
         if (isSlotBlocked(slot)) return;
-        setSelectedSlot(slot);
-        setTermin({date: selectedDate.format("DD.MM.YYYY"), time: slot});
-    };
 
-    const endtime = selectedSlot
-        ? dayjs(`${selectedDate.format("DD.MM.YYYY")}T${selectedSlot}`, "DD.MM.YYYYTHH:mm")
-            .add(appointmentDuration, "minute")
-            .format("HH:mm")
-        : null;
+        if (selectedSlot === slot && !showAllSlots) {
+            // Toggle to show all slots
+            setShowAllSlots(true);
+        } else {
+            // Select the slot and collapse to show only the selected one
+            setSelectedSlot(slot);
+            setTermin({ date: selectedDate.format("DD.MM.YYYY"), time: slot });
+            setShowAllSlots(false);
+        }
+    };
 
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">
-            <Box sx={{ paddingTop: "20px", paddingBottom: "20px", margin: "auto" }}>
-                <Typography variant="h4" sx={{ textAlign: "center", mb: 4 }}>
-                    Buche deinen Termin
-                </Typography>
-
+            <Box sx={{ paddingTop: "20px", paddingBottom: "20px", margin: "auto", width: "100%" }}>
                 <DatePicker
                     label="Datum auswählen"
                     value={selectedDate}
                     onChange={(newValue) => {
                         setSelectedDate(newValue);
                         setSelectedSlot(null);
+                        setShowAllSlots(true);
                     }}
                     disablePast
                     shouldDisableDate={shouldDisableDate}
@@ -89,7 +81,7 @@ export default function CalendarBooking({ appointmentDuration, setTermin }) {
                             Verfügbare Termine
                         </Typography>
                         <Grid container>
-                            {slots.map((slot) => (
+                            {(showAllSlots ? slots : [selectedSlot]).map((slot) => (
                                 <Grid item xs={8} key={slot}>
                                     <Button
                                         variant="outlined"
@@ -108,18 +100,6 @@ export default function CalendarBooking({ appointmentDuration, setTermin }) {
                                 </Grid>
                             ))}
                         </Grid>
-                    </Box>
-                )}
-
-                {selectedSlot && (
-                    <Box sx={{ mt: 4 }}>
-                        <Typography variant="h6" sx={{ mb: 2 }}>
-                            Ausgewählter Termin
-                        </Typography>
-                        <Typography>{`${selectedDate.format(
-                            "DD.MM.YYYY"
-                        )} um ${selectedSlot}`} - {endtime}</Typography>
-                        <Typography>Dauer circa {appointmentDuration} Minuten</Typography>
                     </Box>
                 )}
             </Box>
