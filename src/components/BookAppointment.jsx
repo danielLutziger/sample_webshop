@@ -7,7 +7,7 @@ import CalendarBooking from "./CalendarBooking.jsx";
 import dayjs from "dayjs";
 import {MuiTelInput} from "mui-tel-input";
 
-export default function BookAppointment({ cartItems, setCartItems, duration }) {
+export default function BookAppointment({ cartItems, setCartItems, duration, setBooked, setBookingObject }) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -34,6 +34,8 @@ export default function BookAppointment({ cartItems, setCartItems, duration }) {
             formDetails.lastname.trim() &&
             formDetails.email.trim() &&
             formDetails.phone.trim() &&
+            termin.date &&
+            termin.time &&
             !formDetails.phoneError &&
             !formDetails.emailError
         );
@@ -42,9 +44,9 @@ export default function BookAppointment({ cartItems, setCartItems, duration }) {
     const handleFormSubmit = () => {
         if (isFormValid()) {
             const send_object = { ...cartItems, ...formDetails, ...termin };
-            console.log(send_object);
-            alert(`Thank you, ${formDetails.firstname}! Your appointment has been booked.`);
             setFormDetails({ firstname: "", lastname: "", email: "", phone: "" });
+            setBookingObject(send_object);
+            setBooked(true);
             setCartItems([]);
             localStorage.removeItem("cartItems");
             handleClose();
