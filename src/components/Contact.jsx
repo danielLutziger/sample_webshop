@@ -47,28 +47,28 @@ export default function ContactPage() {
                 }}
             >
                 <Typography variant="h5" sx={{ mb: 2 }}>
-                    Nailstudio
+                    Nancy Nails
                 </Typography>
                 <Typography variant="body1" sx={{ mb: 1 }}>
-                    <strong>Address:</strong> Bahnhofstrasse 12, 8001 Zürich, Switzerland
+                    <strong>Adresse:</strong> Bahnhofstrasse 12, 8001 Zürich, Switzerland
                 </Typography>
                 <Typography variant="body1" sx={{ mb: 1 }}>
-                    <strong>Phone:</strong> +41 44 123 45 67
+                    <strong>Kontaktnummer:</strong> +41 44 123 45 67
                 </Typography>
                 <Typography variant="body1" sx={{ mb: 1 }}>
-                    <strong>Email:</strong> info@nailstudio.ch
+                    <strong>Email:</strong> info@gmail.com
                 </Typography>
                 <Typography variant="body1">
-                    <strong>Opening Hours:</strong>
+                    <strong>Öffnungszeiten:</strong>
                 </Typography>
                 <Typography variant="body2" sx={{ ml: 2 }}>
-                    Monday - Friday: 9:00 AM - 7:00 PM
+                    Montag - Freitag: 9:00 - 19:00 PM
                 </Typography>
                 <Typography variant="body2" sx={{ ml: 2 }}>
-                    Saturday: 10:00 AM - 6:00 PM
+                    Samstag: 10:00 AM - 6:00 PM
                 </Typography>
                 <Typography variant="body2" sx={{ ml: 2 }}>
-                    Sunday: Closed
+                    Sonntag: Geschlossen
                 </Typography>
             </Box>
         </Box>
