@@ -84,7 +84,7 @@ export default function FeaturedServices({ cartItems, setCartItems }) {
                 component="h2"
                 sx={{ textAlign: "center", mb: 4 }}
             >
-                Special Deals and Bestsellers
+                Special Deals und Bestsellers
             </Typography>
             <Slider {...settings}>
                 {services.map((service, idx) => (
