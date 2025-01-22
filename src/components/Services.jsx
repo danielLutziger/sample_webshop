@@ -69,12 +69,11 @@ export default function ServicesPage() {
                         onClick={() => navigate(`/product/${service.id}`)} // Navigate to the product detail page
                     >
                         <Box
+                            className={"colorClass"}
                             sx={{
                                 width: "100%",
                                 height: "150px",
-                                background: service.image
-                                    ? `url(${service.image}) center/cover`
-                                    : "linear-gradient(to right, #a7f3d0, #fde68a, #fbcfe8)",
+                                background: service.image && `url(${service.image}) center/cover`,
                                 borderRadius: "8px",
                                 mb: 2,
                             }}

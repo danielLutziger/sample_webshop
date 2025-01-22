@@ -1,0 +1,7 @@
+.colorClass {
+    background-color: #ceaaff;
+}
+
+.gradientClass {
+    background-color: linear-gradient(to right, #a7f3d0, #fde68a, #fbcfe8);
+}

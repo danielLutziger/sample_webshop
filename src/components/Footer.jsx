@@ -4,11 +4,11 @@ import { Box, Typography } from "@mui/material";
 export default function Footer() {
     return (
         <Box
+            className={"colorClass"}
             sx={{
                 textAlign: "center",
                 py: 3,
                 mt: 4,
-                background: "linear-gradient(to right, #a7f3d0, #fde68a, #fbcfe8)",
                 color: "white",
             }}
         >

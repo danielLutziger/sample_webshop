@@ -12,12 +12,12 @@ export default function Hero() {
 
     return (
         <Box
+            className={"colorClass"}
             sx={{
                 display: "flex",
                 flexDirection: { xs: "column", md: "row" },
                 alignItems: "center",
                 justifyContent: "center",
-                background: "linear-gradient(to right, #a7f3d0, #fde68a, #fbcfe8)",
                 padding: { xs: "20px", md: "0 5%" },
                 height: { xs: "auto", md: "50vh" },
             }}
