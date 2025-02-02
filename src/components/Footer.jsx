@@ -4,11 +4,12 @@ import "@fontsource/montserrat";
 export default function Footer() {
     return (
         <Box
-            className={"colorClass"}
+            className={"footerColorScheme"}
             sx={{
                 textAlign: "center",
                 py: 3,
                 color: "white",
+                bottom: 0
             }}
         >
             <Typography variant="body2"

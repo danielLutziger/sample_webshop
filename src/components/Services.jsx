@@ -9,41 +9,45 @@ export default function ServicesPage() {
     const navigate = useNavigate();
 
     return (
-        <Box sx={{ padding: "20px", maxWidth: "1200px", margin: "auto" }}>
-            <Typography variant="h4" sx={{ textAlign: "center", mb: 4 }}>
+        <Box sx={{ padding: "10px", maxWidth: "1200px", margin: "auto" }}>
+            <Typography variant="h4" sx={{ textAlign: "center", mb: 3 }}>
                 Services und Preise
             </Typography>
             <Box
                 sx={{
                     display: "grid",
-                    gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "1fr 1fr 1fr" },
-                    gap: 3,
+                    gridTemplateColumns: "1fr",
+                    gap: 2,
                 }}
             >
                 {services.map((service) => (
                     <Card
                         key={service.id}
                         sx={{
-                            textAlign: "center",
+                            display: "flex",
+                            flexDirection: "row",
+                            alignItems: "center",
+                            textAlign: "left",
                             cursor: "pointer",
                             transition: "transform 0.3s ease",
-                            "&:hover": { transform: "scale(1.05)" },
+                            "&:hover": { transform: "scale(1.03)" },
                         }}
-                        onClick={() => navigate(`/product/${service.id}`)} // Navigate to the product detail page
+                        onClick={() => navigate(`/product/${service.id}`)}
                     >
-                        <Box
-                            component="img"
-                            src={service.image}
-                            alt="Serivce Bild"
-                            className={"colorClass"}
-                            sx={{
-                                width: "100%",
-                                height: "150px",
-                                borderRadius: "8px",
-                                mb: 2,
-                            }}
-                        />
-                        <CardContent>
+                        {service.image && (
+                            <Box
+                                component="img"
+                                src={service.image}
+                                alt="Service Bild"
+                                sx={{
+                                    width: "150px",
+                                    height: "150px",
+                                    borderRadius: "8px 0 0 8px",
+                                    objectFit: "cover",
+                                }}
+                            />
+                        )}
+                        <CardContent sx={{ flex: "1", padding: "8px" }}>
                             <Typography variant="h6" gutterBottom>
                                 {service.title}
                             </Typography>

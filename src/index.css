@@ -1,9 +1,46 @@
-.colorClass {
-    background-color: #d294f4; /* #ffadee #d294f4 #ceaaff */
+/* HINTERGRUND FARBEN */
+
+.appContentBackground{
+    height: 100vh;
+    background: #FFD8E5;
 }
 
-/*  */
+.navigationColorScheme {
+    background-color: #FFD8E5 !important;
+}
 
-.gradientClass {
-    background: linear-gradient(to right, #ceaaff, #fbcfe8);
+.footerColorScheme {
+    background-color: #FFD8E5;
+}
+
+
+/* FARBEN FÜR SCHRIFTEN UND BUTTONS */
+
+.fontColor {
+    color: black;
+}
+
+.fontHeaderColor {
+    color: #F8B8CE;
+}
+
+.fontHeaderColor :hover {
+    color: #fc7ca5;
+}
+
+.fontSecondaryColor {
+    color: #F8B8CE;
+}
+
+.fontSecondaryColor :hover {
+    color: #fc7ca5;
+}
+
+.buttonColor {
+    background-color: goldenrod;
+    color: white;
+}
+.buttonColor :hover{
+    background-color: #a88314;
+    color: white;
 }

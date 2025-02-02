@@ -17,19 +17,21 @@ export default function App() {
         return savedCart ? JSON.parse(savedCart) : [];
     });
     return (
-        <>
+        <React.Fragment>
             <CssBaseline />
             <Router>
-                <Header cartItems={cartItems} />
-                <Routes>
-                    <Route path="/" element={<Homepage cartItems={cartItems} setCartItems={setCartItems} />} />
-                    <Route path="/services" element={<ServicesPage />} />
-                    <Route path="/contact" element={<ContactPage />} />
-                    <Route path="/product/:id" element={<ProductDetail setCartItems={setCartItems} />} />
-                    <Route path="/cart" element={<CartPage cartItems={cartItems} setCartItems={setCartItems} />} />
-                </Routes>
+                <div className={"appContentBackground"}>
+                    <Header cartItems={cartItems} />
+                    <Routes>
+                        <Route path="/" element={<Homepage cartItems={cartItems} setCartItems={setCartItems} />} />
+                        <Route path="/services" element={<ServicesPage />} />
+                        <Route path="/contact" element={<ContactPage />} />
+                        <Route path="/product/:id" element={<ProductDetail setCartItems={setCartItems} />} />
+                        <Route path="/cart" element={<CartPage cartItems={cartItems} setCartItems={setCartItems} />} />
+                    </Routes>
+                    <Footer />
+                </div>
             </Router>
-            <Footer />
-        </>
+        </React.Fragment>
     );
 }

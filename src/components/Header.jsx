@@ -1,17 +1,16 @@
 import React from "react";
-import { AppBar, Toolbar, Typography, Box, Badge, IconButton } from "@mui/material";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { AppBar, Toolbar, Typography, Box } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import "@fontsource/montserrat";
-export default function Header({ cartItems }) {
+export default function Header() {
     const navigate = useNavigate();
 
     return (
         <AppBar
             position="static"
             elevation={0}
+            className={"navigationColorScheme"}
             sx={{
-                backgroundColor: "#d294f4",
                 padding: { xs: "5px 10px", md: "10px 20px" }, // Reduce padding for mobile
             }}
         >
