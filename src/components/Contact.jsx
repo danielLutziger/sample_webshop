@@ -20,7 +20,7 @@ export default function ContactPage() {
                     gap: 4,
                     maxWidth: "1200px",
                     margin: "auto",
-                    padding: "20px",
+                    padding: "10px",
                 }}
             >
                 {/* Google Maps iframe */}
@@ -56,7 +56,7 @@ export default function ContactPage() {
                         backgroundColor: "white",
                         /*borderRadius: "8px",
                         boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)", */
-                        padding: "20px",
+                        padding: "10px",
                         width: { xs: "100%", md: "auto" },
                     }}
                 >

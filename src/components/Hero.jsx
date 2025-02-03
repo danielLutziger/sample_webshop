@@ -20,13 +20,11 @@ export default function Hero({setCartItems}) {
 
     return (
         <Box
-            className={"gradientClass"}
             sx={{
                 display: "flex",
                 flexDirection: { xs: "column", md: "row" },
                 alignItems: "center",
                 justifyContent: "center",
-                padding: { xs: "20px", md: "0 5%" },
                 height: { xs: "auto", md: "50vh" },
             }}
         >
@@ -57,7 +55,7 @@ export default function Hero({setCartItems}) {
                     sx={{
                         color: "black",
                         mb: 3,
-                        maxWidth: "80%",
+                        maxWidth: "100%",
                         margin: { xs: "0 auto", md: "0" },
                         fontFamily: "'Montserrat', sans-serif", // Font from the image
                         fontSize: { xs: "16px", md: "18px" }, // Responsive font size
@@ -73,7 +71,7 @@ export default function Hero({setCartItems}) {
                     sx={{
                         padding: "10px 20px",
                         fontSize: { xs: "1rem", md: "1rem" },
-                        width: "80%",
+                        width: "100%",
                         mt: 2,
                         fontFamily: "'bagel fat one'",
                     }}
@@ -90,7 +88,7 @@ export default function Hero({setCartItems}) {
                         mt: 2,
                         padding: "10px 20px",
                         fontSize: { xs: "1rem", md: "1rem" },
-                        width: "80%",
+                        width: "100%",
                         fontFamily: "'bagel fat one'",
                     }}
                     onClick={() => {
