@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import {height} from "@mui/system";
 
 export default function ContactPage() {
     return (
@@ -23,24 +24,29 @@ export default function ContactPage() {
                 }}
             >
                 {/* Google Maps iframe */}
-                <Box
-                    sx={{
-                        flex: 2,
-                        width: "100%",
-                        height: { xs: "300px", md: "400px" }, // Smaller height for mobile
-                        borderRadius: "8px",
-                        overflow: "hidden",
-                    }}
-                >
-                    <iframe
-                        title="Nancy Nails"
-                        src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Kirchgasse%203,%209500%20Wil+(Nancy%20Nails)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-                        width="100%"
-                        height="100%"
-                        style={{ border: 0 }}
-                        allowFullScreen=""
-                        loading="lazy"
-                    ></iframe>
+                <Box sx={{height: "100%", width: "100%", borderBottom: { xs: "1px solid gold", md: "1px solid transparent" }, // Border only at the bottom on small screens
+                    borderRight: { xs: "1px solid transparent", md: "1px solid gold" },
+                    paddingRight: { xs: "0px", md: "20px" },
+                    paddingBottom: { xs: "20px", md: "0px" }}}>
+                    <Box
+                        sx={{
+                            width: "100%",
+                            height: { xs: "300px", md: "400px" },
+                            borderRadius: "8px",
+                            overflow: "hidden",
+                            boxSizing: "border-box", // Includes padding and border in the width and height
+                        }}
+                    >
+                        <iframe
+                            title="Nancy Nails"
+                            src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Kirchgasse%203,%209500%20Wil+(Nancy%20Nails)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                            width="100%"
+                            height="100%"
+                            style={{ border: 0 }}
+                            allowFullScreen=""
+                            loading="lazy"
+                        ></iframe>
+                    </Box>
                 </Box>
 
                 {/* Address Details */}
@@ -48,8 +54,8 @@ export default function ContactPage() {
                     sx={{
                         flex: 1,
                         backgroundColor: "white",
-                        borderRadius: "8px",
-                        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+                        /*borderRadius: "8px",
+                        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)", */
                         padding: "20px",
                         width: { xs: "100%", md: "auto" },
                     }}
