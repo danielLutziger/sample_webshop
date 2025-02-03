@@ -111,7 +111,7 @@
     }
 }
 
-@media (min-width: 600px) and (max-width: 1200px) {
+@media (min-width: 600px) and (max-width: 1600px) {
     .contentItems {
         margin: 50px;
         padding: 20px;
@@ -124,7 +124,7 @@
     }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1600px) {
     .contentItems {
         margin: 100px 450px 100px 450px;
         padding: 20px;
