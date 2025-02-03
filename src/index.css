@@ -41,7 +41,12 @@
 }
 
 .navigationColorScheme {
-    background-color: #FFD8E5 !important;
+    /*background-color: #FFD8E5 !important;*/
+    background: linear-gradient(90deg, rgba(254,244,212,1) 10%, rgba(245,227,146,1) 50%, rgba(254,244,212,1) 90%, rgba(245,227,146,1) 100%) !important;
+}
+
+.navigationLinks {
+    color: black !important;
 }
 
 .footerColorScheme {
@@ -71,6 +76,7 @@
 
 .buttonColor {
     background-color: #F5E496 !important;
+    /*background: linear-gradient(90deg, rgba(254,244,212,1) 10%, rgba(245,227,146,1) 50%, rgba(254,244,212,1) 90%, rgba(245,227,146,1) 100%) !important;*/
     color: black !important;
 }
 .buttonColor:hover {

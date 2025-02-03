@@ -28,7 +28,6 @@ export default function Header() {
                     to="/"
                     sx={{
                         textDecoration: "none",
-                        color: "white",
                         fontFamily: "'bagel fat one'",
                         fontSize: { xs: "1rem", md: "1.5rem" }, // Smaller font for mobile
                         flex: { xs: "1 1 100%", md: "0 0 auto" }, // Full width on mobile
@@ -53,9 +52,9 @@ export default function Header() {
                         variant="body2" // Smaller font size
                         component={Link}
                         to="/"
+                        className={"navigationLinks"}
                         sx={{
                             textDecoration: "none",
-                            color: "white",
                             fontFamily: "'Montserrat', sans-serif",
                             fontSize: { xs: "0.9rem", md: "1rem" },
                         }}
@@ -66,9 +65,9 @@ export default function Header() {
                         variant="body2"
                         component={Link}
                         to="/services"
+                        className={"navigationLinks"}
                         sx={{
                             textDecoration: "none",
-                            color: "white",
                             fontFamily: "'Montserrat', sans-serif",
                             fontSize: { xs: "0.9rem", md: "1rem" },
                         }}
@@ -79,9 +78,9 @@ export default function Header() {
                         variant="body2"
                         component={Link}
                         to="/contact"
+                        className={"navigationLinks"}
                         sx={{
                             textDecoration: "none",
-                            color: "white",
                             fontFamily: "'Montserrat', sans-serif",
                             fontSize: { xs: "0.9rem", md: "1rem" },
                         }}
