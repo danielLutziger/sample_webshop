@@ -234,6 +234,7 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
                             sx={{ mb: 2 }}
                         />
                         <Button
+                            className={"buttonColor"}
                             variant="contained"
                             color="secondary"
                             onClick={handleFormSubmit}

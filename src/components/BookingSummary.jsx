@@ -54,84 +54,94 @@ export default function BookingSummary({ bookingDetails }) {
     };
 
     return (
-        <Box
-            sx={{
-                display: "flex",
-                flexDirection: { xs: "column", md: "row" }, // Column for mobile, row for desktop
-                alignItems: "flex-start",
-                gap: 4,
-                maxWidth: "1200px",
-                margin: "auto",
-                padding: "20px",
-            }}
-        >
-            {/* Booking */}
+        <div>
+            <div className={"siteHeader"}>
+                <Typography variant="h4" sx={{ textAlign: "center", mb: 3 }}>
+                    Buchungsübersicht
+                </Typography>
+            </div>
+
             <Box
                 sx={{
-                    flex: 1,
-                    backgroundColor: "white",
+                    display: "flex",
+                    flexDirection: { xs: "column", md: "row" }, // Column for mobile, row for desktop
+                    alignItems: "flex-start",
+                    gap: 4,
+                    maxWidth: "1200px",
+                    margin: "auto",
                     padding: "20px",
-                    width: { xs: "100%", md: "auto" }, // Full width for mobile, auto for desktop
                 }}
             >
-                <Box sx={{ p: 2, maxWidth: "500px", margin: "auto", textAlign: "center" }}>
-                    <Typography variant="h5" sx={{ mb: 2 }}>
-                        Buchungsübersicht
-                    </Typography>
-                    <Typography>
-                        <strong>Name:</strong> {bookingDetails.firstname} {bookingDetails.lastname}
-                    </Typography>
-                    <Typography>
-                        <strong>E-Mail:</strong> {bookingDetails.email}
-                    </Typography>
-                    <Typography>
-                        <strong>Telefon:</strong> {bookingDetails.phone}
-                    </Typography>
-                    <Typography sx={{ mt: 2 }}>
-                        <strong>Datum:</strong> {bookingDetails.date}, <strong>Zeit:</strong> {bookingDetails.time}
-                    </Typography>
-                    <Typography sx={{ mt: 2 }}>
-                        <strong>Services:</strong> {services.map((s) => s.title).join(", ")}
-                    </Typography>
-                    <Typography sx={{ mt: 2, fontSize: "0.9em" }}>
-                        Stornierung nur telefonisch bis spätestens 2 Tage vor dem Termin möglich.
-                    </Typography>
-                    <Typography sx={{ mt: 1, fontSize: "0.9em" }}>
-                        Kontakt: nancy.nails.mail@gmail.com
-                    </Typography>
-                    <Typography sx={{ mt: 0, fontSize: "0.9em" }}>
-                        Tel. +41 79 968 11 84
-                    </Typography>
-                    <Button
-                        variant="contained"
-                        className={"buttonColor"}
-                        onClick={generateICSFile}
-                        sx={{ mt: 2 }}
-                    >
-                        Kalenderdatei herunterladen
-                    </Button>
+                {/* Booking */}
+                <Box
+                    sx={{
+                        flex: 1,
+                        backgroundColor: "white",
+                        padding: "20px",
+                        borderBottom: { xs: "1px solid gold", md: "1px solid transparent" }, // Border only at the bottom on small screens
+                        borderRight: { xs: "1px solid transparent", md: "1px solid gold" },
+                        paddingRight: { xs: "0px", md: "20px" },
+                        paddingBottom: { xs: "20px", md: "0px" },
+                        width: { xs: "100%", md: "auto" }, // Full width for mobile, auto for desktop
+                    }}
+                >
+                    <Box sx={{ p: 2, maxWidth: "500px", margin: "auto", textAlign: "center" }}>
+                        <Typography>
+                            <strong>Name:</strong> {bookingDetails.firstname} {bookingDetails.lastname}
+                        </Typography>
+                        <Typography>
+                            <strong>E-Mail:</strong> {bookingDetails.email}
+                        </Typography>
+                        <Typography>
+                            <strong>Telefon:</strong> {bookingDetails.phone}
+                        </Typography>
+                        <Typography sx={{ mt: 2 }}>
+                            <strong>Datum:</strong> {bookingDetails.date}, <strong>Zeit:</strong> {bookingDetails.time}
+                        </Typography>
+                        <Typography sx={{ mt: 2 }}>
+                            <strong>Services:</strong> {services.map((s) => s.title).join(", ")}
+                        </Typography>
+                        <Typography sx={{ mt: 2, fontSize: "0.9em" }}>
+                            Stornierung nur telefonisch bis spätestens 2 Tage vor dem Termin möglich.
+                        </Typography>
+                        <Typography sx={{ mt: 1, fontSize: "0.9em" }}>
+                            Kontakt: nancy.nails.mail@gmail.com
+                        </Typography>
+                        <Typography sx={{ mt: 0, fontSize: "0.9em" }}>
+                            Tel. +41 79 968 11 84
+                        </Typography>
+                        <Button
+                            variant="contained"
+                            className={"buttonColor"}
+                            onClick={generateICSFile}
+                            sx={{ mt: 2 }}
+                        >
+                            Kalenderdatei herunterladen
+                        </Button>
+                    </Box>
+                </Box>
+                {/* Google Maps iframe */}
+                <Box
+                    sx={{
+                        flex: 2,
+                        width: "100%",
+                        height: { xs: "300px", md: "400px" }, // Smaller height for mobile
+                        borderRadius: "8px",
+                        overflow: "hidden",
+                    }}
+                >
+                    <iframe
+                        title="Nancy Nails"
+                        src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Kirchgasse%203,%209500%20Wil+(Nancy%20Nails)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        allowFullScreen=""
+                        loading="lazy"
+                    ></iframe>
                 </Box>
             </Box>
-            {/* Google Maps iframe */}
-            <Box
-                sx={{
-                    flex: 2,
-                    width: "100%",
-                    height: { xs: "300px", md: "400px" }, // Smaller height for mobile
-                    borderRadius: "8px",
-                    overflow: "hidden",
-                }}
-            >
-                <iframe
-                    title="Nancy Nails"
-                    src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Kirchgasse%203,%209500%20Wil+(Nancy%20Nails)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen=""
-                    loading="lazy"
-                ></iframe>
-            </Box>
-        </Box>
+        </div>
+
     );
 }
