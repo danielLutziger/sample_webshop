@@ -8,6 +8,10 @@
     flex-direction: column;
 }
 
+.container {
+    flex: 1 0 auto;
+}
+
 .backgroundImages {
     position: absolute;
     top: 0;
@@ -90,7 +94,6 @@
 .contentItems {
     background-color: #FFFFFF;
     border: solid 1px gold;
-    flex: 1 0 auto;
     z-index: 1;
     margin: 200px;
     padding: 50px;

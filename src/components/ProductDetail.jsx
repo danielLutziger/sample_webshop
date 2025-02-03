@@ -104,19 +104,18 @@ export default function ProductDetail({ setCartItems }) {
                 <Box
                     sx={{flex: 1,}}
                 >
-                    <Typography variant="h4" sx={{ mb: 2 }}>
-                        {product.title}
-                    </Typography>
                     <Typography variant="body1" sx={{ mb: 1 }}>
                         <strong>Preis:</strong> CHF {product.price}.-
                     </Typography>
                     <Typography variant="body1" sx={{ mb: 1 }}>
                         <strong>Dauer:</strong> Circa {product.duration} Minuten
                     </Typography>
-                    <Typography variant="body1" sx={{ mb: 3 }}>
+                    <Typography variant="body1" sx={{ mb: 1 }}>
                         <strong>Beschreibung:</strong> {product.description}
                     </Typography>
-
+                    <Typography variant="body1" sx={{ mb: 3 }}>
+                        <strong>Extras:</strong> {product.extras ?? "Keine"}
+                    </Typography>
                     {/* Action Buttons */}
                     <Box sx={{ display: "flex"}}>
                         <Button

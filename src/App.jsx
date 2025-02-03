@@ -23,15 +23,17 @@ export default function App() {
                 <div className={"appContentBackground"}>
                     <div className={"backgroundImages"}/>
                     <Header cartItems={cartItems}/>
-                    <div className={"contentItems"}>
-                        <Routes>
-                            <Route path="/" element={<Homepage cartItems={cartItems} setCartItems={setCartItems}/>}/>
-                            <Route path="/services" element={<ServicesPage/>}/>
-                            <Route path="/contact" element={<ContactPage/>}/>
-                            <Route path="/product/:id" element={<ProductDetail setCartItems={setCartItems}/>}/>
-                            <Route path="/cart"
-                                   element={<CartPage cartItems={cartItems} setCartItems={setCartItems}/>}/>
-                        </Routes>
+                    <div className={"container"}>
+                        <div className={"contentItems"}>
+                            <Routes>
+                                <Route path="/" element={<Homepage cartItems={cartItems} setCartItems={setCartItems}/>}/>
+                                <Route path="/services" element={<ServicesPage/>}/>
+                                <Route path="/contact" element={<ContactPage/>}/>
+                                <Route path="/product/:id" element={<ProductDetail setCartItems={setCartItems}/>}/>
+                                <Route path="/cart"
+                                       element={<CartPage cartItems={cartItems} setCartItems={setCartItems}/>}/>
+                            </Routes>
+                        </div>
                     </div>
                     <Footer/>
                 </div>
