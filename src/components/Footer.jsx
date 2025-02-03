@@ -12,8 +12,7 @@ export default function Footer() {
             sx={{
                 textAlign: "center",
                 py: 3,
-                color: "white",
-                mt: 'auto'
+                bottom: 0,
             }}
         >
             <IconButton aria-label="instagram" color="inherit" href="https://www.instagram.com/n.a.n.c.y_n.a.i.l.s/">
