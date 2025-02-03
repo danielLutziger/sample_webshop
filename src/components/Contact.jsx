@@ -43,29 +43,29 @@ export default function ContactPage() {
                     borderRadius: "8px",
                     boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
                     padding: "20px",
-                    width: { xs: "100%", md: "auto" }, // Full width for mobile, auto for desktop
+                    width: { xs: "100%", md: "auto" },
                 }}
             >
                 <Typography variant="h5" sx={{ mb: 2 }}>
                     Nancy Nails
                 </Typography>
                 <Typography variant="body1" sx={{ mb: 1 }}>
-                    <strong>Adresse:</strong> Bahnhofstrasse 12, 8001 Zürich, Switzerland
+                    <strong>Adresse:</strong> Kirchgasse 3, 9500 Wil, Switzerland
                 </Typography>
                 <Typography variant="body1" sx={{ mb: 1 }}>
-                    <strong>Kontaktnummer:</strong> +41 44 123 45 67
+                    <strong>Kontaktnummer:</strong> +41 79 968 11 84
                 </Typography>
                 <Typography variant="body1" sx={{ mb: 1 }}>
-                    <strong>Email:</strong> info@gmail.com
+                    <strong>Email:</strong> nancy.nail.mail@gmail.com
                 </Typography>
                 <Typography variant="body1">
                     <strong>Öffnungszeiten:</strong>
                 </Typography>
                 <Typography variant="body2" sx={{ ml: 2 }}>
-                    Montag - Freitag: 9:00 - 19:00 PM
+                    Montag - Freitag: 9:00 - 18:30
                 </Typography>
                 <Typography variant="body2" sx={{ ml: 2 }}>
-                    Samstag: 10:00 AM - 6:00 PM
+                    Samstag: 09:00 - 16:00
                 </Typography>
                 <Typography variant="body2" sx={{ ml: 2 }}>
                     Sonntag: Geschlossen
