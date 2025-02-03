@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Box, Typography, Button, Snackbar, Alert } from "@mui/material";
 import ServiceMock from "../service_assets/services.json"
+import BookAppointment from "./BookAppointment.jsx";
 // Mock data for services
 const services = ServiceMock;
 
-export default function ProductDetail({ setCartItems }) {
+export default function ProductDetail({ setCartItems, setBooked, setBookingObject}) {
     const { id } = useParams(); // Get the product ID from the URL
     const navigate = useNavigate();
 
@@ -118,15 +119,13 @@ export default function ProductDetail({ setCartItems }) {
                     </Typography>
                     {/* Action Buttons */}
                     <Box sx={{ display: "flex"}}>
-                        <Button
-                            className={"buttonColor"}
-                            sx={{width: "100%"}}
-                            variant="contained"
-                            color="secondary"
-                            onClick={() => addToCart(product)}
-                        >
-                            Termin vereinbaren
-                        </Button>
+                        <BookAppointment sx={{
+                            mt: 2,
+                            padding: "10px 20px",
+                            fontSize: { xs: "1rem", md: "1rem" },
+                            width: "100%",
+                            fontFamily: "'bagel fat one'",
+                        }} setCartItems={setCartItems} setBooked={setBooked} setBookingObject={setBookingObject} />
                     </Box>
                 </Box>
 

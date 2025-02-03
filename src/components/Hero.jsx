@@ -3,20 +3,10 @@ import {Box, Button, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import "@fontsource/montserrat";
 import "@fontsource/bagel-fat-one";
+import BookAppointment from "./BookAppointment.jsx";
 
-export default function Hero({setCartItems}) {
+export default function Hero({setCartItems, setBooked, setBookingObject}) {
     const navigate = useNavigate();
-
-    const addToCart = (serv) => {
-        setCartItems((prevItems) => {
-            const itemExists = prevItems.some((item) => item.id === serv.id);
-            if (itemExists) {
-                return prevItems; // Do not add duplicates
-            }
-            localStorage.setItem("cartItems", JSON.stringify([...prevItems, serv]));
-            return [...prevItems, serv];
-        });
-    };
 
     return (
         <Box
@@ -81,22 +71,13 @@ export default function Hero({setCartItems}) {
                 >
                     Services Entdecken
                 </Button>
-                <Button
-                    variant="contained"
-                    className={"buttonColor"}
-                    sx={{
-                        mt: 2,
-                        padding: "10px 20px",
-                        fontSize: { xs: "1rem", md: "1rem" },
-                        width: "100%",
-                        fontFamily: "'bagel fat one'",
-                    }}
-                    onClick={() => {
-                        navigate('/cart')
-                    }}
-                >
-                    Termin vereinbaren
-                </Button>
+                <BookAppointment sx={{
+                    mt: 2,
+                    padding: "10px 20px",
+                    fontSize: { xs: "1rem", md: "1rem" },
+                    width: "100%",
+                    fontFamily: "'bagel fat one'",
+                }} setCartItems={setCartItems} setBooked={setBooked} setBookingObject={setBookingObject} />
             </Box>
 
             {/* Right/Bottom Side: Image

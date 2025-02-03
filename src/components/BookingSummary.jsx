@@ -24,8 +24,8 @@ export default function BookingSummary({ bookingDetails }) {
         Services: ${services.map((s) => `${s.title} (${s.duration} Minuten)`).join(", ")}
         Stornierung: Bis spätestens 2 Tage vorher telefonisch möglich.
       `,
-            location: "Bahnhofstrasse 123, 8000 Zürich, Schweiz",
-            geo: { lat: 47.3768866, lon: 8.541694 }, // Zurich coordinates as an example
+            location: "Kirchgasse 3, 9500 Wil, Schweiz",
+            geo: { lat: 47.4665641784668, lon: 9.049123764038086 }, // Coordinates
             status: "CONFIRMED",
             organizer: { name: "Nancy Nails", email: "nancy.nails.mail@gmail.com" },
             attendees: [
@@ -70,8 +70,6 @@ export default function BookingSummary({ bookingDetails }) {
                 sx={{
                     flex: 1,
                     backgroundColor: "white",
-                    borderRadius: "8px",
-                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
                     padding: "20px",
                     width: { xs: "100%", md: "auto" }, // Full width for mobile, auto for desktop
                 }}
@@ -99,14 +97,14 @@ export default function BookingSummary({ bookingDetails }) {
                         Stornierung nur telefonisch bis spätestens 2 Tage vor dem Termin möglich.
                     </Typography>
                     <Typography sx={{ mt: 1, fontSize: "0.9em" }}>
-                        Kontakt: asdf@email.com
+                        Kontakt: nancy.nails.mail@gmail.com
                     </Typography>
                     <Typography sx={{ mt: 0, fontSize: "0.9em" }}>
-                        Tel. 079 123 56 78
+                        Tel. +41 79 968 11 84
                     </Typography>
                     <Button
                         variant="contained"
-                        color="secondary"
+                        className={"buttonColor"}
                         onClick={generateICSFile}
                         sx={{ mt: 2 }}
                     >
@@ -125,12 +123,11 @@ export default function BookingSummary({ bookingDetails }) {
                 }}
             >
                 <iframe
-                    title="Studio Location"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2689.5101185917725!2d8.539182315900447!3d47.376886679168516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDfCsDIyJzM2LjgiTiA4wrAzMSczMS4zIkU!5e0!3m2!1sen!2sch!4v1679943533856!5m2!1sen!2sch"
+                    title="Nancy Nails"
+                    src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Kirchgasse%203,%209500%20Wil+(Nancy%20Nails)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
                     width="100%"
                     height="100%"
-                    style={{ border: 0,
-                        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)", }}
+                    style={{ border: 0 }}
                     allowFullScreen=""
                     loading="lazy"
                 ></iframe>

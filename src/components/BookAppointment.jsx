@@ -1,15 +1,18 @@
 import {Box, Button, Modal, TextField, IconButton, Typography} from "@mui/material";
 import Textarea from '@mui/joy/Textarea';
 import CloseIcon from "@mui/icons-material/Close";
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import CalendarBooking from "./CalendarBooking.jsx";
 import dayjs from "dayjs";
 import {MuiTelInput} from "mui-tel-input";
+import SelectMultipleAppearance from "./ServiceSelection.jsx";
+import {useNavigate} from "react-router-dom";
 
-export default function BookAppointment({ cartItems, setCartItems, duration, setBooked, setBookingObject }) {
+export default function BookAppointment({ cartItems, setCartItems, duration, setBooked, setBookingObject, sx }) {
     const [open, setOpen] = React.useState(false);
+    const navigate = useNavigate();
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
@@ -24,6 +27,13 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
     });
 
     const [termin, setTermin] = useState({ date: "", time: "" });
+
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        console.log(items)
+        setCartItems(items);
+    }, [items])
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -45,13 +55,15 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
 
     const handleFormSubmit = () => {
         if (isFormValid()) {
-            const send_object = { ...cartItems, ...formDetails, ...termin };
+            const send_object = { ...items, ...formDetails, ...termin };
             setFormDetails({ firstname: "", lastname: "", email: "", phone: "" });
             setBookingObject(send_object);
             setBooked(true);
             setCartItems([]);
+            //TODO: SEND THINGS.
             localStorage.removeItem("cartItems");
             handleClose();
+            navigate("/appointment")
         } else {
             alert("Please fill out all required fields.");
         }
@@ -66,7 +78,9 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
 
     return (
         <>
-            <Button variant="contained" color="secondary" onClick={handleOpen} sx={{ width: "100%" }}>
+            <Button variant="contained" color="secondary" onClick={handleOpen} sx={{ width: "100%", ...sx }}
+                    className={"buttonColor"}
+            >
                 Termin Vereinbaren
             </Button>
             <Modal
@@ -200,7 +214,7 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
                         />
 
                         {/*Services*/}
-                        <></>
+                        <SelectMultipleAppearance setSelectedServices={setItems} />
 
                         <Textarea
                             minRows={4}
