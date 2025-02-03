@@ -63,6 +63,7 @@ export default function CalendarBooking({ setTermin, selectedSlot, setSelectedSl
             <Box sx={{ paddingTop: "20px", paddingBottom: "20px", margin: "auto", width: "100%" }}>
                 <DatePicker
                     label="Datum auswählen"
+                    className={"textfieldActive"}
                     value={selectedDate}
                     onChange={(newValue) => {
                         setSelectedDate(newValue);

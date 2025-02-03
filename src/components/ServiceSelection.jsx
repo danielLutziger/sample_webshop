@@ -11,6 +11,7 @@ export default function SelectMultipleAppearance({setSelectedServices}) {
         <Select
             multiple
             placeholder={"Services auswählen"}
+            className={"selectionActive"}
             onChange={handleChange}
             renderValue={(selected) => (
                 <Box sx={{ display: 'flex', gap: '0.25rem' }}>
@@ -22,7 +23,18 @@ export default function SelectMultipleAppearance({setSelectedServices}) {
                 </Box>
             )}
             size="lg"
-            sx={{ minWidth: '15rem', zIndex: 10000, mb: 2 }}
+            sx={{ minWidth: '15rem', zIndex: 10000, mb: 2,
+                '.MuiOutlinedInput-root': {
+                    '&.Mui-focused': {
+                        borderColor: 'gold', // Border color on focus
+                    }
+                },
+                '.MuiSelect-select': {
+                    borderColor: 'gray', // Default border color
+                    '&.Mui-focused': {
+                        borderColor: 'gold', // Adjust border color on focus
+                    }
+                } }}
             slotProps={{
                 listbox: {
                     sx: {
@@ -32,7 +44,7 @@ export default function SelectMultipleAppearance({setSelectedServices}) {
                 },
             }}
         >
-            {services.map(service => <Option value={service.id} key={service.id}>{service.title}</Option>)}
+            {services.map(service => <Option value={service.id} key={service.id} className={"selectionActive"}>{service.title}</Option>)}
         </Select>
     );
 }

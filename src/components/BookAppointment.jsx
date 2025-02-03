@@ -131,7 +131,7 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
                         <TextField
                             label="Vorname"
                             name="firstname"
-                            color="secondary"
+                            className={"textfieldActive"}
                             value={formDetails.firstname}
                             onChange={handleInputChange}
                             required
@@ -141,7 +141,7 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
                         <TextField
                             label="Nachname"
                             name="lastname"
-                            color="secondary"
+                            className={"textfieldActive"}
                             value={formDetails.lastname}
                             onChange={handleInputChange}
                             required
@@ -151,7 +151,7 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
                         <TextField
                             label="E-Mail"
                             name="email"
-                            color="secondary"
+                            className={"textfieldActive"}
                             value={formDetails.email}
                             onChange={(e) => {
                                 const { name, value } = e.target;
@@ -181,7 +181,7 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
                             label="Telefonnummer"
                             placeholder="Telefonnummer *"
                             name="phone"
-                            color="secondary"
+                            className={"textfieldActive"}
                             value={formDetails.phone}
                             onChange={(value) => {
                                 // Define regex for Swiss, German, and Austrian phone numbers
@@ -222,6 +222,7 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
                             placeholder={"Weitere Wünsche / Bemerkungen"}
                             name="bemerkung"
                             variant="outlined"
+                            className={"textfieldActive"}
                             value={formDetails.bemerkung}
                             onChange={(e) => {
                                 const { name, value } = e.target;
@@ -235,8 +236,6 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
                         />
                         <Button
                             className={"buttonColor"}
-                            variant="contained"
-                            color="secondary"
                             onClick={handleFormSubmit}
                             disabled={!isFormValid()}
                             fullWidth
