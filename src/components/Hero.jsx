@@ -92,7 +92,6 @@ export default function Hero({setCartItems}) {
                         fontFamily: "'bagel fat one'",
                     }}
                     onClick={() => {
-                        addToCart(service)
                         navigate('/cart')
                     }}
                 >

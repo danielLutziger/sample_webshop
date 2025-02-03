@@ -108,13 +108,11 @@ export default function CartPage({ cartItems, setCartItems }) {
                     )}
 
                     {/* Booking Button */}
-                    {cartItems.length > 0 && (
                         <Box sx={{ textAlign: "center", mt: 4 }}>
                             <BookAppointment cartItems={cartItems} setCartItems={setCartItems}
                                              duration={duration} setBooked={setBooked}
                                              setBookingObject={setBookingObject} />
                         </Box>
-                    )}
                 </>
             )}
 

@@ -1,4 +1,5 @@
-import { Box, Button, Modal, TextField, IconButton, Typography } from "@mui/material";
+import {Box, Button, Modal, TextField, IconButton, Typography} from "@mui/material";
+import Textarea from '@mui/joy/Textarea';
 import CloseIcon from "@mui/icons-material/Close";
 import React, { useState } from "react";
 import { LocalizationProvider } from "@mui/x-date-pickers";
@@ -17,6 +18,7 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
         lastname: "",
         email: "",
         phone: "",
+        bemerkung: "",
         phoneError: false,
         emailError: false
     });
@@ -112,26 +114,6 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
                             />
                         </LocalizationProvider>
 
-                        {selectedSlot && (
-                            <Box sx={{mb: 2, border: "1px solid #ddd", borderRadius: "8px", padding: "10px" }}>
-                                <Typography variant="h6" sx={{ mb: 1 }}>
-                                    Zusammenfassung
-                                </Typography>
-                                <Typography variant="body1">
-                                    Gesamtpreis: <strong>CHF {cartItems.reduce((acc, item) => acc + item.price, 0)}.-</strong>
-                                </Typography>
-                                <Typography variant="body1">
-                                    Gesamtdauer: <strong>{duration} Minuten</strong>
-                                </Typography>
-                                <Typography variant="body1">
-                                    Termin: <strong>{selectedDate.format("DD.MM.YYYY")}, {selectedSlot}-{endTime} </strong>
-                                </Typography>
-                                <Typography variant="body1">
-                                    Services: <strong>{cartItems.map(item => item.title).join(", ")}</strong>
-                                </Typography>
-                            </Box>
-                        )}
-
                         <TextField
                             label="Vorname"
                             name="firstname"
@@ -215,6 +197,27 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
                                     ? "Bitte geben Sie eine gültige Telefonnummer aus der Schweiz, Deutschland oder Österreich ein."
                                     : ""
                             }
+                        />
+
+                        {/*Services*/}
+                        <></>
+
+                        <Textarea
+                            minRows={4}
+                            label="Bemerkung"
+                            placeholder={"Weitere Wünsche / Bemerkungen"}
+                            name="bemerkung"
+                            variant="outlined"
+                            value={formDetails.bemerkung}
+                            onChange={(e) => {
+                                const { name, value } = e.target;
+                                setFormDetails({
+                                    ...formDetails,
+                                    [name]: value
+                                });
+                            }}
+                            fullWidth
+                            sx={{ mb: 2 }}
                         />
                         <Button
                             variant="contained"

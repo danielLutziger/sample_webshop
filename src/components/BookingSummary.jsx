@@ -22,13 +22,12 @@ export default function BookingSummary({ bookingDetails }) {
         Telefon: ${bookingDetails.phone}
         Datum: ${bookingDetails.date}, Zeit: ${bookingDetails.time}
         Services: ${services.map((s) => `${s.title} (${s.duration} Minuten)`).join(", ")}
-        Gesamtpreis: CHF ${totalPrice}.-
         Stornierung: Bis spätestens 2 Tage vorher telefonisch möglich.
       `,
             location: "Bahnhofstrasse 123, 8000 Zürich, Schweiz",
             geo: { lat: 47.3768866, lon: 8.541694 }, // Zurich coordinates as an example
             status: "CONFIRMED",
-            organizer: { name: "Support Team", email: "support@example.com" },
+            organizer: { name: "Nancy Nails", email: "nancy.nails.mail@gmail.com" },
             attendees: [
                 {
                     name: `${bookingDetails.firstname} ${bookingDetails.lastname}`,
@@ -95,9 +94,6 @@ export default function BookingSummary({ bookingDetails }) {
                     </Typography>
                     <Typography sx={{ mt: 2 }}>
                         <strong>Services:</strong> {services.map((s) => s.title).join(", ")}
-                    </Typography>
-                    <Typography>
-                        <strong>Preis:</strong> CHF {totalPrice}.-, <strong>Dauer:</strong> {totalDuration} Minuten
                     </Typography>
                     <Typography sx={{ mt: 2, fontSize: "0.9em" }}>
                         Stornierung nur telefonisch bis spätestens 2 Tage vor dem Termin möglich.
