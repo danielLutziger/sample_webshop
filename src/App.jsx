@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import { CssBaseline} from "@mui/material";
+import {CssBaseline} from "@mui/material";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import ProductDetail from "./components/ProductDetail";
 import Homepage from "./components/Homepage.jsx";
 import ContactPage from "./components/Contact.jsx";
@@ -18,18 +18,22 @@ export default function App() {
     });
     return (
         <React.Fragment>
-            <CssBaseline />
+            <CssBaseline/>
             <Router>
                 <div className={"appContentBackground"}>
-                    <Header cartItems={cartItems} />
-                    <Routes>
-                        <Route path="/" element={<Homepage cartItems={cartItems} setCartItems={setCartItems} />} />
-                        <Route path="/services" element={<ServicesPage />} />
-                        <Route path="/contact" element={<ContactPage />} />
-                        <Route path="/product/:id" element={<ProductDetail setCartItems={setCartItems} />} />
-                        <Route path="/cart" element={<CartPage cartItems={cartItems} setCartItems={setCartItems} />} />
-                    </Routes>
-                    <Footer />
+                    <div className={"backgroundImages"}/>
+                    <Header cartItems={cartItems}/>
+                    <div className={"contentItems"}>
+                        <Routes>
+                            <Route path="/" element={<Homepage cartItems={cartItems} setCartItems={setCartItems}/>}/>
+                            <Route path="/services" element={<ServicesPage/>}/>
+                            <Route path="/contact" element={<ContactPage/>}/>
+                            <Route path="/product/:id" element={<ProductDetail setCartItems={setCartItems}/>}/>
+                            <Route path="/cart"
+                                   element={<CartPage cartItems={cartItems} setCartItems={setCartItems}/>}/>
+                        </Routes>
+                    </div>
+                    <Footer/>
                 </div>
             </Router>
         </React.Fragment>

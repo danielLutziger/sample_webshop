@@ -69,17 +69,13 @@ export default function Hero({setCartItems}) {
                 </Typography>
                 <Button
                     variant="contained"
+                    className={"buttonColor"}
                     sx={{
-                        backgroundColor: "#8e44ad",
-                        color: "white",
                         padding: "10px 20px",
                         fontSize: { xs: "1rem", md: "1rem" },
                         width: "80%",
                         mt: 2,
                         fontFamily: "'bagel fat one'",
-                        ":hover": {
-                            backgroundColor: "#732d91",
-                        },
                     }}
                     onClick={() => {
                         navigate('/services')
@@ -89,17 +85,13 @@ export default function Hero({setCartItems}) {
                 </Button>
                 <Button
                     variant="contained"
+                    className={"buttonColor"}
                     sx={{
-                        backgroundColor: "#8e44ad",
-                        color: "white",
                         mt: 2,
                         padding: "10px 20px",
                         fontSize: { xs: "1rem", md: "1rem" },
                         width: "80%",
                         fontFamily: "'bagel fat one'",
-                        ":hover": {
-                            backgroundColor: "#732d91",
-                        },
                     }}
                     onClick={() => {
                         addToCart(service)
@@ -110,7 +102,7 @@ export default function Hero({setCartItems}) {
                 </Button>
             </Box>
 
-            {/* Right/Bottom Side: Image */}
+            {/* Right/Bottom Side: Image
             <Box
                 component="img"
                 src={"/assets/hello_kitty.png"}
@@ -124,6 +116,7 @@ export default function Hero({setCartItems}) {
                     objectFit: "cover", // Ensure image scales proportionally
                 }}
             />
+            */}
         </Box>
     );
 }

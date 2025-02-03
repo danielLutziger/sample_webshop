@@ -1,6 +1,7 @@
+// Footer component
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import "@fontsource/montserrat";
+
 export default function Footer() {
     return (
         <Box
@@ -9,13 +10,13 @@ export default function Footer() {
                 textAlign: "center",
                 py: 3,
                 color: "white",
-                bottom: 0
+                mt: 'auto'
             }}
         >
             <Typography variant="body2"
-            sx={{
-                fontFamily: "'Montserrat', sans-serif",
-            }}>
+                        sx={{
+                            fontFamily: "'Montserrat', sans-serif",
+                        }}>
                 © 2025 Nancy Nails. Alle Rechte vorbehalten.
             </Typography>
         </Box>
