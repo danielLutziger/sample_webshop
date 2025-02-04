@@ -61,10 +61,10 @@ export default function ServicesPage() {
                                 >
                                     {service.description}
                                 </Typography>
-                                <Typography variant="body1" color="secondary">
+                                <Typography variant="body1" color={"#272727"}>
                                     CHF {service.price}.-
                                 </Typography>
-                                <Typography variant="body2" color="secondary">
+                                <Typography variant="body2" color={"#272727"}>
                                     Dauer: ~{service.duration} Minuten
                                 </Typography>
                             </CardContent>
