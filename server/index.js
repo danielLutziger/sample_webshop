@@ -10,7 +10,7 @@ dotenv.config({ path: '../.env' });
 const app = express();
 const port = process.env.PORT || 3001;
 
-// Allow multiple origins or specific origin
+// allow different origins for cors
 const allowedOrigins = ['http://localhost:3000', 'http://localhost:5173'];
 
 const corsOptions = {
@@ -81,7 +81,7 @@ const generateICSFile = (bookingDetails, services, totalDuration, totalPrice) =>
 
 
 app.post('/api/terminanfrage', async (req, res) => {
-    const bookingDetails = req.body; // assuming booking details are sent in the body
+    const bookingDetails = req.body;
     const services = req.body.services;
     const totalDuration = services.reduce((acc, service) => acc + service.price, 0);
     const totalPrice = services.reduce((acc, service) => acc + service.duration, 0);
