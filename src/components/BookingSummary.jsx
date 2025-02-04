@@ -101,6 +101,12 @@ export default function BookingSummary({ bookingDetails }) {
                         <Typography sx={{ mt: 2 }}>
                             <strong>Services:</strong> {services.map((s) => s.title).join(", ")}
                         </Typography>
+                        <Typography sx={{ mt: 2 }}>
+                            <strong>Ungefährer Preis:</strong> CHF {totalPrice}
+                        </Typography>
+                        <Typography sx={{ mt: 2 }}>
+                            <strong>Ungefähre Dauer:</strong> {totalDuration} Minuten
+                        </Typography>
                         <Typography sx={{ mt: 2, fontSize: "0.9em" }}>
                             Stornierung nur telefonisch bis spätestens 2 Tage vor dem Termin möglich.
                         </Typography>
@@ -110,6 +116,13 @@ export default function BookingSummary({ bookingDetails }) {
                         <Typography sx={{ mt: 0, fontSize: "0.9em" }}>
                             Tel. +41 79 968 11 84
                         </Typography>
+                        <Typography sx={{
+                        fontSize: { xs: "0.75rem", md: "0.75rem" }, // Smaller font size
+                        color: 'gray', // Gray color
+                        width: "100%",
+                    }}>
+                        Bitte beachten Sie, dass je nach extra der Preis variieren kann.
+                    </Typography>
                         <Button
                             variant="contained"
                             className={"buttonColor"}

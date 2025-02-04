@@ -29,9 +29,19 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
     const [termin, setTermin] = useState({ date: "", time: "" });
 
     const [items, setItems] = useState([]);
+    const [price, setPrice] = useState(0);
+    const [estimated_duration, setDuration] = useState(0)
 
     useEffect(() => {
         console.log(items)
+        const cumsum = items.reduce((acc, val) => {
+            return acc + val.price;
+        }, 0);
+        setPrice(cumsum);
+        const cumsum_time = items.reduce((acc, val) => {
+            return acc + val.duration;
+        }, 0);
+        setDuration(cumsum_time);
         setCartItems(items);
     }, [items])
 
@@ -49,7 +59,8 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
             termin.date &&
             termin.time &&
             !formDetails.phoneError &&
-            !formDetails.emailError
+            !formDetails.emailError &&
+            items.length > 0
         );
     };
 
@@ -234,6 +245,32 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
                             fullWidth
                             sx={{ mb: 2 }}
                         />
+                        {items.length > 0 && (
+                            <>
+                                <Typography sx={{
+                                    mt: 2,
+                                    fontSize: { xs: "1rem", md: "1rem" },
+                                    width: "100%",
+                                }}>
+                                    Ungefähre Dauer: {estimated_duration}
+                                </Typography>
+                                <Typography sx={{
+                                    fontSize: { xs: "1rem", md: "1rem" },
+                                    fontWeight: 'bold', // Make the price bold
+                                    width: "100%",
+                                }}>
+                                    Ungefährer Preis: {price}
+                                </Typography>
+                                <Typography sx={{
+                                    fontSize: { xs: "0.75rem", md: "0.75rem" }, // Smaller font size
+                                    color: 'gray', // Gray color
+                                    width: "100%",
+                                }}>
+                                    Bitte beachten Sie, dass je nach extra der Preis variieren kann.
+                                </Typography>
+                            </>
+
+                        )}
                         <Button
                             className={"buttonColor"}
                             onClick={handleFormSubmit}

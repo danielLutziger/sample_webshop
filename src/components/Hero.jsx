@@ -2,7 +2,7 @@ import React from "react";
 import {Box, Button, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import "@fontsource/montserrat";
-import "@fontsource/bagel-fat-one";
+import "@fontsource/cormorant-garamond";
 import BookAppointment from "./BookAppointment.jsx";
 
 export default function Hero({setCartItems, setBooked, setBookingObject}) {
@@ -63,7 +63,8 @@ export default function Hero({setCartItems, setBooked, setBookingObject}) {
                         fontSize: { xs: "1rem", md: "1rem" },
                         width: "100%",
                         mt: 2,
-                        fontFamily: "'bagel fat one'",
+                        fontWeight: "bold",
+                        fontFamily: "'cormorant garamond'",
                     }}
                     onClick={() => {
                         navigate('/services')
@@ -73,10 +74,11 @@ export default function Hero({setCartItems, setBooked, setBookingObject}) {
                 </Button>
                 <BookAppointment sx={{
                     mt: 2,
+                    fontWeight: "bold",
                     padding: "10px 20px",
                     fontSize: { xs: "1rem", md: "1rem" },
                     width: "100%",
-                    fontFamily: "'bagel fat one'",
+                    fontFamily: "'cormorant garamond'",
                 }} setCartItems={setCartItems} setBooked={setBooked} setBookingObject={setBookingObject} />
             </Box>
 
