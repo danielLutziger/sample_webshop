@@ -1,4 +1,4 @@
-import {Box, Button, Modal, TextField, IconButton, Typography} from "@mui/material";
+import {Box, Button, Modal, TextField, IconButton, Typography, FormControlLabel, Checkbox} from "@mui/material";
 import Textarea from '@mui/joy/Textarea';
 import CloseIcon from "@mui/icons-material/Close";
 import React, {useEffect, useState} from "react";
@@ -31,17 +31,13 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
 
     const [items, setItems] = useState([]);
     const [price, setPrice] = useState(0);
-    const [estimated_duration, setDuration] = useState(0)
+    const [estimated_duration, setDuration] = useState(0);
+    const [agbChecked, setAgbChecked] = useState(false);
 
     useEffect(() => {
-        console.log(items)
-        const cumsum = items.reduce((acc, val) => {
-            return acc + val.price;
-        }, 0);
+        const cumsum = items.reduce((acc, val) => acc + val.price, 0);
         setPrice(cumsum);
-        const cumsum_time = items.reduce((acc, val) => {
-            return acc + val.duration;
-        }, 0);
+        const cumsum_time = items.reduce((acc, val) => acc + val.duration, 0);
         setDuration(cumsum_time);
         setCartItems(items);
     }, [items])
@@ -61,13 +57,14 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
             termin.time &&
             !formDetails.phoneError &&
             !formDetails.emailError &&
-            items.length > 0
+            items.length > 0 &&
+            agbChecked
         );
     };
 
     const handleFormSubmit = () => {
         if (isFormValid()) {
-            const send_object = { services: [...items], ...formDetails, ...termin };
+            const send_object = { services: [...items], ...formDetails, ...termin, agbChecked: agbChecked };
             axios.post('http://localhost:3001/api/terminanfrage', send_object)
                 .then(response => {
                     console.log('Email sent:', response.data);
@@ -280,13 +277,27 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
                             </>
 
                         )}
-                        <Typography sx={{
-                            fontSize: { xs: "0.75rem", md: "0.75rem" }, // Smaller font size
-                            color: 'gray', // Gray color
-                            width: "100%",
-                        }}>
-                            Bei der Buchung eines Termins werden die <a href="/AGBs/agbs.pdf" target="_blank">allgemeinen Geschäftsbedingungen</a> von Nancy Nails akzeptiert.
-                        </Typography>
+
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={agbChecked}
+                                    onChange={(e) => setAgbChecked(e.target.checked)}
+                                    name="agb"
+                                    color="primary"
+                                />
+                            }
+                            label={
+                            <Typography sx={{
+                                fontSize: { xs: "0.75rem", md: "0.75rem" }, // Smaller font size
+                                color: 'gray', // Gray color
+                                width: "100%",
+                            }}>
+                                Bei der Buchung eines Termins werden die <a href="/AGBs/agbs.pdf" target="_blank">allgemeinen Geschäftsbedingungen</a> von Nancy Nails akzeptiert.
+                            </Typography>
+                        }
+                        />
+
                         <Button
                             className={"buttonColor"}
                             onClick={handleFormSubmit}

@@ -86,6 +86,10 @@ app.post('/api/terminanfrage', async (req, res) => {
     const totalDuration = services.reduce((acc, service) => acc + service.price, 0);
     const totalPrice = services.reduce((acc, service) => acc + service.duration, 0);
 
+    if (!req.body.agbChecked) {
+        return res.status(400).send('AGBs must be accepted to proceed with the booking.');
+    }
+
     try {
         const icsFileContent = await generateICSFile(bookingDetails, services, totalDuration, totalPrice);
 
