@@ -8,7 +8,8 @@ import CalendarBooking from "./CalendarBooking.jsx";
 import dayjs from "dayjs";
 import {MuiTelInput} from "mui-tel-input";
 import SelectMultipleAppearance from "./ServiceSelection.jsx";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+import axios from 'axios';
 
 export default function BookAppointment({ cartItems, setCartItems, duration, setBooked, setBookingObject, sx }) {
     const [open, setOpen] = React.useState(false);
@@ -67,18 +68,26 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
     const handleFormSubmit = () => {
         if (isFormValid()) {
             const send_object = { ...items, ...formDetails, ...termin };
-            setFormDetails({ firstname: "", lastname: "", email: "", phone: "" });
-            setBookingObject(send_object);
-            setBooked(true);
-            setCartItems([]);
-            //TODO: SEND THINGS.
-            localStorage.removeItem("cartItems");
-            handleClose();
-            navigate("/appointment")
+            axios.post('http://localhost:3001/api/terminanfrage', send_object)
+                .then(response => {
+                    console.log('Email sent:', response.data);
+                    setFormDetails({ firstname: "", lastname: "", email: "", phone: "" });
+                    setBookingObject(send_object);
+                    setBooked(true);
+                    setCartItems([]);
+                    localStorage.removeItem("cartItems");
+                    handleClose();
+                    navigate("/appointment");
+                })
+                .catch(error => {
+                    console.error('Failed to send email:', error);
+                    alert("Anfrage konnte nicht versendet werden");
+                });
         } else {
             alert("Please fill out all required fields.");
         }
     };
+
 
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedSlot, setSelectedSlot] = useState(null);

@@ -63,10 +63,12 @@ export default function ProductDetail({ setCartItems, setBooked, setBookingObjec
             >
 
                 {/* Image Section */}
+                {selectedImage && (<>
                 <Box sx={{ flex: 1, borderBottom: { xs: "1px solid gold", md: "1px solid transparent" }, // Border only at the bottom on small screens
                     borderRight: { xs: "1px solid transparent", md: "1px solid gold" },
                     paddingRight: { xs: "0px", md: "20px" },
                     paddingBottom: { xs: "20px", md: "0px" } }}>
+
                     {/* Selected Image */}
                     <Box
                         component="img"
@@ -100,7 +102,7 @@ export default function ProductDetail({ setCartItems, setBooked, setBookingObjec
                         ))}
                     </Box>
                 </Box>
-
+                </>)}
                 {/* Product Details Section */}
                 <Box
                     sx={{flex: 1,}}
