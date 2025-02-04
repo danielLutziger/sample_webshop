@@ -8,7 +8,7 @@ import CalendarBooking from "./CalendarBooking.jsx";
 import dayjs from "dayjs";
 import {MuiTelInput} from "mui-tel-input";
 import SelectMultipleAppearance from "./ServiceSelection.jsx";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 export default function BookAppointment({ cartItems, setCartItems, duration, setBooked, setBookingObject, sx }) {
     const [open, setOpen] = React.useState(false);
@@ -226,6 +226,13 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
 
                         {/*Services*/}
                         <SelectMultipleAppearance setSelectedServices={setItems} />
+                        <Typography sx={{
+                            fontSize: { xs: "0.75rem", md: "0.75rem" }, // Smaller font size
+                            color: 'gray', // Gray color
+                            width: "100%",
+                        }}>
+                            Bitte beachten Sie, dass je nach extra der Preis variieren kann.
+                        </Typography>
 
                         <Textarea
                             minRows={4}
@@ -243,7 +250,7 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
                                 });
                             }}
                             fullWidth
-                            sx={{ mb: 2 }}
+                            sx={{ mb: 2, mt:2 }}
                         />
                         {items.length > 0 && (
                             <>
@@ -261,16 +268,16 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
                                 }}>
                                     Ungefährer Preis: {price}
                                 </Typography>
-                                <Typography sx={{
-                                    fontSize: { xs: "0.75rem", md: "0.75rem" }, // Smaller font size
-                                    color: 'gray', // Gray color
-                                    width: "100%",
-                                }}>
-                                    Bitte beachten Sie, dass je nach extra der Preis variieren kann.
-                                </Typography>
                             </>
 
                         )}
+                        <Typography sx={{
+                            fontSize: { xs: "0.75rem", md: "0.75rem" }, // Smaller font size
+                            color: 'gray', // Gray color
+                            width: "100%",
+                        }}>
+                            Bei der Buchung eines Termins werden die <a href="/AGBs/agbs.pdf" target="_blank">allgemeinen Geschäftsbedingungen</a> von Nancy Nails akzeptiert.
+                        </Typography>
                         <Button
                             className={"buttonColor"}
                             onClick={handleFormSubmit}

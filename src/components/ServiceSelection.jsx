@@ -23,7 +23,7 @@ export default function SelectMultipleAppearance({setSelectedServices}) {
                 </Box>
             )}
             size="lg"
-            sx={{ minWidth: '15rem', zIndex: 10000, mb: 2,
+            sx={{ minWidth: '15rem', zIndex: 10000, 
                 '.MuiOutlinedInput-root': {
                     '&.Mui-focused': {
                         borderColor: 'gold', // Border color on focus
@@ -44,7 +44,7 @@ export default function SelectMultipleAppearance({setSelectedServices}) {
                 },
             }}
         >
-            {services.map(service => <Option value={service.id} key={service.id} className={"selectionActive"}>{service.title}</Option>)}
+            {services.map(service => <Option value={service.id} key={service.id} className={"selectionActive"}>{service.title} - CHF {service.price}</Option>)}
         </Select>
     );
 }
