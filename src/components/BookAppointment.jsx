@@ -259,14 +259,14 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
                                     fontSize: { xs: "1rem", md: "1rem" },
                                     width: "100%",
                                 }}>
-                                    Ungefähre Dauer: {estimated_duration}
+                                    Ungefähre Dauer: {estimated_duration} Minuten
                                 </Typography>
                                 <Typography sx={{
                                     fontSize: { xs: "1rem", md: "1rem" },
                                     fontWeight: 'bold', // Make the price bold
                                     width: "100%",
                                 }}>
-                                    Ungefährer Preis: {price}
+                                    Ungefährer Preis: CHF {price}
                                 </Typography>
                             </>
 
