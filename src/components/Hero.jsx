@@ -1,32 +1,20 @@
-import React, {useState} from "react";
-import {Alert, Box, Button, Snackbar, Typography} from "@mui/material";
-import HeroMock from "../service_assets/hero.json";
+import React from "react";
+import {Box, Button, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
+import "@fontsource/montserrat";
+import "@fontsource/cormorant-garamond";
+import BookAppointment from "./BookAppointment.jsx";
 
-export default function Hero({setCartItems}) {
-    const service = HeroMock;
+export default function Hero({setCartItems, setBooked, setBookingObject}) {
     const navigate = useNavigate();
-
-    const addToCart = (serv) => {
-        setCartItems((prevItems) => {
-            const itemExists = prevItems.some((item) => item.id === serv.id);
-            if (itemExists) {
-                return prevItems; // Do not add duplicates
-            }
-            localStorage.setItem("cartItems", JSON.stringify([...prevItems, serv]));
-            return [...prevItems, serv];
-        });
-    };
 
     return (
         <Box
-            className={"gradientClass"}
             sx={{
                 display: "flex",
                 flexDirection: { xs: "column", md: "row" },
                 alignItems: "center",
                 justifyContent: "center",
-                padding: { xs: "20px", md: "0 5%" },
                 height: { xs: "auto", md: "50vh" },
             }}
         >
@@ -45,69 +33,70 @@ export default function Hero({setCartItems}) {
                         fontWeight: "bold",
                         color: "black",
                         mb: 2,
-                        fontSize: { xs: "2rem", md: "3rem" },
+                        fontSize: { xs: "2.5rem", md: "4rem" },
+                        fontFamily: "'bagel fat one'",
                     }}
                 >
-                    {service.title}
+                    Nancy Nails ❤️
                 </Typography>
+
                 <Typography
                     variant="subtitle1"
                     sx={{
                         color: "black",
                         mb: 3,
-                        maxWidth: "80%",
+                        maxWidth: "100%",
                         margin: { xs: "0 auto", md: "0" },
+                        fontFamily: "'Montserrat', sans-serif", // Font from the image
+                        fontSize: { xs: "16px", md: "18px" }, // Responsive font size
+                        lineHeight: 1.5, // Adjust for readability
+                        fontWeight: 400, // Regular weight
                     }}
                 >
-                    {service.description}
-                </Typography>
-                <Typography
-                    variant="subtitle1"
-                    sx={{
-                        color: "black",
-                        mb: 3,
-                        maxWidth: "80%",
-                        margin: { xs: "0 auto", md: "0" },
-                    }}
-                >
-                    CHF {service.price}.-
+                    Entdecken Sie unser Angebot an luxuriösen Nagelpflege-Dienstleistungen, von Maniküre und Pediküre bis hin zu individuell gestaltetem Nageldesign. Entspannen Sie sich in unserer ruhigen Atmosphäre und lassen Sie sich von uns verwöhnen.
                 </Typography>
                 <Button
                     variant="contained"
+                    className={"buttonColor"}
                     sx={{
-                        backgroundColor: "#8e44ad",
-                        color: "white",
-                        fontWeight: "bold",
                         padding: "10px 20px",
-                        ":hover": {
-                            backgroundColor: "#732d91",
-                        },
+                        fontSize: { xs: "1rem", md: "1rem" },
+                        width: "100%",
+                        mt: 2,
+                        fontWeight: "bold",
+                        fontFamily: "'cormorant garamond'",
                     }}
                     onClick={() => {
-                        addToCart(service)
-                        navigate('/cart')
+                        navigate('/services')
                     }}
                 >
-                    Termin vereinbaren
+                    Services Entdecken
                 </Button>
+                <BookAppointment sx={{
+                    mt: 2,
+                    fontWeight: "bold",
+                    padding: "10px 20px",
+                    fontSize: { xs: "1rem", md: "1rem" },
+                    width: "100%",
+                    fontFamily: "'cormorant garamond'",
+                }} setCartItems={setCartItems} setBooked={setBooked} setBookingObject={setBookingObject} />
             </Box>
 
-            {/* Right/Bottom Side: Image */}
+            {/* Right/Bottom Side: Image
             <Box
                 component="img"
-                src={service.image}
+                src={"/assets/hello_kitty.png"}
                 alt="Hero Image"
                 sx={{
                     flex: 1,
                     maxWidth: { xs: "100%", md: "40%" },
-                    maxHeight: { xs: "300px", md: "auto" }, // Restrict height on smaller screens
+                    maxHeight: { xs: "575px", md: "auto" }, // Restrict height on smaller screens
                     height: "auto",
-                    borderRadius: "8px",
-                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
                     alignSelf: "center",
                     objectFit: "cover", // Ensure image scales proportionally
                 }}
             />
+            */}
         </Box>
     );
 }

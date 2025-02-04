@@ -1,14 +1,19 @@
-import { Box, Button, Modal, TextField, IconButton, Typography } from "@mui/material";
+import {Box, Button, Modal, TextField, IconButton, Typography} from "@mui/material";
+import Textarea from '@mui/joy/Textarea';
 import CloseIcon from "@mui/icons-material/Close";
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import CalendarBooking from "./CalendarBooking.jsx";
 import dayjs from "dayjs";
 import {MuiTelInput} from "mui-tel-input";
+import SelectMultipleAppearance from "./ServiceSelection.jsx";
+import {useNavigate} from "react-router-dom";
+import axios from 'axios';
 
-export default function BookAppointment({ cartItems, setCartItems, duration, setBooked, setBookingObject }) {
+export default function BookAppointment({ cartItems, setCartItems, duration, setBooked, setBookingObject, sx }) {
     const [open, setOpen] = React.useState(false);
+    const navigate = useNavigate();
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
@@ -17,11 +22,29 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
         lastname: "",
         email: "",
         phone: "",
+        bemerkung: "",
         phoneError: false,
         emailError: false
     });
 
     const [termin, setTermin] = useState({ date: "", time: "" });
+
+    const [items, setItems] = useState([]);
+    const [price, setPrice] = useState(0);
+    const [estimated_duration, setDuration] = useState(0)
+
+    useEffect(() => {
+        console.log(items)
+        const cumsum = items.reduce((acc, val) => {
+            return acc + val.price;
+        }, 0);
+        setPrice(cumsum);
+        const cumsum_time = items.reduce((acc, val) => {
+            return acc + val.duration;
+        }, 0);
+        setDuration(cumsum_time);
+        setCartItems(items);
+    }, [items])
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -37,23 +60,34 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
             termin.date &&
             termin.time &&
             !formDetails.phoneError &&
-            !formDetails.emailError
+            !formDetails.emailError &&
+            items.length > 0
         );
     };
 
     const handleFormSubmit = () => {
         if (isFormValid()) {
-            const send_object = { ...cartItems, ...formDetails, ...termin };
-            setFormDetails({ firstname: "", lastname: "", email: "", phone: "" });
-            setBookingObject(send_object);
-            setBooked(true);
-            setCartItems([]);
-            localStorage.removeItem("cartItems");
-            handleClose();
+            const send_object = { services: [...items], ...formDetails, ...termin };
+            axios.post('http://localhost:3001/api/terminanfrage', send_object)
+                .then(response => {
+                    console.log('Email sent:', response.data);
+                    setFormDetails({ firstname: "", lastname: "", email: "", phone: "" });
+                    setBookingObject(send_object);
+                    setBooked(true);
+                    //setCartItems([]);
+                    localStorage.removeItem("cartItems");
+                    handleClose();
+                    navigate("/appointment");
+                })
+                .catch(error => {
+                    console.error('Failed to send email:', error);
+                    alert("Anfrage konnte nicht versendet werden");
+                });
         } else {
             alert("Please fill out all required fields.");
         }
     };
+
 
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedSlot, setSelectedSlot] = useState(null);
@@ -64,7 +98,9 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
 
     return (
         <>
-            <Button variant="contained" color="secondary" onClick={handleOpen} sx={{ width: "100%" }}>
+            <Button variant="contained" color="secondary" onClick={handleOpen} sx={{ width: "100%", ...sx }}
+                    className={"buttonColor"}
+            >
                 Termin Vereinbaren
             </Button>
             <Modal
@@ -112,30 +148,10 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
                             />
                         </LocalizationProvider>
 
-                        {selectedSlot && (
-                            <Box sx={{mb: 2, border: "1px solid #ddd", borderRadius: "8px", padding: "10px" }}>
-                                <Typography variant="h6" sx={{ mb: 1 }}>
-                                    Zusammenfassung
-                                </Typography>
-                                <Typography variant="body1">
-                                    Gesamtpreis: <strong>CHF {cartItems.reduce((acc, item) => acc + item.price, 0)}.-</strong>
-                                </Typography>
-                                <Typography variant="body1">
-                                    Gesamtdauer: <strong>{duration} Minuten</strong>
-                                </Typography>
-                                <Typography variant="body1">
-                                    Termin: <strong>{selectedDate.format("DD.MM.YYYY")}, {selectedSlot}-{endTime} </strong>
-                                </Typography>
-                                <Typography variant="body1">
-                                    Services: <strong>{cartItems.map(item => item.title).join(", ")}</strong>
-                                </Typography>
-                            </Box>
-                        )}
-
                         <TextField
                             label="Vorname"
                             name="firstname"
-                            color="secondary"
+                            className={"textfieldActive"}
                             value={formDetails.firstname}
                             onChange={handleInputChange}
                             required
@@ -145,7 +161,7 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
                         <TextField
                             label="Nachname"
                             name="lastname"
-                            color="secondary"
+                            className={"textfieldActive"}
                             value={formDetails.lastname}
                             onChange={handleInputChange}
                             required
@@ -155,7 +171,7 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
                         <TextField
                             label="E-Mail"
                             name="email"
-                            color="secondary"
+                            className={"textfieldActive"}
                             value={formDetails.email}
                             onChange={(e) => {
                                 const { name, value } = e.target;
@@ -185,7 +201,7 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
                             label="Telefonnummer"
                             placeholder="Telefonnummer *"
                             name="phone"
-                            color="secondary"
+                            className={"textfieldActive"}
                             value={formDetails.phone}
                             onChange={(value) => {
                                 // Define regex for Swiss, German, and Austrian phone numbers
@@ -216,9 +232,63 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
                                     : ""
                             }
                         />
+
+                        {/*Services*/}
+                        <SelectMultipleAppearance setSelectedServices={setItems} />
+                        <Typography sx={{
+                            fontSize: { xs: "0.75rem", md: "0.75rem" }, // Smaller font size
+                            color: 'gray', // Gray color
+                            width: "100%",
+                        }}>
+                            Bitte beachten Sie, dass je nach extra der Preis variieren kann.
+                        </Typography>
+
+                        <Textarea
+                            minRows={4}
+                            label="Bemerkung"
+                            placeholder={"Weitere Wünsche / Bemerkungen"}
+                            name="bemerkung"
+                            variant="outlined"
+                            className={"textfieldActive"}
+                            value={formDetails.bemerkung}
+                            onChange={(e) => {
+                                const { name, value } = e.target;
+                                setFormDetails({
+                                    ...formDetails,
+                                    [name]: value
+                                });
+                            }}
+                            fullWidth
+                            sx={{ mb: 2, mt:2 }}
+                        />
+                        {items.length > 0 && (
+                            <>
+                                <Typography sx={{
+                                    mt: 2,
+                                    fontSize: { xs: "1rem", md: "1rem" },
+                                    width: "100%",
+                                }}>
+                                    Ungefähre Dauer: {estimated_duration} Minuten
+                                </Typography>
+                                <Typography sx={{
+                                    fontSize: { xs: "1rem", md: "1rem" },
+                                    fontWeight: 'bold', // Make the price bold
+                                    width: "100%",
+                                }}>
+                                    Ungefährer Preis: CHF {price}
+                                </Typography>
+                            </>
+
+                        )}
+                        <Typography sx={{
+                            fontSize: { xs: "0.75rem", md: "0.75rem" }, // Smaller font size
+                            color: 'gray', // Gray color
+                            width: "100%",
+                        }}>
+                            Bei der Buchung eines Termins werden die <a href="/AGBs/agbs.pdf" target="_blank">allgemeinen Geschäftsbedingungen</a> von Nancy Nails akzeptiert.
+                        </Typography>
                         <Button
-                            variant="contained"
-                            color="secondary"
+                            className={"buttonColor"}
                             onClick={handleFormSubmit}
                             disabled={!isFormValid()}
                             fullWidth

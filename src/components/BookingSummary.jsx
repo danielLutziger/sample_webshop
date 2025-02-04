@@ -3,7 +3,7 @@ import { Box, Typography, Button } from "@mui/material";
 import { createEvent } from "ics";
 
 export default function BookingSummary({ bookingDetails }) {
-    const services = Object.values(bookingDetails).filter((item) => item.price !== undefined);
+    const services = bookingDetails.services;
     const totalPrice = services.reduce((acc, service) => acc + service.price, 0);
     const totalDuration = services.reduce((acc, service) => acc + service.duration, 0);
 
@@ -22,13 +22,13 @@ export default function BookingSummary({ bookingDetails }) {
         Telefon: ${bookingDetails.phone}
         Datum: ${bookingDetails.date}, Zeit: ${bookingDetails.time}
         Services: ${services.map((s) => `${s.title} (${s.duration} Minuten)`).join(", ")}
-        Gesamtpreis: CHF ${totalPrice}.-
+        Ungefährer Preis: CHF ${totalPrice}
         Stornierung: Bis spätestens 2 Tage vorher telefonisch möglich.
       `,
-            location: "Bahnhofstrasse 123, 8000 Zürich, Schweiz",
-            geo: { lat: 47.3768866, lon: 8.541694 }, // Zurich coordinates as an example
+            location: "Kirchgasse 3, 9500 Wil, Schweiz",
+            geo: { lat: 47.4665641784668, lon: 9.049123764038086 }, // Coordinates
             status: "CONFIRMED",
-            organizer: { name: "Support Team", email: "support@example.com" },
+            organizer: { name: "Nancy Nails", email: "nancy.nails.mail@gmail.com" },
             attendees: [
                 {
                     name: `${bookingDetails.firstname} ${bookingDetails.lastname}`,
@@ -55,90 +55,107 @@ export default function BookingSummary({ bookingDetails }) {
     };
 
     return (
-        <Box
-            sx={{
-                display: "flex",
-                flexDirection: { xs: "column", md: "row" }, // Column for mobile, row for desktop
-                alignItems: "flex-start",
-                gap: 4,
-                maxWidth: "1200px",
-                margin: "auto",
-                padding: "20px",
-            }}
-        >
-            {/* Booking */}
+        <div>
+            <div className={"siteHeader"}>
+                <Typography variant="h4" sx={{ textAlign: "center", mb: 3 }}>
+                    Buchungsübersicht
+                </Typography>
+            </div>
+
             <Box
                 sx={{
-                    flex: 1,
-                    backgroundColor: "white",
-                    borderRadius: "8px",
-                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+                    display: "flex",
+                    flexDirection: { xs: "column", md: "row" }, // Column for mobile, row for desktop
+                    alignItems: "flex-start",
+                    gap: 4,
+                    maxWidth: "1200px",
+                    margin: "auto",
                     padding: "20px",
-                    width: { xs: "100%", md: "auto" }, // Full width for mobile, auto for desktop
                 }}
             >
-                <Box sx={{ p: 2, maxWidth: "500px", margin: "auto", textAlign: "center" }}>
-                    <Typography variant="h5" sx={{ mb: 2 }}>
-                        Buchungsübersicht
+                {/* Booking */}
+                <Box
+                    sx={{
+                        flex: 1,
+                        backgroundColor: "white",
+                        padding: "20px",
+                        borderBottom: { xs: "1px solid gold", md: "1px solid transparent" }, // Border only at the bottom on small screens
+                        borderRight: { xs: "1px solid transparent", md: "1px solid gold" },
+                        paddingRight: { xs: "0px", md: "20px" },
+                        paddingBottom: { xs: "20px", md: "0px" },
+                        width: { xs: "100%", md: "auto" }, // Full width for mobile, auto for desktop
+                    }}
+                >
+                    <Box sx={{ p: 2, maxWidth: "500px", margin: "auto", textAlign: "center" }}>
+                        <Typography>
+                            <strong>Name:</strong> {bookingDetails.firstname} {bookingDetails.lastname}
+                        </Typography>
+                        <Typography>
+                            <strong>E-Mail:</strong> {bookingDetails.email}
+                        </Typography>
+                        <Typography>
+                            <strong>Telefon:</strong> {bookingDetails.phone}
+                        </Typography>
+                        <Typography sx={{ mt: 2 }}>
+                            <strong>Datum:</strong> {bookingDetails.date}, <strong>Zeit:</strong> {bookingDetails.time}
+                        </Typography>
+                        <Typography sx={{ mt: 2 }}>
+                            <strong>Services:</strong> {services.map((s) => s.title).join(", ")}
+                        </Typography>
+                        <Typography sx={{ mt: 2 }}>
+                            <strong>Ungefährer Preis:</strong> CHF {totalPrice}
+                        </Typography>
+                        <Typography sx={{ mt: 2 }}>
+                            <strong>Ungefähre Dauer:</strong> {totalDuration} Minuten
+                        </Typography>
+                        <Typography sx={{ mt: 2, fontSize: "0.9em" }}>
+                            Stornierung nur telefonisch bis spätestens 2 Tage vor dem Termin möglich.
+                        </Typography>
+                        <Typography sx={{ mt: 1, fontSize: "0.9em" }}>
+                            Kontakt: nancy.nails.mail@gmail.com
+                        </Typography>
+                        <Typography sx={{ mt: 0, fontSize: "0.9em" }}>
+                            Tel. +41 79 968 11 84
+                        </Typography>
+                        <Typography sx={{
+                        fontSize: { xs: "0.75rem", md: "0.75rem" }, // Smaller font size
+                        color: 'gray', // Gray color
+                        width: "100%",
+                    }}>
+                        Bitte beachten Sie, dass je nach extra der Preis variieren kann.
                     </Typography>
-                    <Typography>
-                        <strong>Name:</strong> {bookingDetails.firstname} {bookingDetails.lastname}
-                    </Typography>
-                    <Typography>
-                        <strong>E-Mail:</strong> {bookingDetails.email}
-                    </Typography>
-                    <Typography>
-                        <strong>Telefon:</strong> {bookingDetails.phone}
-                    </Typography>
-                    <Typography sx={{ mt: 2 }}>
-                        <strong>Datum:</strong> {bookingDetails.date}, <strong>Zeit:</strong> {bookingDetails.time}
-                    </Typography>
-                    <Typography sx={{ mt: 2 }}>
-                        <strong>Services:</strong> {services.map((s) => s.title).join(", ")}
-                    </Typography>
-                    <Typography>
-                        <strong>Preis:</strong> CHF {totalPrice}.-, <strong>Dauer:</strong> {totalDuration} Minuten
-                    </Typography>
-                    <Typography sx={{ mt: 2, fontSize: "0.9em" }}>
-                        Stornierung nur telefonisch bis spätestens 2 Tage vor dem Termin möglich.
-                    </Typography>
-                    <Typography sx={{ mt: 1, fontSize: "0.9em" }}>
-                        Kontakt: asdf@email.com
-                    </Typography>
-                    <Typography sx={{ mt: 0, fontSize: "0.9em" }}>
-                        Tel. 079 123 56 78
-                    </Typography>
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={generateICSFile}
-                        sx={{ mt: 2 }}
-                    >
-                        Kalenderdatei herunterladen
-                    </Button>
+                        <Button
+                            variant="contained"
+                            className={"buttonColor"}
+                            onClick={generateICSFile}
+                            sx={{ mt: 2 }}
+                        >
+                            Kalenderdatei herunterladen
+                        </Button>
+                    </Box>
+                </Box>
+                {/* Google Maps iframe */}
+                <Box
+                    sx={{
+                        flex: 2,
+                        width: "100%",
+                        height: { xs: "300px", md: "400px" }, // Smaller height for mobile
+                        borderRadius: "8px",
+                        overflow: "hidden",
+                    }}
+                >
+                    <iframe
+                        title="Nancy Nails"
+                        src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Kirchgasse%203,%209500%20Wil+(Nancy%20Nails)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        allowFullScreen=""
+                        loading="lazy"
+                    ></iframe>
                 </Box>
             </Box>
-            {/* Google Maps iframe */}
-            <Box
-                sx={{
-                    flex: 2,
-                    width: "100%",
-                    height: { xs: "300px", md: "400px" }, // Smaller height for mobile
-                    borderRadius: "8px",
-                    overflow: "hidden",
-                }}
-            >
-                <iframe
-                    title="Studio Location"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2689.5101185917725!2d8.539182315900447!3d47.376886679168516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDfCsDIyJzM2LjgiTiA4wrAzMSczMS4zIkU!5e0!3m2!1sen!2sch!4v1679943533856!5m2!1sen!2sch"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0,
-                        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)", }}
-                    allowFullScreen=""
-                    loading="lazy"
-                ></iframe>
-            </Box>
-        </Box>
+        </div>
+
     );
 }

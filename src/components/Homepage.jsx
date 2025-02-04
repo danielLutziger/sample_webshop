@@ -3,13 +3,10 @@ import {Container} from "@mui/material";
 import FeaturedServices from "./FeaturedServices.jsx";
 import React from "react";
 
-export default function Homepage({cartItems, setCartItems}){
+export default function Homepage({cartItems, setCartItems, setBookingObject, setBooked}){
     return (
         <main>
-            <Hero setCartItems={setCartItems} />
-            <Container maxWidth="lg">
-                <FeaturedServices cartItems={cartItems} setCartItems={setCartItems} />
-            </Container>
+            <Hero setCartItems={setCartItems} setBooked={setBooked} setBookingObject={setBookingObject} />
         </main>
     )
 }

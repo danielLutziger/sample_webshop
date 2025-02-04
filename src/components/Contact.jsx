@@ -1,76 +1,89 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import {height} from "@mui/system";
 
 export default function ContactPage() {
     return (
-        <Box
-            sx={{
-                display: "flex",
-                flexDirection: { xs: "column", md: "row" }, // Column for mobile, row for desktop
-                alignItems: "flex-start",
-                gap: 4,
-                maxWidth: "1200px",
-                margin: "auto",
-                padding: "20px",
-            }}
-        >
-            {/* Google Maps iframe */}
-            <Box
-                sx={{
-                    flex: 2,
-                    width: "100%",
-                    height: { xs: "300px", md: "400px" }, // Smaller height for mobile
-                    borderRadius: "8px",
-                    overflow: "hidden",
-                }}
-            >
-                <iframe
-                    title="Studio Location"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2689.5101185917725!2d8.539182315900447!3d47.376886679168516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDfCsDIyJzM2LjgiTiA4wrAzMSczMS4zIkU!5e0!3m2!1sen!2sch!4v1679943533856!5m2!1sen!2sch"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen=""
-                    loading="lazy"
-                ></iframe>
-            </Box>
+        <div>
 
-            {/* Address Details */}
+            <div className={"siteHeader"}>
+                <Typography variant="h4" sx={{ textAlign: "center", mb: 3 }}>
+                    Kontaktinformationen
+                </Typography>
+            </div>
+
             <Box
                 sx={{
-                    flex: 1,
-                    backgroundColor: "white",
-                    borderRadius: "8px",
-                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-                    padding: "20px",
-                    width: { xs: "100%", md: "auto" }, // Full width for mobile, auto for desktop
+                    display: "flex",
+                    flexDirection: { xs: "column", md: "row" }, // Column for mobile, row for desktop
+                    alignItems: "flex-start",
+                    gap: 4,
+                    maxWidth: "1200px",
+                    margin: "auto",
+                    padding: "10px",
                 }}
             >
-                <Typography variant="h5" sx={{ mb: 2 }}>
-                    Nancy Nails
-                </Typography>
-                <Typography variant="body1" sx={{ mb: 1 }}>
-                    <strong>Adresse:</strong> Bahnhofstrasse 12, 8001 Zürich, Switzerland
-                </Typography>
-                <Typography variant="body1" sx={{ mb: 1 }}>
-                    <strong>Kontaktnummer:</strong> +41 44 123 45 67
-                </Typography>
-                <Typography variant="body1" sx={{ mb: 1 }}>
-                    <strong>Email:</strong> info@gmail.com
-                </Typography>
-                <Typography variant="body1">
-                    <strong>Öffnungszeiten:</strong>
-                </Typography>
-                <Typography variant="body2" sx={{ ml: 2 }}>
-                    Montag - Freitag: 9:00 - 19:00 PM
-                </Typography>
-                <Typography variant="body2" sx={{ ml: 2 }}>
-                    Samstag: 10:00 AM - 6:00 PM
-                </Typography>
-                <Typography variant="body2" sx={{ ml: 2 }}>
-                    Sonntag: Geschlossen
-                </Typography>
+                {/* Google Maps iframe */}
+                <Box sx={{height: "100%", width: "100%", borderBottom: { xs: "1px solid gold", md: "1px solid transparent" }, // Border only at the bottom on small screens
+                    borderRight: { xs: "1px solid transparent", md: "1px solid gold" },
+                    paddingRight: { xs: "0px", md: "20px" },
+                    paddingBottom: { xs: "20px", md: "0px" }}}>
+                    <Box
+                        sx={{
+                            width: "100%",
+                            height: { xs: "300px", md: "400px" },
+                            borderRadius: "8px",
+                            overflow: "hidden",
+                            boxSizing: "border-box", // Includes padding and border in the width and height
+                        }}
+                    >
+                        <iframe
+                            title="Nancy Nails"
+                            src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Kirchgasse%203,%209500%20Wil+(Nancy%20Nails)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                            width="100%"
+                            height="100%"
+                            style={{ border: 0 }}
+                            allowFullScreen=""
+                            loading="lazy"
+                        ></iframe>
+                    </Box>
+                </Box>
+
+                {/* Address Details */}
+                <Box
+                    sx={{
+                        flex: 1,
+                        backgroundColor: "white",
+                        /*borderRadius: "8px",
+                        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)", */
+                        padding: "10px",
+                        width: { xs: "100%", md: "auto" },
+                    }}
+                >
+                    <Typography variant="body1" sx={{ mb: 1 }}>
+                        <strong>Adresse:</strong> Kirchgasse 3, 9500 Wil, Switzerland
+                    </Typography>
+                    <Typography variant="body1" sx={{ mb: 1 }}>
+                        <strong>Kontaktnummer:</strong> +41 79 968 11 84
+                    </Typography>
+                    <Typography variant="body1" sx={{ mb: 1 }}>
+                        <strong>Email:</strong> nancy.nail.mail@gmail.com
+                    </Typography>
+                    <Typography variant="body1">
+                        <strong>Öffnungszeiten:</strong>
+                    </Typography>
+                    <Typography variant="body2" sx={{ ml: 2 }}>
+                        Montag - Freitag: 9:00 - 18:30
+                    </Typography>
+                    <Typography variant="body2" sx={{ ml: 2 }}>
+                        Samstag: 09:00 - 16:00
+                    </Typography>
+                    <Typography variant="body2" sx={{ ml: 2 }}>
+                        Sonntag: Geschlossen
+                    </Typography>
+                </Box>
             </Box>
-        </Box>
+        </div>
+
     );
 }

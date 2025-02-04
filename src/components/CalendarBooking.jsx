@@ -63,6 +63,7 @@ export default function CalendarBooking({ setTermin, selectedSlot, setSelectedSl
             <Box sx={{ paddingTop: "20px", paddingBottom: "20px", margin: "auto", width: "100%" }}>
                 <DatePicker
                     label="Datum auswählen"
+                    className={"textfieldActive"}
                     value={selectedDate}
                     onChange={(newValue) => {
                         setSelectedDate(newValue);
@@ -86,12 +87,10 @@ export default function CalendarBooking({ setTermin, selectedSlot, setSelectedSl
                             {(showAllSlots ? slots : [selectedSlot]).map((slot) => (
                                 <Grid item xs={8} key={slot} sx={!showAllSlots && {width: "100%"}}>
                                     <Button
-                                        variant="outlined"
+                                        className={selectedSlot === slot ? "timeSlotButtonSelected" : "timeSlotButton"}
                                         color="secondary"
                                         onClick={() => handleSlotSelection(slot)}
                                         sx={{
-                                            backgroundColor: selectedSlot === slot ? "#ceaaff" : "white",
-                                            color: isSlotBlocked(slot) ? "#aaa" : "black",
                                             pointerEvents: isSlotBlocked(slot) ? "none" : "auto",
                                             width: "100%", // Ensure the button spans the full width of the grid
                                         }}
