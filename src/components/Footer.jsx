@@ -29,6 +29,13 @@ export default function Footer() {
                             fontFamily: "'Montserrat', sans-serif",
                         }}>
                 © 2025 Nancy Nails. Alle Rechte vorbehalten.
+                <Typography sx={{
+                    fontSize: { xs: "0.75rem", md: "0.75rem" }, // Smaller font size
+                    color: 'gray', // Gray color
+                    width: "100%",
+                }}>
+                    <a href="/AGBs/agbs.pdf" target="_blank">Allgemeinen Geschäftsbedingungen</a>
+                </Typography>
             </Typography>
         </Box>
     );
