@@ -67,14 +67,14 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
 
     const handleFormSubmit = () => {
         if (isFormValid()) {
-            const send_object = { ...items, ...formDetails, ...termin };
+            const send_object = { services: [...items], ...formDetails, ...termin };
             axios.post('http://localhost:3001/api/terminanfrage', send_object)
                 .then(response => {
                     console.log('Email sent:', response.data);
                     setFormDetails({ firstname: "", lastname: "", email: "", phone: "" });
                     setBookingObject(send_object);
                     setBooked(true);
-                    setCartItems([]);
+                    //setCartItems([]);
                     localStorage.removeItem("cartItems");
                     handleClose();
                     navigate("/appointment");

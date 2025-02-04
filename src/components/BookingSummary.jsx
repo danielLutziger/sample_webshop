@@ -3,7 +3,7 @@ import { Box, Typography, Button } from "@mui/material";
 import { createEvent } from "ics";
 
 export default function BookingSummary({ bookingDetails }) {
-    const services = Object.values(bookingDetails).filter((item) => item.price !== undefined);
+    const services = bookingDetails.services;
     const totalPrice = services.reduce((acc, service) => acc + service.price, 0);
     const totalDuration = services.reduce((acc, service) => acc + service.duration, 0);
 

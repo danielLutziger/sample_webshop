@@ -111,6 +111,12 @@
     /*background: linear-gradient(90deg, rgba(254,244,212,1) 10%, rgba(245,227,146,1) 50%, rgba(254,244,212,1) 90%, rgba(245,227,146,1) 100%) !important;*/
     color: black !important;
 }
+.timeSlotButton:disabled {
+     background-color: gray !important;
+     border: 1px solid darkgray !important;
+     /*background: linear-gradient(90deg, rgba(254,244,212,1) 10%, rgba(245,227,146,1) 50%, rgba(254,244,212,1) 90%, rgba(245,227,146,1) 100%) !important;*/
+     color: black !important;
+ }
 
 
 
