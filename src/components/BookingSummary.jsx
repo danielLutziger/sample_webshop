@@ -22,6 +22,7 @@ export default function BookingSummary({ bookingDetails }) {
         Telefon: ${bookingDetails.phone}
         Datum: ${bookingDetails.date}, Zeit: ${bookingDetails.time}
         Services: ${services.map((s) => `${s.title} (${s.duration} Minuten)`).join(", ")}
+        Ungefährer Preis: CHF ${totalPrice}
         Stornierung: Bis spätestens 2 Tage vorher telefonisch möglich.
       `,
             location: "Kirchgasse 3, 9500 Wil, Schweiz",
