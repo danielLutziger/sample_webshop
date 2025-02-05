@@ -104,6 +104,7 @@ app.post('/api/terminanfrage', async (req, res) => {
             to: process.env.EMAIL_TO,
             subject: 'Neuer Nancy Nails Termin',
             text: `Neue Anfrage nach einem Termin: ${req.body.firstname} ${req.body.lastname}. Kontakt Details: Email - ${req.body.email}, Phone - ${req.body.phone}. \n
+            Termin ID: ${query_res.id}\n
             Datum: ${req.body.date}, Zeit: ${req.body.time}\n
             Folgende Services wurden gebucht: ${req.body.services.map(service => service.title).join(", ")}\n
             Bemerkung des Kunden: ${req.body.bemerkung}`,
@@ -116,6 +117,17 @@ app.post('/api/terminanfrage', async (req, res) => {
 
 
         await transporter.sendMail(mailOptions);
+
+        const userMail = {
+            from: process.env.EMAIL_USER,
+            to: req.body.email,
+            subject: 'Nancy Nails Termin Gebucht',
+            text: `Termin wurde erfolgreich gebucht. Termin ID: ${query_res.id} \n Datum: ${req.body.date}, Zeit: ${req.body.time}\n
+            Folgende Services wurden gebucht: ${req.body.services.map(service => service.title).join(", ")}\n`,
+        };
+
+        await transporter.sendMail(userMail);
+
         res.status(200).send( query_res);
     } catch (error) {
         console.error('Error sending email:', error);
@@ -196,6 +208,28 @@ app.delete("/api/terminabsage/:uuid", async (req, res) => {
         const deletedAppointment = await prisma.Appointment.delete({
             where: { id: uuid }
         });
+
+        console.log(deletedAppointment)
+
+        const mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: process.env.EMAIL_TO,
+            subject: 'Nancy Nails Termin Abgesagt',
+            text: `Termin vom  ${deletedAppointment.start_time} - ${deletedAppointment.end_time} wurde erfolgreich abgesagt.\n
+            Folgendes war die Person: ${deletedAppointment.user_email}, ${deletedAppointment.user_phone}`,
+        };
+
+
+        await transporter.sendMail(mailOptions);
+
+        const userMail = {
+            from: process.env.EMAIL_USER,
+            to: deletedAppointment.user_email,
+            subject: 'Nancy Nails Termin Abgesagt',
+            text: `Termin mit der Termin ID ${deletedAppointment.id} wurde erfolgreich abgesagt.`,
+        };
+
+        await transporter.sendMail(userMail);
 
         res.json({ message: "Appointment deleted successfully", deletedAppointment });
     } catch (error) {
