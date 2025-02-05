@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom";
 import "@fontsource/montserrat";
 import "@fontsource/cormorant-garamond";
 import BookAppointment from "./BookAppointment.jsx";
+import CancelAppointment from "./CancelAppointment.jsx";
 
 export default function Hero({setCartItems, setBooked, setBookingObject}) {
     const navigate = useNavigate();
@@ -80,6 +81,15 @@ export default function Hero({setCartItems, setBooked, setBookingObject}) {
                     width: "100%",
                     fontFamily: "'cormorant garamond'",
                 }} setCartItems={setCartItems} setBooked={setBooked} setBookingObject={setBookingObject} />
+                <CancelAppointment sx={{
+                    mt: 2,
+                    fontWeight: "bold",
+                    padding: "10px 20px",
+                    fontSize: { xs: "1rem", md: "1rem" },
+                    width: "100%",
+                    fontFamily: "'cormorant garamond'",
+                }} />
+
             </Box>
 
             {/* Right/Bottom Side: Image

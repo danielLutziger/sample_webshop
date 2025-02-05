@@ -116,7 +116,7 @@ app.post('/api/terminanfrage', async (req, res) => {
 
 
         await transporter.sendMail(mailOptions);
-        res.status(200).send('Email sent successfully with ICS attachment');
+        res.status(200).send( query_res);
     } catch (error) {
         console.error('Error sending email:', error);
         res.status(500).send('Failed to send email');
@@ -162,14 +162,6 @@ async function bookAppointment(userEmail, userPhone, date, startTime, duration) 
     return result.length > 0 ? result[0] : { error: "Time slot already booked" };
 }
 
-
-app.post("/api/terminbuchung", async (req, res) => {
-    bookAppointment("user123", "+41 832 83 921 93", "06.02.2025", "16:30", 120)
-        .then(console.log)
-        .catch(console.error);
-
-})
-
 async function getBookedSlots() {
     const query = `
         SELECT 
@@ -189,6 +181,26 @@ app.get("/api/booked-slots", async (req, res) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Failed to fetch booked slots" });
+    }
+});
+
+app.delete("/api/terminabsage/:uuid", async (req, res) => {
+    try {
+        const { uuid } = req.params; // Extract UUID from URL
+        console.log("Deleting appointment with UUID:", uuid);
+
+        if (!uuid) {
+            return res.status(400).json({ error: "UUID is required" });
+        }
+
+        const deletedAppointment = await prisma.Appointment.delete({
+            where: { id: uuid }
+        });
+
+        res.json({ message: "Appointment deleted successfully", deletedAppointment });
+    } catch (error) {
+        console.error("Error deleting appointment:", error);
+        res.status(500).json({ error: "Failed to delete appointment" });
     }
 });
 

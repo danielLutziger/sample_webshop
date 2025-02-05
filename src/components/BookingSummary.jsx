@@ -17,6 +17,7 @@ export default function BookingSummary({ bookingDetails }) {
             duration: { hours: Math.floor(totalDuration / 60), minutes: totalDuration % 60 },
             title: `Booking: ${services.map((s) => s.title).join(", ")}`,
             description: `
+        Termin ID: ${bookingDetails.uuid}
         Buchung für ${bookingDetails.firstname} ${bookingDetails.lastname}.
         E-Mail: ${bookingDetails.email}
         Telefon: ${bookingDetails.phone}
@@ -88,6 +89,8 @@ export default function BookingSummary({ bookingDetails }) {
                 >
                     <Box sx={{ p: 2, maxWidth: "500px", margin: "auto", textAlign: "center" }}>
                         <Typography>
+                            <strong>Termin ID:</strong> {bookingDetails.uuid}
+                        </Typography><Typography>
                             <strong>Name:</strong> {bookingDetails.firstname} {bookingDetails.lastname}
                         </Typography>
                         <Typography>

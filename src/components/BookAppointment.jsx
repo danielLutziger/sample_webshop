@@ -77,7 +77,7 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
                 .then(response => {
                     console.log('Email sent:', response.data);
                     setFormDetails({ firstname: "", lastname: "", email: "", phone: "" });
-                    setBookingObject(send_object);
+                    setBookingObject({uuid: response.data.id, ...send_object});
                     setBooked(true);
                     //setCartItems([]);
                     localStorage.removeItem("cartItems");
