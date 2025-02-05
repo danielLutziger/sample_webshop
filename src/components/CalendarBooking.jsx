@@ -1,15 +1,26 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import Grid from "@mui/material/Grid2";
 import { Box, Typography, Button } from "@mui/material";
 import dayjs from "dayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import Blocked_slots from "../service_assets/blockierte_slots.json";
+import axios from "axios";
 
 dayjs.locale("de");
 export default function CalendarBooking({ setTermin, selectedSlot, setSelectedSlot, selectedDate, setSelectedDate }) {
-    const blockedSlots = Blocked_slots;
+    const [blockedSlots, setBookedSlots] = useState([])
+
+    useEffect(() => {
+        // pull for booked slots
+        axios.get('http://localhost:3001/api/booked-slots')
+            .then(response => {
+                setBookedSlots(response.data)
+            })
+            .catch(error => {
+                console.error('Gebuchte Slots konnten nicht geladen werden', error);
+            });
+    }, [selectedDate]);
 
     const [showAllSlots, setShowAllSlots] = useState(true);
 

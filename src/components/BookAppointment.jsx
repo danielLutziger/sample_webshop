@@ -62,9 +62,17 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
         );
     };
 
+
+    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedSlot, setSelectedSlot] = useState(null);
+    const endTime = selectedSlot ? dayjs(`${selectedDate.format("DD.MM.YYYY")}T${selectedSlot}`, "DD.MM.YYYYTHH:mm")
+            .add(duration, "minute")
+            .format("HH:mm")
+        : null;
+
     const handleFormSubmit = () => {
         if (isFormValid()) {
-            const send_object = { services: [...items], ...formDetails, ...termin, agbChecked: agbChecked };
+            const send_object = { services: [...items], ...formDetails, ...termin, agbChecked: agbChecked, dateInfo: {date: termin.date, startTime: selectedSlot, endTime: endTime, duration: estimated_duration} };
             axios.post('http://localhost:3001/api/terminanfrage', send_object)
                 .then(response => {
                     console.log('Email sent:', response.data);
@@ -78,20 +86,13 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
                 })
                 .catch(error => {
                     console.error('Failed to send email:', error);
-                    alert("Anfrage konnte nicht versendet werden");
+                    alert(error.response.data);
                 });
         } else {
             alert("Please fill out all required fields.");
         }
     };
 
-
-    const [selectedDate, setSelectedDate] = useState(null);
-    const [selectedSlot, setSelectedSlot] = useState(null);
-    const endTime = selectedSlot ? dayjs(`${selectedDate.format("DD.MM.YYYY")}T${selectedSlot}`, "DD.MM.YYYYTHH:mm")
-            .add(duration, "minute")
-            .format("HH:mm")
-        : null;
 
     return (
         <>
