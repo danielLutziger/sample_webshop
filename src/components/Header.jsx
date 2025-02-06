@@ -1,7 +1,7 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, Box } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import "@fontsource/montserrat";
+import "@fontsource/cormorant-garamond";
 export default function Header() {
     const navigate = useNavigate();
 
@@ -22,20 +22,37 @@ export default function Header() {
                 }}
             >
                 {/* Logo */}
-                <Typography
+
+
+
+
+                <Box
                     variant="h6"
                     component={Link}
                     to="/"
                     sx={{
                         textDecoration: "none",
-                        fontFamily: "'bagel fat one'",
+                        fontFamily: "'cormorant-garamond'",
                         fontSize: { xs: "1rem", md: "1.5rem" }, // Smaller font for mobile
                         flex: { xs: "1 1 100%", md: "0 0 auto" }, // Full width on mobile
                         textAlign: { xs: "center", md: "left" },
+                        display: "flex",
+                        justifyContent: "center"
                     }}
                 >
-                    Nancy Nails ❤️
-                </Typography>
+                   <Box
+                        component="img"
+                        src={"/assets/NancynailsLogo2.png"}
+                        sx={{width: "70px"}}
+                        />
+                        <Typography sx={{alignContent: "center",
+                        fontFamily: "'cormorant-garamond'",
+                        fontSize: { xs: "1.5rem", md: "1.5rem" },
+                        textDecoration: "none",
+                        color: "black"}}>
+                        Nancy Nails
+                        </Typography>
+                </Box>
 
                 {/* Navigation Links */}
                 <Box
