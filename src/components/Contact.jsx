@@ -1,11 +1,9 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import {height} from "@mui/system";
 
 export default function ContactPage() {
     return (
         <div>
-
             <div className={"siteHeader"}>
                 <Typography variant="h4" sx={{ textAlign: "center", mb: 3 }}>
                     Kontaktinformationen
@@ -24,10 +22,16 @@ export default function ContactPage() {
                 }}
             >
                 {/* Google Maps iframe */}
-                <Box sx={{height: "100%", width: "100%", borderBottom: { xs: "1px solid gold", md: "1px solid transparent" }, // Border only at the bottom on small screens
-                    borderRight: { xs: "1px solid transparent", md: "1px solid gold" },
-                    paddingRight: { xs: "0px", md: "20px" },
-                    paddingBottom: { xs: "20px", md: "0px" }}}>
+                <Box
+                    sx={{
+                        height: "100%",
+                        width: "100%",
+                        borderBottom: { xs: "1px solid gold", md: "1px solid transparent" }, // Border only at the bottom on small screens
+                        borderRight: { xs: "1px solid transparent", md: "1px solid gold" },
+                        paddingRight: { xs: "0px", md: "20px" },
+                        paddingBottom: { xs: "20px", md: "0px" },
+                    }}
+                >
                     <Box
                         sx={{
                             width: "100%",
@@ -54,36 +58,40 @@ export default function ContactPage() {
                     sx={{
                         flex: 1,
                         backgroundColor: "white",
-                        /*borderRadius: "8px",
-                        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)", */
                         padding: "10px",
-                        width: { xs: "100%", md: "auto" },
+                        minWidth: { xs: "260px", md: "280px" }, // Mindestbreite für Konsistenz
+                        maxWidth: { xs: "100%", md: "300px" }, // Maximale Breite für große Bildschirme
+                        whiteSpace: "nowrap", // Verhindert Zeilenumbrüche
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
                     }}
                 >
-                    <Typography variant="body1" sx={{ mb: 1 }}>
-                        <strong>Adresse:</strong> Kirchgasse 3, 9500 Wil, Switzerland
+                    <Typography variant="body1" sx={{ mb: 0 }}>
+                        <strong>Adresse:</strong>
                     </Typography>
-                    <Typography variant="body1" sx={{ mb: 1 }}>
-                        <strong>Kontaktnummer:</strong> +41 79 968 11 84
+                    <Typography variant="body2">
+                        Kirchgasse 3, 9500 Wil, Switzerland
                     </Typography>
-                    <Typography variant="body1" sx={{ mb: 1 }}>
-                        <strong>Email:</strong> nancy.nail.mail@gmail.com
+                    <Typography variant="body1" sx={{ mb: 0, mt: 1 }}>
+                        <strong>Kontaktnummer:</strong>
                     </Typography>
-                    <Typography variant="body1">
+                    <Typography variant="body2">
+                        +41 79 968 11 84
+                    </Typography>
+                    <Typography variant="body1" sx={{ mt: 1 }}>
+                        <strong>Email:</strong>
+                    </Typography>
+                    <Typography variant="body2">
+                        nancy.nails.mail@gmail.com
+                    </Typography>
+                    <Typography variant="body1" sx={{ mt: 1 }}>
                         <strong>Öffnungszeiten:</strong>
                     </Typography>
-                    <Typography variant="body2" sx={{ ml: 2 }}>
-                        Montag - Freitag: 9:00 - 18:30
-                    </Typography>
-                    <Typography variant="body2" sx={{ ml: 2 }}>
-                        Samstag: 09:00 - 16:00
-                    </Typography>
-                    <Typography variant="body2" sx={{ ml: 2 }}>
-                        Sonntag: Geschlossen
-                    </Typography>
+                    <Typography variant="body2">Montag - Freitag: 9:00 - 18:30</Typography>
+                    <Typography variant="body2">Samstag: 09:00 - 16:00</Typography>
+                    <Typography variant="body2">Sonntag: Geschlossen</Typography>
                 </Box>
             </Box>
         </div>
-
     );
 }
