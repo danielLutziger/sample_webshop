@@ -18,7 +18,7 @@
     "image": "",
     "images": [],
     "duration": 30,
-    "reduction": 0,
+    "reduction": "10% für Studenten",
     "extras": "Gellack (15CHF)"
   },
   {
@@ -29,7 +29,7 @@
     "image": "",
     "images": [],
     "duration": 50,
-    "reduction": 0,
+    "reduction": "10% für Studenten",
     "extras": "Gellack (9CHF), Ombre/French (15CHF)"
   },
   {
@@ -40,7 +40,7 @@
     "image": "",
     "images": [""],
     "duration": 50,
-    "reduction": 0,
+    "reduction": "10% für Studenten",
     "extras": "Gellack (9CHF), Ombre/French (15CHF)"
   },
   {
@@ -51,7 +51,7 @@
     "image": "",
     "images": [],
     "duration": 50,
-    "reduction": 0,
+    "reduction": "10% für Studenten",
     "extras": "Gellack (9CHF), Ombre/French (15CHF)"
   },
   {
@@ -62,7 +62,7 @@
     "image": "",
     "images": [""],
     "duration": 40,
-    "reduction": 0,
+    "reduction": "10% für Studenten",
     "extras": "Acryl/ Gel-build (35CHF), Acryl/ Gel-build mit Gellack (40CHF), nur Gellack (20CHF)"
   },
   {
@@ -72,8 +72,7 @@
     "description": "Bei einer Pedicure werden die Füße verwöhnt – Hornhaut wird sanft entfernt, die Nägel werden gekürzt und in Form gebracht, während die Haut intensiv gepflegt wird, für ein frisches und gepflegtes Gefühl. During a pedicure, the feet are pampered – calluses are gently removed, nails are trimmed and shaped, and the skin is deeply nourished for a fresh and well-groomed feel.",
     "image": "",
     "images": [""],
-    "duration": 50,
-    "reduction": 0
+    "reduction": "10% für Studenten"
   },
   {
     "id": "8",
@@ -83,7 +82,7 @@
     "image": "",
     "images": [""],
     "duration": 40,
-    "reduction":  0,
+    "reduction": "10% für Studenten",
     "extras": "Gellack (5CHF), Ombre/ French (10CHF)"
   },
   {
@@ -94,7 +93,7 @@
     "image": "",
     "images": [""],
     "duration": 40,
-    "reduction":  0,
+    "reduction": "10% für Studenten",
     "extras": "Gellack (5CHF), Ombre/ French (10CHF)"
   },
   {
@@ -105,7 +104,7 @@
     "image": "",
     "images": [""],
     "duration": 30,
-    "reduction": 0,
+    "reduction": "10% für Studenten",
     "extras": "Glitzer (2.5/15CHF), Stein (0.5CHF), Nagelschmuck (5CHF)"
   },
   {
@@ -116,36 +115,76 @@
     "image": "",
     "images": [""],
     "duration": 2,
-    "reduction":  0
+    "reduction": "10% für Studenten"
   },
   {
     "id": "12",
-    "title": "Service 13",
-    "price": 130,
-    "description": "Exceptional service guaranteed every time.",
-    "image": "/assets/img_14.png",
-    "images": ["/assets/img_14.png"],
-    "duration": 120,
-    "reduction":  20
+    "title": "Extra Glitzer Set",
+    "price": 15,
+    "description": "Funkelnder Glitzer wird über alle Nägel geschüttet und versiegelt.",
+    "image": "",
+    "images": [""],
+    "duration": 10,
+    "reduction": "10% für Studenten"
   },
   {
     "id": "13",
-    "title": "Service 14",
-    "price": 69,
+    "title": "Extra Stein",
+    "price": 0.5,
     "description": "Exceptional service guaranteed every time.",
-    "image": "/assets/img_15.png",
-    "images": ["/assets/img_15.png"],
-    "duration": 120,
-    "reduction":  20
+    "image": "",
+    "images": [""],
+    "duration": 1,
+    "reduction": "10% für Studenten"
   },
   {
     "id": "14",
-    "title": "Service 15",
-    "price": 96,
+    "title": "Extra Nagelschmuck",
+    "price": 5,
     "description": "Exceptional service guaranteed every time.",
-    "image": "/assets/img_16.png",
-    "images": ["/assets/img_16.png"],
-    "duration": 120,
-    "reduction":  20
+    "image": "",
+    "images": [""],
+    "duration": 3,
+    "reduction": "10% für Studenten"
+  },
+  {
+    "id": "15",
+    "title": "Extra Minimalist Design pro Nagel",
+    "price": 5,
+    "description": "Exceptional service guaranteed every time.",
+    "image": "",
+    "images": [""],
+    "duration": 5,
+    "reduction": "10% für Studenten"
+  },
+  {
+    "id": "16",
+    "title": "Extra Minimalist Design Set",
+    "price": 30,
+    "description": "Exceptional service guaranteed every time.",
+    "image": "",
+    "images": [""],
+    "duration": 30,
+    "reduction": "10% für Studenten"
+  },
+  {
+    "id": "17",
+    "title": "Extra 10mm length",
+    "price": 10,
+    "description": "Exceptional service guaranteed every time.",
+    "image": "",
+    "images": [""],
+    "duration": 15,
+    "reduction": "10% für Studenten"
+  },
+  {
+    "id": "18",
+    "title": "Reperatur pro Nagel",
+    "price": 10,
+    "description": "Exceptional service guaranteed every time.",
+    "image": "",
+    "images": [""],
+    "duration": 10,
+    "reduction": "10% für Studenten"
   }
 ]
