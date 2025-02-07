@@ -72,19 +72,19 @@ export default function ContactPage() {
                     <Typography variant="body2">
                         Kirchgasse 3, 9500 Wil, Switzerland
                     </Typography>
-                    <Typography variant="body1" sx={{ mb: 0, mt: 1 }}>
+                    <Typography variant="body1" sx={{ mb: 0, mt: 3 }}>
                         <strong>Kontaktnummer:</strong>
                     </Typography>
                     <Typography variant="body2">
                         +41 79 968 11 84
                     </Typography>
-                    <Typography variant="body1" sx={{ mt: 1 }}>
+                    <Typography variant="body1" sx={{ mt: 3 }}>
                         <strong>Email:</strong>
                     </Typography>
                     <Typography variant="body2">
                         nancy.nails.mail@gmail.com
                     </Typography>
-                    <Typography variant="body1" sx={{ mt: 1 }}>
+                    <Typography variant="body1" sx={{ mt: 3 }}>
                         <strong>Öffnungszeiten:</strong>
                     </Typography>
                     <Typography variant="body2">Montag - Freitag: 9:00 - 18:30</Typography>

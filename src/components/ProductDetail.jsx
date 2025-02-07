@@ -116,8 +116,11 @@ export default function ProductDetail({ setCartItems, setBooked, setBookingObjec
                     <Typography variant="body1" sx={{ mb: 1 }}>
                         <strong>Beschreibung:</strong> {product.description}
                     </Typography>
-                    <Typography variant="body1" sx={{ mb: 3 }}>
+                    <Typography variant="body1" sx={{ mb: 1 }}>
                         <strong>Extras:</strong> {product.extras ?? "Keine"}
+                    </Typography>
+                    <Typography variant="body1" sx={{ mb: 3 }}>
+                        <strong>Reduction:</strong> {product.reduction ?? "Keine"}
                     </Typography>
                     {/* Action Buttons */}
                     <Box sx={{ display: "flex"}}>
