@@ -17,3 +17,17 @@ http://storage.googleapis.com/your-frontend-bucket/index.html
 
 npm run build
 gcloud storage cp -r dist/* gs://your-frontend-bucket
+
+
+# deployment
+
+gcloud projects add-iam-policy-binding PROJECT-ID --member="serviceAccount:just-aloe@appspot.gserviceaccount.com" --role="roles/storage.admin"
+
+npm run build
+
+gcloud app deploy
+
+# redeploy
+npm run build
+
+gcloud app deploy

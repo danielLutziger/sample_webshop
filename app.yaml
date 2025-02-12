@@ -1,0 +1,25 @@
+runtime: python39
+service: default
+instance_class: F1
+
+handlers:
+  # Serve static files
+  - url: /assets  # Serve assets (CSS, JS, etc.)
+    static_dir: dist/assets
+    secure: always
+
+  - url: /favicon.ico  # Serve favicon
+    static_files: dist/favicon.ico
+    upload: dist/favicon.ico
+    secure: always
+
+  - url: /robots.txt  # Serve robots.txt (if exists)
+    static_files: dist/robots.txt
+    upload: dist/robots.txt
+    secure: always
+
+  # Catch-all: Serve index.html for all other routes
+  - url: /.*
+    static_files: dist/index.html
+    upload: dist/index.html
+    secure: always
