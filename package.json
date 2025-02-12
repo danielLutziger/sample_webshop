@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "start": "vite preview",
-    "build": "vite build"
+    "build": "vite build",
+    "deploy": "npm run build && gcloud storage cp -r dist/* gs://your-frontend-bucket"
   },
   "engines": {
     "node": "18.x"

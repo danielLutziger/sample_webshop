@@ -73,6 +73,7 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
     const handleFormSubmit = () => {
         if (isFormValid()) {
             const send_object = { services: [...items], ...formDetails, ...termin, agbChecked: agbChecked, dateInfo: {date: termin.date, startTime: selectedSlot, endTime: endTime, duration: estimated_duration} };
+            console.log(send_object)
             api.post('/api/terminanfrage', send_object)
                 .then(response => {
                     console.log('Email sent:', response.data);
@@ -86,7 +87,7 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
                 })
                 .catch(error => {
                     console.error('Failed to send email:', error);
-                    alert(error.response.data);
+                    alert(error.response.data.detail);
                 });
         } else {
             alert("Please fill out all required fields.");
