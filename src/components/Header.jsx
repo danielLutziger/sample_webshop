@@ -1,9 +1,8 @@
-import React from "react";
+import "react";
 import { AppBar, Toolbar, Typography, Box } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "@fontsource/cormorant-garamond";
 export default function Header() {
-    const navigate = useNavigate();
 
     return (
         <AppBar

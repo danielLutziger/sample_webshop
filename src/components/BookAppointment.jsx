@@ -11,7 +11,8 @@ import SelectMultipleAppearance from "./ServiceSelection.jsx";
 import {useNavigate} from "react-router-dom";
 import {api} from "../utils/api.jsx";
 
-export default function BookAppointment({ cartItems, setCartItems, duration, setBooked, setBookingObject, sx }) {
+// eslint-disable-next-line react/prop-types
+export default function BookAppointment({ setCartItems, setBooked, setBookingObject, sx }) {
     const [open, setOpen] = React.useState(false);
     const navigate = useNavigate();
     const handleOpen = () => setOpen(true);
@@ -66,7 +67,7 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
     const [selectedDate, setSelectedDate] = useState(null);
     const [selectedSlot, setSelectedSlot] = useState(null);
     const endTime = selectedSlot ? dayjs(`${selectedDate.format("DD.MM.YYYY")}T${selectedSlot}`, "DD.MM.YYYYTHH:mm")
-            .add(duration, "minute")
+            .add(estimated_duration, "minute")
             .format("HH:mm")
         : null;
 
@@ -80,7 +81,6 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
                     setFormDetails({ firstname: "", lastname: "", email: "", phone: "" });
                     setBookingObject({uuid: response.data.id, ...send_object});
                     setBooked(true);
-                    //setCartItems([]);
                     localStorage.removeItem("cartItems");
                     handleClose();
                     navigate("/appointment");

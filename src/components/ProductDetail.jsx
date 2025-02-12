@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { Box, Typography, Button, Snackbar, Alert } from "@mui/material";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { Box, Typography, Snackbar, Alert } from "@mui/material";
 import ServiceMock from "../service_assets/services.json"
 import BookAppointment from "./BookAppointment.jsx";
 // Mock data for services
 const services = ServiceMock;
 
+// eslint-disable-next-line react/prop-types
 export default function ProductDetail({ setCartItems, setBooked, setBookingObject}) {
     const { id } = useParams(); // Get the product ID from the URL
-    const navigate = useNavigate();
 
     // Find the specific product
     const product = services.find((service) => service.id === id);
@@ -22,22 +22,6 @@ export default function ProductDetail({ setCartItems, setBooked, setBookingObjec
     if (!product) {
         return <Typography>Product not found!</Typography>;
     }
-
-    // Add item to cart
-    /*
-    const addToCart = (service) => {
-        setCartItems((prevItems) => {
-            const itemExists = prevItems.some((item) => item.id === service.id);
-            if (itemExists) {
-                setSnackbar({ open: true, message: `"${service.title}" already added.`, severity: "info" });
-                return prevItems; // Do not add duplicates
-            }
-            setSnackbar({ open: true, message: `"${service.title}" was added to the cart.`, severity: "success" });
-            localStorage.setItem("cartItems", JSON.stringify([...prevItems, service]));
-            return [...prevItems, service];
-        });
-    };
-     */
 
     // Close the snackbar
     const handleCloseSnackbar = () => {

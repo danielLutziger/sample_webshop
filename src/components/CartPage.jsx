@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
-import {Box, Typography, Button, Snackbar, Alert} from "@mui/material";
+import { useState } from "react";
+import {Box, Typography} from "@mui/material";
 import BookAppointment from "./BookAppointment.jsx";
 import BookingSummary from "./BookingSummary.jsx";
-import SelectMultipleAppearance from "./ServiceSelection.jsx";
-export default function CartPage({ cartItems, setCartItems}) {
+
+// eslint-disable-next-line react/prop-types
+export default function CartPage({ setCartItems}) {
     const [booked, setBooked] = useState(false);
     const [bookingObject, setBookingObject] = useState({});
 
@@ -17,8 +18,8 @@ export default function CartPage({ cartItems, setCartItems}) {
                     </Typography>
 
                         <Box sx={{ textAlign: "center", mt: 4 }}>
-                            <BookAppointment cartItems={cartItems} setCartItems={setCartItems}
-                                             duration={duration} setBooked={setBooked}
+                            <BookAppointment setCartItems={setCartItems}
+                                             setBooked={setBooked}
                                              setBookingObject={setBookingObject} />
                         </Box>
                 </>

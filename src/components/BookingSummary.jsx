@@ -1,8 +1,43 @@
-import React from "react";
+import "react";
 import { Box, Typography, Button } from "@mui/material";
 import { createEvent } from "ics";
+import PropTypes from "prop-types";
+
+BookingSummary.propTypes = {
+    bookingDetails: PropTypes.shape({
+        uuid: PropTypes.string.isRequired,
+        firstname: PropTypes.string.isRequired,
+        lastname: PropTypes.string.isRequired,
+        email: PropTypes.string.isRequired,
+        phone: PropTypes.string.isRequired,
+        bemerkung: PropTypes.string,
+        date: PropTypes.string.isRequired,
+        time: PropTypes.string.isRequired,
+        agbChecked: PropTypes.bool.isRequired,
+        dateInfo: PropTypes.shape({
+            date: PropTypes.string.isRequired,
+            startTime: PropTypes.string.isRequired,
+            endTime: PropTypes.string.isRequired,
+            duration: PropTypes.number.isRequired,
+        }).isRequired,
+        services: PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.string.isRequired,
+                title: PropTypes.string.isRequired,
+                price: PropTypes.number.isRequired,
+                description: PropTypes.string,
+                image: PropTypes.string,
+                images: PropTypes.arrayOf(PropTypes.string),
+                duration: PropTypes.number.isRequired,
+                reduction: PropTypes.string,
+                extras: PropTypes.string,
+            })
+        ).isRequired,
+    }).isRequired,
+};
 
 export default function BookingSummary({ bookingDetails }) {
+    console.log(bookingDetails)
     const services = bookingDetails.services;
     const totalPrice = services.reduce((acc, service) => acc + service.price, 0);
     const totalDuration = services.reduce((acc, service) => acc + service.duration, 0);

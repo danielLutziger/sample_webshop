@@ -1,4 +1,4 @@
-import React from "react";
+import "react";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent, Typography, Box } from "@mui/material";
 import ServicesMock from "../service_assets/services.json";

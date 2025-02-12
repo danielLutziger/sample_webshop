@@ -1,8 +1,10 @@
-import * as React from 'react';
+import 'react';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import { Box, Chip } from '@mui/joy';
 import services from "../service_assets/services.json"
+
+// eslint-disable-next-line react/prop-types
 export default function SelectMultipleAppearance({setSelectedServices}) {
     const handleChange = (event, newValue) =>  {
         setSelectedServices(services.filter(service => newValue.includes(service.id) ))
@@ -23,7 +25,7 @@ export default function SelectMultipleAppearance({setSelectedServices}) {
                 </Box>
             )}
             size="lg"
-            sx={{ minWidth: '15rem', zIndex: 10000, 
+            sx={{ minWidth: '15rem', zIndex: 10000,
                 '.MuiOutlinedInput-root': {
                     '&.Mui-focused': {
                         borderColor: 'gold', // Border color on focus

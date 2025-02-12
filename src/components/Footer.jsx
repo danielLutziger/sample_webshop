@@ -1,5 +1,5 @@
 // Footer component
-import React from "react";
+import "react";
 import {Box, IconButton, Typography} from "@mui/material";
 import InstagramIcon from '@mui/icons-material/Instagram';
 import EmailIcon from '@mui/icons-material/Email';

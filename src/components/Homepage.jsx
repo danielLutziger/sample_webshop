@@ -1,9 +1,8 @@
 import Hero from "./Hero.jsx";
-import {Container} from "@mui/material";
-import FeaturedServices from "./FeaturedServices.jsx";
-import React from "react";
+import "react";
 
-export default function Homepage({cartItems, setCartItems, setBookingObject, setBooked}){
+// eslint-disable-next-line react/prop-types
+export default function Homepage({setCartItems, setBookingObject, setBooked}){
     return (
         <main>
             <Hero setCartItems={setCartItems} setBooked={setBooked} setBookingObject={setBookingObject} />

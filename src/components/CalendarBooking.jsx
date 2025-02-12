@@ -8,6 +8,8 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import {api} from "../utils/api.jsx";
 
 dayjs.locale("de");
+
+// eslint-disable-next-line react/prop-types
 export default function CalendarBooking({ setTermin, selectedSlot, setSelectedSlot, selectedDate, setSelectedDate }) {
     const [blockedSlots, setBookedSlots] = useState([])
 
@@ -37,6 +39,7 @@ export default function CalendarBooking({ setTermin, selectedSlot, setSelectedSl
     };
 
     const isSlotBlocked = (slot) => {
+        // eslint-disable-next-line react/prop-types
         const formattedDate = selectedDate?.format("DD.MM.YYYY");
         return blockedSlots.some(
             (block) =>
@@ -65,6 +68,7 @@ export default function CalendarBooking({ setTermin, selectedSlot, setSelectedSl
         } else {
             // Select the slot and collapse to show only the selected one
             setSelectedSlot(slot);
+            // eslint-disable-next-line react/prop-types
             setTermin({ date: selectedDate.format("DD.MM.YYYY"), time: slot });
             setShowAllSlots(false);
         }

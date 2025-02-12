@@ -3,6 +3,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import React, {useState} from "react";
 import {api} from "../utils/api.jsx";
 
+// eslint-disable-next-line react/prop-types
 export default function CancelAppointment({sx}) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);

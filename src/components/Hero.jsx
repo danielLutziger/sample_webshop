@@ -1,4 +1,4 @@
-import React from "react";
+import "react";
 import {Box, Button, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import "@fontsource/montserrat";
@@ -6,6 +6,7 @@ import "@fontsource/cormorant-garamond";
 import BookAppointment from "./BookAppointment.jsx";
 import CancelAppointment from "./CancelAppointment.jsx";
 
+// eslint-disable-next-line react/prop-types
 export default function Hero({setCartItems, setBooked, setBookingObject}) {
     const navigate = useNavigate();
 

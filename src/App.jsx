@@ -19,7 +19,7 @@ export default function App() {
         return savedCart ? JSON.parse(savedCart) : [];
     });
 
-    const [booked, setBooked] = useState(false);
+    const [, setBooked] = useState(false);
     const [bookingObject, setBookingObject] = useState({});
 
 
@@ -34,13 +34,13 @@ export default function App() {
                     <div className={"container"}>
                         <div className={"contentItems"}>
                             <Routes>
-                                <Route path="/" element={<Homepage cartItems={cartItems} setCartItems={setCartItems} setBooked={setBooked} setBookingObject={setBookingObject} />}/>
+                                <Route path="/" element={<Homepage setCartItems={setCartItems} setBooked={setBooked} setBookingObject={setBookingObject} />}/>
                                 <Route path="/services" element={<ServicesPage />}/>
                                 <Route path="/contact" element={<ContactPage/>}/>
                                 <Route path="/product/:id" element={<ProductDetail setCartItems={setCartItems} setBooked={setBooked} setBookingObject={setBookingObject} />}/>
                                 <Route path="/appointment" element={<BookingSummary bookingDetails={bookingObject} />}/>
                                 <Route path="/cart"
-                                       element={<CartPage cartItems={cartItems} setCartItems={setCartItems}/>}/>
+                                       element={<CartPage setCartItems={setCartItems}/>}/>
                             </Routes>
                         </div>
                     </div>
