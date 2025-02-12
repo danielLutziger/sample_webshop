@@ -41,7 +41,7 @@ export default function Header() {
                 >
                    <Box
                         component="img"
-                        src={"/assets/NancynailsLogo2.png"}
+                        src={"./assets/NancynailsLogo2.png"}
                         sx={{width: "70px"}}
                         />
                         <Typography sx={{alignContent: "center",

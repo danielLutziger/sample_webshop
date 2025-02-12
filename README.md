@@ -1,3 +1,5 @@
+# First deploy
+
 npm run build
 
 gcloud services enable storage.googleapis.com
@@ -10,3 +12,8 @@ gcloud storage buckets add-iam-policy-binding gs://your-frontend-bucket --member
 gcloud storage cp -r dist/* gs://your-frontend-bucket
 
 http://storage.googleapis.com/your-frontend-bucket/index.html
+
+# Redeploy
+
+npm run build
+gcloud storage cp -r dist/* gs://your-frontend-bucket
