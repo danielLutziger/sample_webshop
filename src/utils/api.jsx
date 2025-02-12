@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getDomain } from 'utils/getDomain';
+import {getDomain} from "./getDomain.jsx";
 
 export const api = axios.create({
     baseURL: getDomain(),

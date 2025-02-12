@@ -120,7 +120,7 @@ export default function ProductDetail({ setCartItems, setBooked, setBookingObjec
                         <strong>Extras:</strong> {product.extras ?? "Keine"}
                     </Typography>
                     <Typography variant="body1" sx={{ mb: 3 }}>
-                        <strong>Reduction:</strong> {product.reduction ?? "Keine"}
+                        <strong>Rabatt:</strong> {product.reduction ?? "Keine"}
                     </Typography>
                     {/* Action Buttons */}
                     <Box sx={{ display: "flex"}}>
