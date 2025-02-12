@@ -9,7 +9,7 @@ import dayjs from "dayjs";
 import {MuiTelInput} from "mui-tel-input";
 import SelectMultipleAppearance from "./ServiceSelection.jsx";
 import {useNavigate} from "react-router-dom";
-import axios from 'axios';
+import {api} from "../utils/api.jsx";
 
 export default function BookAppointment({ cartItems, setCartItems, duration, setBooked, setBookingObject, sx }) {
     const [open, setOpen] = React.useState(false);
@@ -73,7 +73,7 @@ export default function BookAppointment({ cartItems, setCartItems, duration, set
     const handleFormSubmit = () => {
         if (isFormValid()) {
             const send_object = { services: [...items], ...formDetails, ...termin, agbChecked: agbChecked, dateInfo: {date: termin.date, startTime: selectedSlot, endTime: endTime, duration: estimated_duration} };
-            axios.post('http://localhost:3001/api/terminanfrage', send_object)
+            api.post('/api/terminanfrage', send_object)
                 .then(response => {
                     console.log('Email sent:', response.data);
                     setFormDetails({ firstname: "", lastname: "", email: "", phone: "" });

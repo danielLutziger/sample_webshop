@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import axios from "axios";
+import {api} from "../utils/api.jsx";
 
 dayjs.locale("de");
 export default function CalendarBooking({ setTermin, selectedSlot, setSelectedSlot, selectedDate, setSelectedDate }) {
@@ -13,7 +13,8 @@ export default function CalendarBooking({ setTermin, selectedSlot, setSelectedSl
 
     useEffect(() => {
         // pull for booked slots
-        axios.get('http://localhost:3001/api/booked-slots')
+
+        api.get('/api/booked-slots')
             .then(response => {
                 setBookedSlots(response.data)
             })

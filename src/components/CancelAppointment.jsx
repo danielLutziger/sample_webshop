@@ -1,8 +1,7 @@
-import {Box, Button, Modal, TextField, IconButton, Typography, FormControlLabel, Checkbox} from "@mui/material";
-import Textarea from '@mui/joy/Textarea';
+import {Box, Button, Modal, TextField, IconButton, Typography} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import React, {useState} from "react";
-import axios from 'axios';
+import {api} from "../utils/api.jsx";
 
 export default function CancelAppointment({sx}) {
     const [open, setOpen] = React.useState(false);
@@ -21,7 +20,7 @@ export default function CancelAppointment({sx}) {
     const handleFormSubmit = () => {
         const uuid = formDetails.uuid;
 
-        axios.delete(`http://localhost:3001/api/terminabsage/${uuid}`)
+        api.delete(`/api/terminabsage/${uuid}`)
             .then(response => {
                 console.log('Termin abgesagt:', response.data);
                 setFormDetails({ uuid: "" });

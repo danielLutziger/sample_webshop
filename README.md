@@ -61,8 +61,17 @@ npm run dev
 ```
 
 # 🚀 Deployment
-### 1️⃣ Deploy to Vercel
-
+### 1️⃣ Deploy to Google Cloud
+https://cloud.google.com/appengine/docs/standard/nodejs/building-app/creating-project?hl=de
+gcloud services enable run.googleapis.com artifactregistry.googleapis.com cloudbuild.googleapis.com
+gcloud auth configure-docker
+docker build -t gcr.io/je-webservice/my-app .
+docker push gcr.io/je-webservice/my-app
+gcloud run deploy my-app \
+--image gcr.io/je-webservice/my-app \
+--platform managed \
+--region us-central1 \
+--allow-unauthenticated
 
 # 📚 Tech Stack
 - Frontend: Vite + React
