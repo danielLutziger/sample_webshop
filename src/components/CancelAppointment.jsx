@@ -27,8 +27,8 @@ export default function CancelAppointment({sx}) {
                 handleClose();
             })
             .catch(error => {
-                console.error('Failed to send email:', error);
-                alert(error.response?.data || "Error occurred");
+                console.error('Failed to send email:', error.response.data.detail);
+                alert(error.response.data.detail || "Error occurred");
             });
     };
 
