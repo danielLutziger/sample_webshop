@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {HashRouter as Router, Routes, Route} from "react-router-dom";
+import {HashRouter as Router, Routes, Route, Navigate} from "react-router-dom";
 import ProductDetail from "./components/ProductDetail";
 import Homepage from "./components/Homepage.jsx";
 import ContactPage from "./components/Contact.jsx";
@@ -14,7 +14,6 @@ import BookingSummary from "./components/BookingSummary.jsx";
 
 export default function App() {
     const [cartItems, setCartItems] = useState(() => {
-        console.log("here")
         const savedCart = localStorage.getItem("cartItems");
         return savedCart ? JSON.parse(savedCart) : [];
     });
@@ -41,6 +40,7 @@ export default function App() {
                                 <Route path="/appointment" element={<BookingSummary bookingDetails={bookingObject} />}/>
                                 <Route path="/cart"
                                        element={<CartPage setCartItems={setCartItems}/>}/>
+                                <Route path="*" element={<Navigate to="/" replace />} />
                             </Routes>
                         </div>
                     </div>
