@@ -36,6 +36,7 @@ export default function ContactPage() {
 
     const handleFormSubmit = () => {
         if (isFormValid()) {
+            console.log(formDetails)
             api.post('/api/anliegen_melden', formDetails)
                 .then(response => {
                     console.log('Email sent:', response.data);
