@@ -3,6 +3,10 @@ service: default
 instance_class: F1
 
 handlers:
+  - url: /AGBs
+    static_dir: dist/AGBs
+    secure: always
+
   # Serve static files
   - url: /assets  # Serve assets (CSS, JS, etc.)
     static_dir: dist/assets
@@ -23,3 +27,4 @@ handlers:
     static_files: dist/index.html
     upload: dist/index.html
     secure: always
+
