@@ -3,28 +3,28 @@ service: default
 instance_class: F1
 
 handlers:
+  # Serve AGBs PDFs correctly
   - url: /AGBs
     static_dir: dist/AGBs
     secure: always
 
-  # Serve static files
-  - url: /assets  # Serve assets (CSS, JS, etc.)
+  # Serve other static assets (CSS, JS, etc.)
+  - url: /assets
     static_dir: dist/assets
     secure: always
 
-  - url: /favicon.ico  # Serve favicon
+  - url: /favicon.ico
     static_files: dist/favicon.ico
     upload: dist/favicon.ico
     secure: always
 
-  - url: /robots.txt  # Serve robots.txt (if exists)
+  - url: /robots.txt
     static_files: dist/robots.txt
     upload: dist/robots.txt
     secure: always
 
-  # Catch-all: Serve index.html for all other routes
+  # Catch-all: Serve index.html for all other routes (SPA support)
   - url: /.*
     static_files: dist/index.html
     upload: dist/index.html
     secure: always
-
