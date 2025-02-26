@@ -13,7 +13,7 @@ gcloud auth application-default login
 ```
 
 ```sh
-gcloud config set project PROJECT-ID
+gcloud config set project nancy-nails-fr
 ```
 
 ```sh
@@ -25,8 +25,8 @@ gcloud services enable appengine.googleapis.com iam.googleapis.com
 gcloud app create --region=europe-west6
 ```
 ```sh
-gcloud projects add-iam-policy-binding PROJECT-ID --member="serviceAccount:PROJECT-ID@appspot.gserviceaccount.com" --role="roles/storage.admin"
-gcloud projects add-iam-policy-binding PROJECT-ID --member="serviceAccount:PROJECT-ID@appspot.gserviceaccount.com" --role="roles/cloudbuild.builds.editor"
+gcloud projects add-iam-policy-binding nancy-nails-fr --member="serviceAccount:nancy-nails-fr@appspot.gserviceaccount.com" --role="roles/storage.admin"
+gcloud projects add-iam-policy-binding nancy-nails-fr --member="serviceAccount:nancy-nails-fr@appspot.gserviceaccount.com" --role="roles/cloudbuild.builds.editor"
 
 ```
 
@@ -34,7 +34,7 @@ gcloud projects add-iam-policy-binding PROJECT-ID --member="serviceAccount:PROJE
 Grant **Cloud Storage permissions** to the App Engine service account:
 
 ```sh
-gcloud projects add-iam-policy-binding PROJECT-ID --member="serviceAccount:PROJECT-ID@appspot.gserviceaccount.com"   --role="roles/storage.admin"
+`gcloud projects add-iam-policy-binding nancy-nails-fr --member="serviceAccount:nancy-nails-fr@appspot.gserviceaccount.com"   --role="roles/storage.admin"`
 ```
 
 Then build the app and deploy

@@ -55,7 +55,7 @@ export default function Hero({setCartItems, setBooked, setBookingObject}) {
                         fontWeight: 400, // Regular weight
                     }}
                 >
-                    Entdecken Sie unser Angebot an luxuriösen Nagelpflege-Dienstleistungen, von Maniküre und Pediküre bis hin zu individuell gestaltetem Nageldesign. Entspannen Sie sich in unserer ruhigen Atmosphäre und lassen Sie sich von uns verwöhnen.
+                    Grandopening am 01. März 2025! Mit Apéro und Gewinnspiele :)
                 </Typography>
                 <Button
                     variant="contained"
