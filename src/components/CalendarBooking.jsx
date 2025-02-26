@@ -9,13 +9,10 @@ import {api} from "../utils/api.jsx";
 
 dayjs.locale("de");
 
-// eslint-disable-next-line react/prop-types
 export default function CalendarBooking({ setTermin, selectedSlot, setSelectedSlot, selectedDate, setSelectedDate }) {
     const [blockedSlots, setBookedSlots] = useState([])
 
     useEffect(() => {
-        // pull for booked slots
-
         api.get('/api/booked-slots')
             .then(response => {
                 setBookedSlots(response.data)
@@ -27,7 +24,10 @@ export default function CalendarBooking({ setTermin, selectedSlot, setSelectedSl
 
     const [showAllSlots, setShowAllSlots] = useState(true);
 
-    const generateTimeSlots = (start = "09:00", end = "18:00") => {
+    const generateTimeSlots = () => {
+        const start = "09:00";
+        const end = selectedDate?.day() === 6 ? "16:00" : "18:00"; // Samstage bis 16:00 Uhr, sonst bis 18:00 Uhr
+
         const slots = [];
         let current = dayjs(`2025-01-21T${start}`);
         const endTime = dayjs(`2025-01-21T${end}`);
@@ -39,7 +39,6 @@ export default function CalendarBooking({ setTermin, selectedSlot, setSelectedSl
     };
 
     const isSlotBlocked = (slot) => {
-        // eslint-disable-next-line react/prop-types
         const formattedDate = selectedDate?.format("DD.MM.YYYY");
         return blockedSlots.some(
             (block) =>
@@ -63,12 +62,9 @@ export default function CalendarBooking({ setTermin, selectedSlot, setSelectedSl
         if (isSlotBlocked(slot)) return;
 
         if (selectedSlot === slot && !showAllSlots) {
-            // Toggle to show all slots
             setShowAllSlots(true);
         } else {
-            // Select the slot and collapse to show only the selected one
             setSelectedSlot(slot);
-            // eslint-disable-next-line react/prop-types
             setTermin({ date: selectedDate.format("DD.MM.YYYY"), time: slot });
             setShowAllSlots(false);
         }
@@ -108,7 +104,7 @@ export default function CalendarBooking({ setTermin, selectedSlot, setSelectedSl
                                         onClick={() => handleSlotSelection(slot)}
                                         sx={{
                                             pointerEvents: isSlotBlocked(slot) ? "none" : "auto",
-                                            width: "100%", // Ensure the button spans the full width of the grid
+                                            width: "100%",
                                         }}
                                         disabled={isSlotBlocked(slot)}
                                     >

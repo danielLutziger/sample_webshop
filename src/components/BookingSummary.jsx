@@ -59,7 +59,7 @@ export default function BookingSummary({ bookingDetails }) {
         Datum: ${bookingDetails.date}, Zeit: ${bookingDetails.time}
         Services: ${services.map((s) => `${s.title} (${s.duration} Minuten)`).join(", ")}
         Ungefährer Preis: CHF ${totalPrice}
-        Stornierung: Bis spätestens 2 Tage vorher telefonisch möglich.
+        Stornierung: Bis spätestens 24 Stunden vorher telefonisch möglich.
       `,
             location: "Kirchgasse 3, 9500 Wil, Schweiz",
             geo: { lat: 47.4665641784668, lon: 9.049123764038086 }, // Coordinates
@@ -147,7 +147,7 @@ export default function BookingSummary({ bookingDetails }) {
                             <strong>Ungefähre Dauer:</strong> {totalDuration} Minuten
                         </Typography>
                         <Typography sx={{ mt: 2, fontSize: "0.9em" }}>
-                            Stornierung nur telefonisch bis spätestens 2 Tage vor dem Termin möglich.
+                            Stornierung nur schriftlich bis spätestens 24 Stunden vor dem Termin möglich.
                         </Typography>
                         <Typography sx={{ mt: 1, fontSize: "0.9em" }}>
                             Kontakt: nancy.nails.mail@gmail.com
