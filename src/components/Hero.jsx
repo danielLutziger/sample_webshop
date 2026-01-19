@@ -55,7 +55,7 @@ export default function Hero({setCartItems, setBooked, setBookingObject}) {
                         fontWeight: 400, // Regular weight
                     }}
                 >
-                    Grandopening am 01. März 2025! Mit Apéro und Gewinnspiele :)
+                    Bei Buchungsschwierigketen auf der Webseite können Sie uns gerne auf Instagram oder telefonisch kontaktieren!
                 </Typography>
                 <Button
                     variant="contained"

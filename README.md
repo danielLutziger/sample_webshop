@@ -46,7 +46,7 @@ gcloud app deploy
 ## 🔄 Redeploy (After Changes)
 Then build the app and deploy
 ```sh
-npm run deploy
+npm run test
 ```
 
 ---
